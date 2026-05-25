@@ -46,6 +46,32 @@ export default function Home() {
     loadAllData();
   }, []);
 
+  useEffect(() => {
+    const handleAnchorClick = (e) => {
+      const anchor = e.target.closest('a');
+      if (anchor) {
+        const href = anchor.getAttribute('href');
+        if (href && href.startsWith('#')) {
+          e.preventDefault();
+          const targetId = href.substring(1);
+          if (targetId === '') {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+          } else {
+            const element = document.getElementById(targetId);
+            if (element) {
+              element.scrollIntoView({ behavior: 'smooth' });
+            }
+          }
+        }
+      }
+    };
+
+    document.addEventListener('click', handleAnchorClick);
+    return () => {
+      document.removeEventListener('click', handleAnchorClick);
+    };
+  }, []);
+
   if (loading) {
     return (
       <div className="fixed inset-0 bg-primary z-50 flex flex-col items-center justify-center text-white" id="app-loading-screen">

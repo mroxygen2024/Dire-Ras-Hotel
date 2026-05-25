@@ -10,7 +10,7 @@ export default function Navbar({ hotelInfo, navLinks }) {
 
   return (
     <nav className="bg-primary text-white sticky top-0 z-50 shadow-md">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-7xl lg:max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-6">
         <div className="flex items-center justify-between h-20">
           
           {/* Logo Section */}

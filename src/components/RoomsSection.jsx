@@ -7,19 +7,19 @@ export default function RoomsSection({ rooms }) {
   if (!rooms || rooms.length === 0) return null;
 
   return (
-    <section className="py-14 sm:py-16 lg:py-24 bg-white" id="rooms">
-      <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 text-center">
+    <section className="py-14 sm:py-16 lg:pt-10 lg:pb-12 bg-white" id="rooms">
+      <div className="max-w-7xl lg:max-w-[1400px] mx-auto px-6 sm:px-8 lg:px-6 text-center">
         
         {/* Section Header */}
         <p className="text-gold font-sans text-xs sm:text-sm font-bold tracking-widest uppercase mb-2">
           OUR ROOMS
         </p>
-        <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-bold text-text-dark mb-10 sm:mb-16">
+        <h2 className="font-serif text-3xl sm:text-4xl lg:text-4xl font-bold text-text-dark mb-10 sm:mb-16 lg:mb-8">
           Find Your Perfect Stay
         </h2>
 
         {/* Desktop & Tablet Layout (Grid) */}
-        <div className="hidden md:grid grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="hidden md:grid grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-6">
           {rooms.map((room) => (
             <div key={room.id} className="h-full">
               <RoomCard room={room} />

@@ -6,7 +6,7 @@ export default function Footer({ hotelInfo, navLinks }) {
 
   return (
     <footer className="bg-primary text-white border-t border-gold/10 pt-16 pb-8" id="contact">
-      <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
+      <div className="max-w-7xl lg:max-w-[1400px] mx-auto px-6 sm:px-8 lg:px-6">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
           
           {/* Column 1: Monogram + Brand */}

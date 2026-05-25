@@ -23,7 +23,7 @@ export default function BookingCard() {
   };
 
   return (
-    <div className="relative z-30 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-10 sm:-mt-14 lg:-mt-16">
+    <div id="booking" className="relative z-30 max-w-7xl lg:max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-6 -mt-10 sm:-mt-14 lg:-mt-16">
       <form 
         onSubmit={handleCheckAvailability}
         className="bg-white rounded-2xl lg:rounded-xl shadow-xl border border-gray-100 p-5 sm:p-6 lg:p-4 flex flex-col lg:flex-row items-stretch lg:items-center justify-between gap-4 lg:gap-0"
