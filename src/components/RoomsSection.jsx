@@ -1,26 +1,10 @@
 import React, { useState } from 'react';
 import RoomCard from './RoomCard';
 
-const roomsData = [
-  {
-    title: 'Deluxe Room',
-    price: 'ETB 3,200',
-    image: 'https://images.unsplash.com/photo-1618773928121-c32242e63f39?auto=format&fit=crop&w=800&q=80',
-  },
-  {
-    title: 'Executive Suite',
-    price: 'ETB 5,500',
-    image: 'https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format&fit=crop&w=800&q=80',
-  },
-  {
-    title: 'Standard Twin Room',
-    price: 'ETB 2,800',
-    image: 'https://images.unsplash.com/photo-1566665797739-1674de7a421a?auto=format&fit=crop&w=800&q=80',
-  },
-];
-
-export default function RoomsSection() {
+export default function RoomsSection({ rooms }) {
   const [activeIndex, setActiveIndex] = useState(0);
+
+  if (!rooms || rooms.length === 0) return null;
 
   return (
     <section className="py-14 sm:py-16 lg:py-24 bg-white" id="rooms">
@@ -36,8 +20,8 @@ export default function RoomsSection() {
 
         {/* Desktop & Tablet Layout (Grid) */}
         <div className="hidden md:grid grid-cols-2 lg:grid-cols-3 gap-8">
-          {roomsData.map((room, index) => (
-            <div key={index} className="h-full">
+          {rooms.map((room) => (
+            <div key={room.id} className="h-full">
               <RoomCard room={room} />
             </div>
           ))}
@@ -47,12 +31,12 @@ export default function RoomsSection() {
         <div className="block md:hidden">
           {/* Card Frame */}
           <div className="w-full max-w-sm mx-auto transition-all duration-500 ease-in-out transform">
-            <RoomCard room={roomsData[activeIndex]} />
+            <RoomCard room={rooms[activeIndex]} />
           </div>
 
           {/* Carousel Dots */}
           <div className="flex justify-center space-x-2.5 mt-6" id="rooms-carousel-dots">
-            {roomsData.map((_, index) => (
+            {rooms.map((_, index) => (
               <button
                 key={index}
                 onClick={() => setActiveIndex(index)}

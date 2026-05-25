@@ -1,7 +1,9 @@
 import React from 'react';
 import { Play } from 'lucide-react';
 
-export default function HeroSection() {
+export default function HeroSection({ hotelInfo }) {
+  if (!hotelInfo) return null;
+
   return (
     <section 
       className="relative w-full h-[520px] lg:h-[700px] flex items-center bg-cover bg-center overflow-hidden"
@@ -18,21 +20,21 @@ export default function HeroSection() {
         
         {/* Welcome Subtitle */}
         <p className="text-gold font-sans text-xs sm:text-sm font-bold tracking-widest uppercase mb-3 sm:mb-4">
-          WELCOME TO
+          {hotelInfo.heroSubtitle}
         </p>
 
         {/* Hero Title */}
         <h1 className="font-serif text-[42px] sm:text-6xl lg:text-[76px] font-bold leading-[1.1] tracking-normal max-w-xl mb-4 sm:mb-6">
-          Diredawa <br className="hidden sm:inline" />
-          Ras Hotel
+          {hotelInfo.heroTitle.split(' ').slice(0, 1).join('')} <br className="hidden sm:inline" />
+          {hotelInfo.heroTitle.split(' ').slice(1).join(' ')}
         </h1>
 
         {/* Hero Description */}
         <p className="font-sans text-sm sm:text-base lg:text-lg text-white/95 max-w-md lg:max-w-lg mb-8 leading-relaxed">
-          Experience comfort, elegance and exceptional hospitality in the heart of Dire Dawa.
+          {hotelInfo.heroDescription}
         </p>
 
-        {/* Buttons Row (horizontal on both mobile and desktop) */}
+        {/* Buttons Row */}
         <div className="flex flex-row items-center space-x-4 mb-8">
           <a
             href="#booking"

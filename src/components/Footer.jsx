@@ -1,7 +1,9 @@
 import React from 'react';
 import { Phone, Mail, MapPin, Facebook, Instagram, Twitter } from 'lucide-react';
 
-export default function Footer() {
+export default function Footer({ hotelInfo, navLinks }) {
+  if (!hotelInfo || !navLinks) return null;
+
   return (
     <footer className="bg-primary text-white border-t border-gold/10 pt-16 pb-8" id="contact">
       <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
@@ -19,15 +21,15 @@ export default function Footer() {
               </svg>
               <div className="flex flex-col leading-tight pl-2">
                 <span className="font-serif text-[15px] font-bold tracking-widest text-gold uppercase">
-                  DIREDAWA RAS HOTEL
+                  {hotelInfo.name}
                 </span>
                 <span className="font-sans text-[9px] text-gold/80 tracking-wider">
-                  Comfort. Hospitality. Diredawa.
+                  {hotelInfo.tagline}
                 </span>
               </div>
             </div>
             <p className="font-sans text-xs sm:text-sm text-white/70 leading-relaxed max-w-sm">
-              An landmark of luxury and hospitality in the heart of Dire Dawa. Offering unparalleled services, classic accommodations, and fine culinary experiences since 1968.
+              A landmark of luxury and hospitality in the heart of Dire Dawa. Offering unparalleled services, classic accommodations, and fine culinary experiences since 1968.
             </p>
           </div>
 
@@ -37,12 +39,15 @@ export default function Footer() {
               Quick Links
             </h4>
             <div className="grid grid-cols-2 gap-2 text-xs sm:text-sm text-white/85">
-              <a href="#home" className="hover:text-gold transition-colors duration-300">Home</a>
-              <a href="#rooms" className="hover:text-gold transition-colors duration-300">Our Rooms</a>
-              <a href="#services" className="hover:text-gold transition-colors duration-300">Services</a>
-              <a href="#gallery" className="hover:text-gold transition-colors duration-300">Gallery</a>
-              <a href="#offers" className="hover:text-gold transition-colors duration-300">Offers</a>
-              <a href="#about" className="hover:text-gold transition-colors duration-300">About Us</a>
+              {navLinks.map((item) => (
+                <a 
+                  key={item.id}
+                  href={item.href} 
+                  className="hover:text-gold transition-colors duration-300"
+                >
+                  {item.label}
+                </a>
+              ))}
             </div>
           </div>
 
@@ -54,15 +59,15 @@ export default function Footer() {
             <div className="flex flex-col space-y-3 text-xs sm:text-sm text-white/85">
               <div className="flex items-start space-x-3">
                 <MapPin className="w-5 h-5 text-gold flex-shrink-0 mt-0.5" />
-                <span>Ras Desta Damtew St, Dire Dawa, Ethiopia</span>
+                <span>{hotelInfo.address}</span>
               </div>
-              <a href="tel:+251251111223" className="flex items-center space-x-3 hover:text-gold transition-colors">
+              <a href={`tel:${hotelInfo.phone.replace(/\s+/g, '')}`} className="flex items-center space-x-3 hover:text-gold transition-colors">
                 <Phone className="w-5 h-5 text-gold flex-shrink-0" />
-                <span>+251 251 111 223</span>
+                <span>{hotelInfo.phone}</span>
               </a>
-              <a href="mailto:info@diredawarashotel.com" className="flex items-center space-x-3 hover:text-gold transition-colors">
+              <a href={`mailto:${hotelInfo.email}`} className="flex items-center space-x-3 hover:text-gold transition-colors">
                 <Mail className="w-5 h-5 text-gold flex-shrink-0" />
-                <span>info@diredawarashotel.com</span>
+                <span>{hotelInfo.email}</span>
               </a>
             </div>
           </div>
@@ -92,7 +97,7 @@ export default function Footer() {
 
         {/* Divider and Copyright */}
         <div className="border-t border-white/10 pt-8 flex flex-col sm:flex-row items-center justify-between text-xs text-white/60">
-          <p>© 2026 Diredawa Ras Hotel. All Rights Reserved.</p>
+          <p>© 2026 {hotelInfo.name}. All Rights Reserved.</p>
           <div className="flex space-x-4 mt-4 sm:mt-0">
             <a href="#" className="hover:text-gold transition-colors">Privacy Policy</a>
             <a href="#" className="hover:text-gold transition-colors">Terms of Service</a>

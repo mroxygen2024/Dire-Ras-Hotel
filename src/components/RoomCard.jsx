@@ -2,18 +2,19 @@ import React from 'react';
 import { ChevronRight } from 'lucide-react';
 
 export default function RoomCard({ room }) {
-  const { title, price, image } = room;
+  if (!room) return null;
+  const { name, price, currency, image } = room;
 
   return (
     <div 
       className="bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl hover:-translate-y-2 transition-all duration-300 flex flex-col h-full border border-gray-100 group cursor-pointer"
-      id={`room-card-${title.toLowerCase().replace(/\s+/g, '-')}`}
+      id={`room-card-${name.toLowerCase().replace(/\s+/g, '-')}`}
     >
       {/* Image Container */}
       <div className="relative aspect-[4/3] overflow-hidden">
         <img 
           src={image} 
-          alt={title}
+          alt={name}
           className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
           loading="lazy"
         />
@@ -26,12 +27,12 @@ export default function RoomCard({ room }) {
         <div className="text-left pr-12">
           {/* Room Title */}
           <h3 className="font-serif text-xl sm:text-2xl font-bold text-text-dark mb-2 group-hover:text-gold transition-colors duration-300">
-            {title}
+            {name}
           </h3>
           
           {/* Room Price */}
           <p className="font-sans text-xs sm:text-sm text-muted-gray">
-            From <span className="font-semibold text-gold text-sm sm:text-base">{price}</span> / Night
+            From <span className="font-semibold text-gold text-sm sm:text-base">{currency} {price.toLocaleString()}</span> / Night
           </p>
         </div>
 
