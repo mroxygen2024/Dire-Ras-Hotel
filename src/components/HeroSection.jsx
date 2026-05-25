@@ -19,18 +19,21 @@ export default function HeroSection({ hotelInfo }) {
       <div className="relative z-20 max-w-7xl lg:max-w-[1400px] mx-auto px-6 sm:px-8 lg:px-6 w-full text-white flex flex-col justify-center h-full animate-fade-in">
         
         {/* Welcome Subtitle */}
-        <p className="text-gold font-sans text-xs sm:text-sm font-bold tracking-widest uppercase mb-3 sm:mb-4">
+        <p className="text-gold font-sans text-[13px] sm:text-[15px] lg:text-[15px] font-bold tracking-widest uppercase mb-3 sm:mb-4">
           {hotelInfo.heroSubtitle}
         </p>
 
         {/* Hero Title */}
-        <h1 className="font-serif text-[42px] sm:text-6xl lg:text-[52px] font-bold leading-[1.1] tracking-normal max-w-xl mb-4 lg:mb-4 sm:mb-6">
+        <h1 className="font-serif text-[45px] sm:text-[64px] lg:text-[56px] font-bold leading-[1.1] tracking-normal max-w-xl mb-3 sm:mb-4 lg:mb-3">
           {hotelInfo.heroTitle.split(' ').slice(0, 1).join('')} <br className="hidden sm:inline" />
           {hotelInfo.heroTitle.split(' ').slice(1).join(' ')}
         </h1>
 
+        {/* Decorative Gold Line */}
+        <div className="w-16 h-[1.5px] bg-gold opacity-90 mt-2 mb-5 sm:mb-6 lg:mb-4" />
+
         {/* Hero Description */}
-        <p className="font-sans text-sm sm:text-base lg:text-[15px] text-white/95 max-w-md lg:max-w-lg mb-8 lg:mb-5 leading-relaxed">
+        <p className="font-sans text-[15px] sm:text-[17px] lg:text-[16px] text-white/95 max-w-md lg:max-w-lg mb-8 lg:mb-5 leading-relaxed">
           {hotelInfo.heroDescription}
         </p>
 
