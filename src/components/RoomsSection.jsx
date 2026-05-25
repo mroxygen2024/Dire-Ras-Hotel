@@ -7,14 +7,14 @@ export default function RoomsSection({ rooms }) {
   if (!rooms || rooms.length === 0) return null;
 
   return (
-    <section className="py-14 sm:py-16 lg:pt-10 lg:pb-12 bg-white" id="rooms">
+    <section className="py-10 sm:py-12 lg:pt-10 lg:pb-12 bg-white" id="rooms">
       <div className="max-w-7xl lg:max-w-[1400px] mx-auto px-6 sm:px-8 lg:px-6 text-center">
         
         {/* Section Header */}
         <p className="text-gold font-sans text-xs sm:text-sm font-bold tracking-widest uppercase mb-2">
           OUR ROOMS
         </p>
-        <h2 className="font-serif text-3xl sm:text-4xl lg:text-4xl font-bold text-text-dark mb-10 sm:mb-16 lg:mb-8">
+        <h2 className="font-serif text-3xl sm:text-4xl lg:text-4xl font-bold text-text-dark mb-6 sm:mb-8 lg:mb-8">
           Find Your Perfect Stay
         </h2>
 

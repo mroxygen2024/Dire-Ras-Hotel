@@ -14,7 +14,7 @@ export default function FeaturesSection({ services }) {
   if (!services) return null;
 
   return (
-    <section className="py-14 sm:py-16 lg:py-10 bg-[#F8F6F2]" id="services">
+    <section className="py-10 sm:py-12 lg:py-10 bg-[#F8F6F2]" id="services">
       <div className="max-w-7xl lg:max-w-[1400px] mx-auto px-6 sm:px-8 lg:px-6">
         <div className="grid grid-cols-2 lg:grid-cols-5 gap-y-10 gap-x-6 lg:gap-0 lg:divide-x divide-gray-200/80">
           {services.map((item) => {

@@ -11,7 +11,7 @@ export default function RoomCard({ room }) {
       id={`room-card-${name.toLowerCase().replace(/\s+/g, '-')}`}
     >
       {/* Image Container */}
-      <div className="relative aspect-[4/3] lg:aspect-[16/10] overflow-hidden">
+      <div className="relative aspect-[16/10] overflow-hidden">
         <img 
           src={image} 
           alt={name}
@@ -23,21 +23,21 @@ export default function RoomCard({ room }) {
       </div>
 
       {/* Card Content */}
-      <div className="p-6 lg:p-4 lg:pb-5 flex-1 flex flex-col justify-between relative">
+      <div className="p-4 pb-5 flex-1 flex flex-col justify-between relative">
         <div className="text-left pr-12">
           {/* Room Title */}
-          <h3 className="font-serif text-xl sm:text-2xl lg:text-xl font-bold text-text-dark mb-2 group-hover:text-gold transition-colors duration-300">
+          <h3 className="font-serif text-lg sm:text-xl font-bold text-text-dark mb-1.5 group-hover:text-gold transition-colors duration-300">
             {name}
           </h3>
           
           {/* Room Price */}
-          <p className="font-sans text-xs sm:text-sm lg:text-xs text-muted-gray">
-            From <span className="font-semibold text-gold text-sm sm:text-base lg:text-sm">{currency} {price.toLocaleString()}</span> / Night
+          <p className="font-sans text-xs sm:text-sm text-muted-gray">
+            From <span className="font-semibold text-gold text-sm sm:text-base">{currency} {price.toLocaleString()}</span> / Night
           </p>
         </div>
 
         {/* Circular Chevron Arrow Button */}
-        <div className="absolute bottom-6 right-6 lg:bottom-5 lg:right-4 w-10 h-10 rounded-full bg-primary text-white flex items-center justify-center group-hover:bg-gold group-hover:text-primary transition-colors duration-300 shadow-md">
+        <div className="absolute bottom-5 right-4 w-10 h-10 rounded-full bg-primary text-white flex items-center justify-center group-hover:bg-gold group-hover:text-primary transition-colors duration-300 shadow-md">
           <ChevronRight className="w-5 h-5" />
         </div>
       </div>
