@@ -1,5 +1,14 @@
 import React from 'react';
-import * as Icons from 'lucide-react';
+import { Bed, Utensils, Wifi, Users, Bell, HelpCircle } from 'lucide-react';
+
+// Selective map to preserve tree-shaking and reduce bundle size
+const iconMap = {
+  Bed,
+  Utensils,
+  Wifi,
+  Users,
+  Bell
+};
 
 export default function FeaturesSection({ services }) {
   if (!services) return null;
@@ -8,9 +17,9 @@ export default function FeaturesSection({ services }) {
     <section className="py-14 sm:py-16 lg:py-24 bg-[#F8F6F2]" id="services">
       <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
         <div className="grid grid-cols-2 lg:grid-cols-5 gap-y-10 gap-x-6 lg:gap-0 lg:divide-x divide-gray-200/80">
-          {services.map((item, index) => {
-            // Dynamically resolve icon from string name
-            const IconComponent = Icons[item.icon] || Icons.HelpCircle;
+          {services.map((item) => {
+            // Resolve icon Component from our optimized map
+            const IconComponent = iconMap[item.icon] || HelpCircle;
             
             return (
               <div 
