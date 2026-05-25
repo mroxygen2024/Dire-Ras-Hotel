@@ -7,11 +7,11 @@ export default function RoomCard({ room }) {
 
   return (
     <div 
-      className="bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl hover:-translate-y-2 transition-all duration-300 flex flex-col h-full border border-gray-100 group cursor-pointer"
+      className="bg-white rounded-xl md:rounded-2xl overflow-hidden shadow-md hover:shadow-xl hover:-translate-y-1 md:hover:-translate-y-2 transition-all duration-300 flex flex-row md:flex-col items-center md:items-stretch h-[120px] md:h-full border border-gray-100 group cursor-pointer"
       id={`room-card-${name.toLowerCase().replace(/\s+/g, '-')}`}
     >
       {/* Image Container */}
-      <div className="relative aspect-[16/10] overflow-hidden">
+      <div className="w-[120px] md:w-full h-full md:h-auto flex-shrink-0 md:relative md:aspect-[16/10] overflow-hidden">
         <img 
           src={image} 
           alt={name}
@@ -19,26 +19,26 @@ export default function RoomCard({ room }) {
           loading="lazy"
         />
         {/* Subtle Gradient Overlay */}
-        <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 hidden md:block" />
       </div>
 
       {/* Card Content */}
-      <div className="p-4 pb-5 flex-1 flex flex-col justify-between relative">
-        <div className="text-left pr-12">
+      <div className="p-3.5 md:p-4 md:pb-5 flex-1 flex flex-row md:flex-col justify-between items-center md:items-stretch relative w-full min-w-0">
+        <div className="text-left pr-2 md:pr-12 min-w-0 flex-1">
           {/* Room Title */}
-          <h3 className="font-serif text-lg sm:text-xl font-bold text-text-dark mb-1.5 group-hover:text-gold transition-colors duration-300">
+          <h3 className="font-serif text-[15px] sm:text-lg md:text-xl font-bold text-text-dark mb-1 md:mb-1.5 group-hover:text-gold transition-colors duration-300 truncate md:whitespace-normal">
             {name}
           </h3>
           
           {/* Room Price */}
-          <p className="font-sans text-xs sm:text-sm text-muted-gray">
-            From <span className="font-semibold text-gold text-sm sm:text-base">{currency} {price.toLocaleString()}</span> / Night
+          <p className="font-sans text-[11px] sm:text-xs md:text-xs text-muted-gray leading-tight">
+            From <span className="font-semibold text-gold text-[13px] sm:text-sm md:text-sm">{currency} {price.toLocaleString()}</span> / Night
           </p>
         </div>
 
         {/* Circular Chevron Arrow Button */}
-        <div className="absolute bottom-5 right-4 w-10 h-10 rounded-full bg-primary text-white flex items-center justify-center group-hover:bg-gold group-hover:text-primary transition-colors duration-300 shadow-md">
-          <ChevronRight className="w-5 h-5" />
+        <div className="relative md:absolute md:bottom-5 md:right-4 w-9 h-9 md:w-10 md:h-10 rounded-full bg-primary text-white flex items-center justify-center group-hover:bg-gold group-hover:text-primary transition-colors duration-300 shadow-md flex-shrink-0 ml-2 md:ml-0">
+          <ChevronRight className="w-4.5 h-4.5 md:w-5 md:h-5" />
         </div>
       </div>
     </div>
