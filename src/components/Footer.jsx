@@ -1,7 +1,60 @@
 import React from 'react';
 import { Phone, Mail, MapPin, Facebook, Instagram, Twitter } from 'lucide-react';
 
-export default function Footer({ hotelInfo, navLinks }) {
+export default function Footer({ hotelInfo, navLinks, loading }) {
+  if (loading) {
+    return (
+      <footer className="bg-primary text-white border-t border-gold/10 pt-16 pb-8" id="contact">
+        <div className="max-w-7xl lg:max-w-[1400px] mx-auto px-6 sm:px-8 lg:px-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
+            
+            {/* Monogram */}
+            <div className="flex flex-col space-y-4">
+              <div className="flex items-center space-x-3">
+                <div className="w-10 h-10 rounded-full bg-gray-200/20 animate-pulse" />
+                <div className="flex flex-col space-y-1.5 pl-2">
+                  <div className="w-24 h-4 rounded bg-gray-200/20 animate-pulse" />
+                  <div className="w-16 h-2.5 rounded bg-gray-200/20 animate-pulse" />
+                </div>
+              </div>
+              <div className="space-y-2">
+                <div className="w-full h-3 rounded bg-gray-200/20 animate-pulse" />
+                <div className="w-5/6 h-3 rounded bg-gray-200/20 animate-pulse" />
+              </div>
+            </div>
+
+            {/* Links */}
+            <div className="flex flex-col space-y-3">
+              <div className="w-28 h-5 rounded bg-gray-200/20 animate-pulse mb-2" />
+              <div className="w-20 h-3.5 rounded bg-gray-200/20 animate-pulse" />
+              <div className="w-24 h-3.5 rounded bg-gray-200/20 animate-pulse" />
+              <div className="w-16 h-3.5 rounded bg-gray-200/20 animate-pulse" />
+            </div>
+
+            {/* Contact */}
+            <div className="flex flex-col space-y-3">
+              <div className="w-28 h-5 rounded bg-gray-200/20 animate-pulse mb-2" />
+              <div className="w-36 h-3.5 rounded bg-gray-200/20 animate-pulse" />
+              <div className="w-28 h-3.5 rounded bg-gray-200/20 animate-pulse" />
+            </div>
+
+            {/* Newsletter */}
+            <div className="flex flex-col space-y-3">
+              <div className="w-28 h-5 rounded bg-gray-200/20 animate-pulse mb-2" />
+              <div className="w-full h-3 rounded bg-gray-200/20 animate-pulse" />
+              <div className="flex space-x-3 mt-2">
+                <div className="w-9 h-9 rounded-full bg-gray-200/20 animate-pulse" />
+                <div className="w-9 h-9 rounded-full bg-gray-200/20 animate-pulse" />
+                <div className="w-9 h-9 rounded-full bg-gray-200/20 animate-pulse" />
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </footer>
+    );
+  }
+
   if (!hotelInfo || !navLinks) return null;
 
   return (

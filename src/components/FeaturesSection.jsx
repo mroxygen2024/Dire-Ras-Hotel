@@ -10,7 +10,28 @@ const iconMap = {
   Bell
 };
 
-export default function FeaturesSection({ services }) {
+export default function FeaturesSection({ services, loading }) {
+  if (loading) {
+    return (
+      <section className="py-10 sm:py-12 lg:py-10 bg-[#F8F6F2]" id="services">
+        <div className="max-w-7xl lg:max-w-[1400px] mx-auto px-6 sm:px-8 lg:px-6">
+          <div className="grid grid-cols-2 lg:grid-cols-5 gap-y-10 gap-x-6 lg:gap-0 lg:divide-x divide-gray-200/80">
+            {Array.from({ length: 5 }).map((_, i) => (
+              <div key={i} className="flex flex-col items-center text-center px-4 lg:px-8">
+                {/* Icon Placeholder */}
+                <div className="w-12 h-12 rounded-full bg-gray-200 animate-pulse mb-4" />
+                {/* Title Placeholder */}
+                <div className="w-24 h-4 rounded bg-gray-200 animate-pulse mb-2.5" />
+                {/* Description Placeholder */}
+                <div className="w-32 h-3 rounded bg-gray-200 animate-pulse" />
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+    );
+  }
+
   if (!services) return null;
 
   return (

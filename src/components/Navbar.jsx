@@ -1,10 +1,49 @@
 import React, { useState } from 'react';
 import { Menu, X, Phone } from 'lucide-react';
 
-export default function Navbar({ hotelInfo, navLinks }) {
+export default function Navbar({ hotelInfo, navLinks, loading }) {
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleMenu = () => setIsOpen(!isOpen);
+
+  if (loading) {
+    return (
+      <nav className="bg-primary text-white sticky top-0 z-50 shadow-md">
+        <div className="max-w-7xl lg:max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-6">
+          <div className="flex items-center justify-between h-20">
+            {/* Logo placeholder */}
+            <div className="flex items-center space-x-3">
+              <div className="w-10 h-10 rounded-full bg-gray-200/20 animate-pulse" />
+              <div className="flex flex-col space-y-1.5 pl-3 border-l border-white/10">
+                <div className="w-32 h-4 rounded bg-gray-200/20 animate-pulse" />
+                <div className="w-24 h-2.5 rounded bg-gray-200/20 animate-pulse" />
+              </div>
+            </div>
+            
+            {/* Desktop Links Placeholder */}
+            <div className="hidden lg:flex items-center space-x-6">
+              <div className="w-12 h-4 rounded bg-gray-200/20 animate-pulse" />
+              <div className="w-16 h-4 rounded bg-gray-200/20 animate-pulse" />
+              <div className="w-12 h-4 rounded bg-gray-200/20 animate-pulse" />
+              <div className="w-14 h-4 rounded bg-gray-200/20 animate-pulse" />
+              <div className="w-16 h-4 rounded bg-gray-200/20 animate-pulse" />
+            </div>
+
+            {/* Desktop CTA Button Placeholder */}
+            <div className="hidden lg:flex items-center space-x-6">
+              <div className="w-24 h-4 rounded bg-gray-200/20 animate-pulse" />
+              <div className="w-28 h-10 rounded bg-gray-200/20 animate-pulse" />
+            </div>
+
+            {/* Mobile Menu Icon Placeholder */}
+            <div className="lg:hidden flex items-center">
+              <div className="w-6 h-6 rounded bg-gray-200/20 animate-pulse" />
+            </div>
+          </div>
+        </div>
+      </nav>
+    );
+  }
 
   if (!hotelInfo || !navLinks) return null;
 

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Calendar, User, ChevronDown } from 'lucide-react';
 
-export default function BookingCard() {
+export default function BookingCard({ loading }) {
   const [checkIn, setCheckIn] = useState('');
   const [checkOut, setCheckOut] = useState('');
   const [guests, setGuests] = useState('2 Adults, 0 Children');
@@ -22,6 +22,51 @@ export default function BookingCard() {
     alert(`Checking availability:\nCheck-in: ${checkIn || 'Not selected'}\nCheck-out: ${checkOut || 'Not selected'}\nGuests: ${guests}`);
   };
 
+  if (loading) {
+    return (
+      <div id="booking" className="relative z-30 max-w-7xl lg:max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-6 -mt-3 sm:-mt-5 lg:-mt-8">
+        <div className="bg-white rounded-2xl lg:rounded-xl shadow-xl border border-gray-100 p-5 sm:p-6 lg:p-4 flex flex-col lg:flex-row items-stretch lg:items-center justify-between gap-4 lg:gap-0 h-auto">
+          
+          {/* Check-in input placeholder */}
+          <div className="flex-1 lg:px-4 py-2 lg:py-0 flex items-center space-x-3">
+            <div className="w-6 h-6 rounded-full bg-gray-200 animate-pulse flex-shrink-0" />
+            <div className="flex flex-col space-y-1.5 flex-grow">
+              <div className="w-16 h-3 rounded bg-gray-200 animate-pulse" />
+              <div className="w-28 h-5 rounded bg-gray-200 animate-pulse" />
+            </div>
+          </div>
+
+          <div className="hidden lg:block w-[1px] h-10 bg-gray-100" />
+
+          {/* Check-out input placeholder */}
+          <div className="flex-1 lg:px-4 py-2 lg:py-0 flex items-center space-x-3">
+            <div className="w-6 h-6 rounded-full bg-gray-200 animate-pulse flex-shrink-0" />
+            <div className="flex flex-col space-y-1.5 flex-grow">
+              <div className="w-16 h-3 rounded bg-gray-200 animate-pulse" />
+              <div className="w-28 h-5 rounded bg-gray-200 animate-pulse" />
+            </div>
+          </div>
+
+          <div className="hidden lg:block w-[1px] h-10 bg-gray-100" />
+
+          {/* Guests input placeholder */}
+          <div className="flex-1 lg:px-4 py-2 lg:py-0 flex items-center space-x-3">
+            <div className="w-6 h-6 rounded-full bg-gray-200 animate-pulse flex-shrink-0" />
+            <div className="flex flex-col space-y-1.5 flex-grow">
+              <div className="w-12 h-3 rounded bg-gray-200 animate-pulse" />
+              <div className="w-32 h-5 rounded bg-gray-200 animate-pulse" />
+            </div>
+          </div>
+
+          {/* Submit button placeholder */}
+          <div className="lg:px-4 flex-shrink-0 flex items-center justify-center mt-2 lg:mt-0">
+            <div className="w-full lg:w-44 h-12 rounded bg-gray-200 animate-pulse" />
+          </div>
+
+        </div>
+      </div>
+    );
+  }
   return (
     <div id="booking" className="relative z-30 max-w-7xl lg:max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-6 -mt-3 sm:-mt-5 lg:-mt-8">
       <form 

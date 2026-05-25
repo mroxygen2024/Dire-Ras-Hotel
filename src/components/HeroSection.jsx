@@ -1,7 +1,42 @@
 import React from 'react';
 import { Play } from 'lucide-react';
 
-export default function HeroSection({ hotelInfo }) {
+export default function HeroSection({ hotelInfo, loading }) {
+  if (loading) {
+    return (
+      <section 
+        className="relative w-full h-[460px] lg:h-[480px] flex items-center bg-primary/95 overflow-hidden"
+        id="home"
+      >
+        <div className="relative z-20 max-w-7xl lg:max-w-[1400px] mx-auto px-6 sm:px-8 lg:px-6 w-full text-white flex flex-col justify-center h-full">
+          {/* Subtitle placeholder */}
+          <div className="w-40 h-4 rounded bg-gray-200/20 animate-pulse mb-4" />
+          
+          {/* Title placeholder */}
+          <div className="space-y-3 mb-6 max-w-xl">
+            <div className="w-3/4 h-10 lg:h-12 rounded bg-gray-200/20 animate-pulse" />
+            <div className="w-1/2 h-10 lg:h-12 rounded bg-gray-200/20 animate-pulse" />
+          </div>
+
+          {/* Decorative line placeholder */}
+          <div className="w-16 h-[1.5px] bg-gray-200/20 animate-pulse mb-6" />
+
+          {/* Description placeholder */}
+          <div className="space-y-2 mb-8 lg:mb-6 max-w-md lg:max-w-lg">
+            <div className="w-full h-4 rounded bg-gray-200/20 animate-pulse" />
+            <div className="w-11/12 h-4 rounded bg-gray-200/20 animate-pulse" />
+          </div>
+
+          {/* Buttons placeholder */}
+          <div className="flex flex-row items-center space-x-4 mb-6 lg:mb-5">
+            <div className="w-32 h-12 rounded bg-gray-200/20 animate-pulse" />
+            <div className="w-36 h-12 rounded bg-gray-200/20 animate-pulse" />
+          </div>
+        </div>
+      </section>
+    );
+  }
+
   if (!hotelInfo) return null;
 
   return (

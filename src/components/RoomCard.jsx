@@ -1,7 +1,31 @@
 import React from 'react';
 import { ChevronRight } from 'lucide-react';
 
-export default function RoomCard({ room }) {
+export default function RoomCard({ room, loading }) {
+  if (loading) {
+    return (
+      <div 
+        className="bg-white rounded-xl md:rounded-2xl overflow-hidden shadow-md border border-gray-100 flex flex-row md:flex-col items-center md:items-stretch h-[120px] md:h-full w-full"
+      >
+        {/* Image Placeholder */}
+        <div className="w-[120px] md:w-full h-full md:h-auto md:aspect-[16/10] bg-gray-200 animate-pulse flex-shrink-0" />
+
+        {/* Content Placeholder */}
+        <div className="p-3.5 md:p-4 md:pb-5 flex-1 flex flex-row md:flex-col justify-between items-center md:items-stretch w-full min-w-0">
+          <div className="text-left pr-2 md:pr-12 min-w-0 flex-1 space-y-2">
+            {/* Title Placeholder */}
+            <div className="w-2/3 h-4.5 rounded bg-gray-200 animate-pulse" />
+            {/* Price Placeholder */}
+            <div className="w-1/2 h-3 rounded bg-gray-200 animate-pulse" />
+          </div>
+
+          {/* Action Button Placeholder */}
+          <div className="w-9 h-9 md:w-10 md:h-10 rounded-full bg-gray-200 animate-pulse flex-shrink-0 ml-2 md:ml-0" />
+        </div>
+      </div>
+    );
+  }
+
   if (!room) return null;
   const { name, price, currency, image } = room;
 
