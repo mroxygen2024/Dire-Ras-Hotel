@@ -1,33 +1,71 @@
 import React, { useState, useEffect } from 'react';
-import { getHotelInfo, getNavLinks, getServices, getRooms } from '../services/hotelService';
+import { 
+  getHotelInfo, 
+  getNavLinks, 
+  getServices, 
+  getRooms,
+  getHeroData,
+  getHeritageIntro,
+  getAboutPageData,
+  getWhyStayData,
+  getReviewsData,
+  getContactPageData 
+} from '../services/hotelService';
 
 import Navbar from '../components/Navbar';
 import HeroSection from '../components/HeroSection';
 import BookingCard from '../components/BookingCard';
 import FeaturesSection from '../components/FeaturesSection';
 import RoomsSection from '../components/RoomsSection';
+import HeritageIntro from '../components/HeritageIntro';
+import AboutHeritage from '../components/AboutHeritage';
 import WhyStaySection from '../components/WhyStaySection';
 import ReviewsSection from '../components/ReviewsSection';
+import ContactSection from '../components/ContactSection';
 import Footer from '../components/Footer';
 import WhatsAppFloatingButton from '../components/WhatsAppFloatingButton';
 
 export default function Home() {
   const [loading, setLoading] = useState(true);
+  const [activePage, setActivePage] = useState('home');
   const [hotelData, setHotelData] = useState({
     info: null,
     links: [],
     servicesList: [],
     roomsList: [],
+    hero: null,
+    heritage: null,
+    about: null,
+    whyStay: null,
+    reviews: null,
+    contact: null
   });
 
   useEffect(() => {
     const loadAllData = async () => {
       try {
-        const [info, links, servicesList, roomsList] = await Promise.all([
+        const [
+          info, 
+          links, 
+          servicesList, 
+          roomsList, 
+          hero, 
+          heritage, 
+          about, 
+          whyStay, 
+          reviews, 
+          contact
+        ] = await Promise.all([
           getHotelInfo(),
           getNavLinks(),
           getServices(),
           getRooms(),
+          getHeroData(),
+          getHeritageIntro(),
+          getAboutPageData(),
+          getWhyStayData(),
+          getReviewsData(),
+          getContactPageData()
         ]);
         
         setHotelData({
@@ -35,76 +73,107 @@ export default function Home() {
           links,
           servicesList,
           roomsList,
+          hero,
+          heritage,
+          about,
+          whyStay,
+          reviews,
+          contact
         });
       } catch (err) {
         console.error("Failed to load hotel data from mock API:", err);
       } finally {
-        // Keep loading screen visible for at least 800ms for visual premium feel
+        // Keep loading screen visible briefly for visual premium feel
         setTimeout(() => {
           setLoading(false);
-        }, 800);
+        }, 600);
       }
     };
 
     loadAllData();
   }, []);
 
-  useEffect(() => {
-    const handleAnchorClick = (e) => {
-      const anchor = e.target.closest('a');
-      if (anchor) {
-        const href = anchor.getAttribute('href');
-        if (href && href.startsWith('#')) {
-          e.preventDefault();
-          const targetId = href.substring(1);
-          if (targetId === '') {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-          } else {
-            const element = document.getElementById(targetId);
-            if (element) {
-              element.scrollIntoView({ behavior: 'smooth' });
-            }
-          }
-        }
-      }
-    };
-
-    document.addEventListener('click', handleAnchorClick);
-    return () => {
-      document.removeEventListener('click', handleAnchorClick);
-    };
-  }, []);
-
   return (
-    <div className={`flex flex-col min-h-screen bg-[#F8F6F2] ${!loading ? 'animate-fade-in' : ''}`} key={loading ? 'loading' : 'ready'}>
-      {/* 1. Navbar */}
-      <Navbar hotelInfo={hotelData.info} navLinks={hotelData.links} loading={loading} />
+    <div className="flex flex-col min-h-screen bg-[#F8F6F2] font-sans overflow-x-hidden antialiased">
+      {/* 1. Navbar (Orchestrating Page Navigation) */}
+      <Navbar 
+        hotelInfo={hotelData.info} 
+        navLinks={hotelData.links} 
+        activePage={activePage}
+        setActivePage={setActivePage}
+        loading={loading} 
+      />
 
       <main className="flex-grow">
-        {/* 2. Hero Section */}
-        <HeroSection hotelInfo={hotelData.info} loading={loading} />
+        
+        {/* VIEW 1: HOME PAGE */}
+        {activePage === 'home' && (
+          <div className="animate-fade-in">
+            {/* Hero Section */}
+            <HeroSection heroData={hotelData.hero} loading={loading} />
 
-        {/* 3. Floating Booking Search Card */}
-        <BookingCard loading={loading} />
+            {/* Booking System */}
+            <BookingCard loading={loading} />
 
-        {/* 4. Features/Services Row */}
-        <FeaturesSection services={hotelData.servicesList} loading={loading} />
+            {/* Services/Features List */}
+            <FeaturesSection services={hotelData.servicesList} loading={loading} />
 
-        {/* 5. Rooms Section */}
-        <RoomsSection rooms={hotelData.roomsList} loading={loading} />
+            {/* Short Heritage Introduction */}
+            <HeritageIntro 
+              heritageData={hotelData.heritage} 
+              setActivePage={setActivePage} 
+              loading={loading} 
+            />
 
-        {/* 6. Why Stay With Us Section */}
-        <WhyStaySection loading={loading} />
+            {/* Featured Rooms Preview */}
+            <RoomsSection rooms={hotelData.roomsList} loading={loading} />
 
-        {/* 7. Guest Reviews Section */}
-        <ReviewsSection loading={loading} />
+            {/* Why Stay Grid */}
+            <WhyStaySection whyStayData={hotelData.whyStay} loading={loading} />
+
+            {/* Guest Experiences / Reviews */}
+            <ReviewsSection reviewsData={hotelData.reviews} loading={loading} />
+          </div>
+        )}
+
+        {/* VIEW 2: DEDICATED ROOMS PAGE */}
+        {activePage === 'rooms' && (
+          <div className="animate-fade-in pt-6">
+            <BookingCard loading={loading} />
+            <RoomsSection rooms={hotelData.roomsList} loading={loading} />
+          </div>
+        )}
+
+        {/* VIEW 3: ABOUT & HERITAGE STORYTELLING PAGE */}
+        {activePage === 'about' && (
+          <div className="animate-fade-in">
+            <AboutHeritage aboutData={hotelData.about} loading={loading} />
+          </div>
+        )}
+
+        {/* VIEW 4: CONTACT & INQUIRIES PAGE */}
+        {activePage === 'contact' && (
+          <div className="animate-fade-in">
+            <ContactSection 
+              contactData={hotelData.contact} 
+              hotelInfo={hotelData.info} 
+              loading={loading} 
+            />
+          </div>
+        )}
 
       </main>
 
-      {/* 6. Footer */}
-      <Footer hotelInfo={hotelData.info} navLinks={hotelData.links} loading={loading} />
+      {/* 5. Structured Footer */}
+      <Footer 
+        hotelInfo={hotelData.info} 
+        navLinks={hotelData.links} 
+        activePage={activePage}
+        setActivePage={setActivePage}
+        loading={loading} 
+      />
 
-      {/* 7. Premium Floating WhatsApp Button */}
+      {/* 6. Premium Floating WhatsApp Button */}
       {!loading && <WhatsAppFloatingButton />}
     </div>
   );

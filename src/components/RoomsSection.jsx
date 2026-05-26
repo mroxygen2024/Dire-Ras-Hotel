@@ -1,9 +1,7 @@
-import React, { useState } from 'react';
+import React from 'react';
 import RoomCard from './RoomCard';
 
 export default function RoomsSection({ rooms, loading }) {
-  const [activeIndex, setActiveIndex] = useState(0);
-
   if (!loading && (!rooms || rooms.length === 0)) return null;
 
   const displayRooms = loading 
@@ -11,58 +9,40 @@ export default function RoomsSection({ rooms, loading }) {
     : rooms;
 
   return (
-    <section className="py-10 sm:py-12 lg:pt-10 lg:pb-12 bg-white" id="rooms">
-      <div className="max-w-7xl lg:max-w-[1400px] mx-auto px-6 sm:px-8 lg:px-6 text-center">
+    <section className="py-16 sm:py-24 bg-white border-t border-gold/10" id="rooms">
+      <div className="max-w-7xl lg:max-w-[1400px] mx-auto px-6 sm:px-8 lg:px-6">
         
         {/* Section Header */}
-        {loading ? (
-          <div className="flex flex-col items-center mb-6 sm:mb-8 lg:mb-8">
-            <div className="w-24 h-3 rounded bg-gray-200 animate-pulse mb-3.5" />
-            <div className="w-56 h-8 rounded bg-gray-200 animate-pulse" />
-          </div>
-        ) : (
-          <>
-            <p className="text-gold font-sans text-xs sm:text-sm font-bold tracking-widest uppercase mb-2">
-              OUR ROOMS
-            </p>
-            <h2 className="font-serif text-3xl sm:text-4xl lg:text-4xl font-bold text-text-dark mb-6 sm:mb-8 lg:mb-8">
-              Find Your Perfect Stay
-            </h2>
-          </>
-        )}
+        <div className="flex flex-col items-center text-center mb-16">
+          {loading ? (
+            <div className="flex flex-col items-center space-y-3">
+              <div className="w-24 h-4 bg-gray-200 rounded animate-pulse" />
+              <div className="w-64 h-8 bg-gray-200 rounded animate-pulse" />
+              <div className="w-16 h-[2px] bg-gold/30" />
+            </div>
+          ) : (
+            <>
+              <span className="text-[10px] sm:text-xs font-bold tracking-[0.25em] text-gold-dark uppercase block mb-3">
+                OUR ROOMS & SUITES
+              </span>
+              <h2 className="font-serif text-3xl sm:text-[40px] font-bold text-primary leading-tight mb-3">
+                Find Your Perfect Stay
+              </h2>
+              <p className="text-sm text-primary/70 max-w-md font-sans font-light">
+                Relax in beautifully appointed rooms blending historic charm with standard modern comforts.
+              </p>
+              <div className="w-16 h-[1.5px] bg-gold opacity-90 mt-5" />
+            </>
+          )}
+        </div>
 
-        {/* Desktop & Tablet Layout (Grid) */}
-        <div className="hidden md:grid grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-6">
+        {/* Responsive Grid Layout */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 sm:gap-6 lg:gap-8">
           {displayRooms.map((room) => (
             <div key={room.id} className="h-full">
               <RoomCard room={room} loading={loading} />
             </div>
           ))}
-        </div>
-
-        {/* Mobile Layout (Carousel/Slider) */}
-        <div className="block md:hidden">
-          {/* Card Frame */}
-          <div className="w-full max-w-sm mx-auto transition-all duration-500 ease-in-out transform">
-            <RoomCard room={displayRooms[activeIndex]} loading={loading} />
-          </div>
-
-          {/* Carousel Dots */}
-          <div className="flex justify-center space-x-2.5 mt-6" id="rooms-carousel-dots">
-            {displayRooms.map((_, index) => (
-              <button
-                key={index}
-                onClick={() => !loading && setActiveIndex(index)}
-                disabled={loading}
-                className={`w-2.5 h-2.5 rounded-full transition-all duration-300 ${
-                  loading 
-                    ? 'bg-gray-200 animate-pulse' 
-                    : activeIndex === index ? 'bg-primary w-6' : 'bg-gray-300'
-                }`}
-                aria-label={`Go to room ${index + 1}`}
-              />
-            ))}
-          </div>
         </div>
 
       </div>

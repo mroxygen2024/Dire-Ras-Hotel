@@ -1,5 +1,5 @@
-import React, { useState, useRef } from 'react';
-import { Calendar, User, ChevronDown } from 'lucide-react';
+import React, { useState, useRef, useEffect } from 'react';
+import { Calendar, User, ChevronDown, Plus, Minus } from 'lucide-react';
 
 export default function BookingCard({ loading }) {
   const getTodayString = () => {
@@ -21,10 +21,25 @@ export default function BookingCard({ loading }) {
 
   const [checkIn, setCheckIn] = useState(getTodayString());
   const [checkOut, setCheckOut] = useState(getTomorrowString());
-  const [guests, setGuests] = useState('2 Adults, 0 Children');
+  const [adults, setAdults] = useState(2);
+  const [children, setChildren] = useState(0);
+  const [showGuestDropdown, setShowGuestDropdown] = useState(false);
 
   const checkInRef = useRef(null);
   const checkOutRef = useRef(null);
+  const guestDropdownRef = useRef(null);
+
+  useEffect(() => {
+    function handleClickOutside(event) {
+      if (guestDropdownRef.current && !guestDropdownRef.current.contains(event.target)) {
+        setShowGuestDropdown(false);
+      }
+    }
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
 
   // Format date helper (e.g. "2026-05-26" -> "May 26, 2026")
   const formatDate = (dateStr) => {
@@ -64,7 +79,7 @@ export default function BookingCard({ loading }) {
     const details = [];
     if (checkIn) details.push(`Check-in: ${formatDate(checkIn)}`);
     if (checkOut) details.push(`Check-out: ${formatDate(checkOut)}`);
-    if (guests) details.push(`Guests: ${guests}`);
+    details.push(`Guests: ${adults} ${adults === 1 ? 'Adult' : 'Adults'}, ${children} ${children === 1 ? 'Child' : 'Children'}`);
     
     if (details.length > 0) {
       message += ` (${details.join(', ')})`;
@@ -188,33 +203,85 @@ export default function BookingCard({ loading }) {
         </div>
 
         {/* Guests Field */}
-        <div className="relative flex-1 flex items-center justify-between py-3 lg:py-2 lg:px-6 lg:border-r border-gray-100 hover:bg-gray-50/50 transition-colors rounded-lg lg:rounded-none">
-          <div className="flex items-center space-x-4">
+        <div 
+          ref={guestDropdownRef}
+          className="relative flex-1 flex items-center justify-between py-3 lg:py-2 lg:px-6 lg:border-r border-gray-100 hover:bg-gray-50/50 transition-colors rounded-lg lg:rounded-none cursor-pointer"
+          onClick={() => setShowGuestDropdown(!showGuestDropdown)}
+        >
+          <div className="flex items-center space-x-4 pointer-events-none">
             <User className="w-6 h-6 text-primary flex-shrink-0" />
             <div className="flex flex-col text-left">
               <label className="text-[10px] font-bold tracking-widest text-muted-gray uppercase">
                 GUESTS
               </label>
               <span className="text-sm font-semibold text-text-dark mt-0.5">
-                {guests}
+                {adults} {adults === 1 ? 'Adult' : 'Adults'}, {children} {children === 1 ? 'Child' : 'Children'}
               </span>
             </div>
           </div>
-          <ChevronDown className="w-4 h-4 text-muted-gray" />
-          <select 
-            value={guests}
-            onChange={(e) => setGuests(e.target.value)}
-            className="absolute inset-0 opacity-0 cursor-pointer w-full h-full"
-            aria-label="Guests Selection"
-            id="guests-input"
-          >
-            <option value="1 Adult">1 Adult</option>
-            <option value="2 Adults, 0 Children">2 Adults, 0 Children</option>
-            <option value="2 Adults, 1 Child">2 Adults, 1 Child</option>
-            <option value="2 Adults, 2 Children">2 Adults, 2 Children</option>
-            <option value="3 Adults, 0 Children">3 Adults, 0 Children</option>
-            <option value="4 Adults, 0 Children">4 Adults, 0 Children</option>
-          </select>
+          <ChevronDown className={`w-4 h-4 text-muted-gray transition-transform duration-200 pointer-events-none ${showGuestDropdown ? 'rotate-180' : ''}`} />
+          
+          {/* Guest Dropdown Popup */}
+          {showGuestDropdown && (
+            <div 
+              className="absolute top-full left-0 lg:left-auto lg:right-0 mt-2 w-full lg:w-[300px] bg-white rounded-xl shadow-xl border border-gray-100 p-5 z-50 cursor-default"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <div className="space-y-5">
+                {/* Adults */}
+                <div className="flex items-center justify-between">
+                  <div className="flex flex-col">
+                    <span className="text-sm font-semibold text-text-dark">Adults</span>
+                    <span className="text-xs text-muted-gray">Ages 13 or above</span>
+                  </div>
+                  <div className="flex items-center space-x-3">
+                    <button 
+                      type="button"
+                      onClick={() => setAdults(Math.max(1, adults - 1))}
+                      className="w-8 h-8 rounded-full border border-gray-200 flex items-center justify-center hover:border-primary hover:text-primary transition-colors disabled:opacity-50 disabled:hover:border-gray-200 disabled:hover:text-current"
+                      disabled={adults <= 1}
+                    >
+                      <Minus className="w-4 h-4" />
+                    </button>
+                    <span className="w-4 text-center text-sm font-semibold text-text-dark">{adults}</span>
+                    <button 
+                      type="button"
+                      onClick={() => setAdults(adults + 1)}
+                      className="w-8 h-8 rounded-full border border-gray-200 flex items-center justify-center hover:border-primary hover:text-primary transition-colors"
+                    >
+                      <Plus className="w-4 h-4" />
+                    </button>
+                  </div>
+                </div>
+
+                {/* Children */}
+                <div className="flex items-center justify-between pt-5 border-t border-gray-100">
+                  <div className="flex flex-col">
+                    <span className="text-sm font-semibold text-text-dark">Children</span>
+                    <span className="text-xs text-muted-gray">Ages 0-12</span>
+                  </div>
+                  <div className="flex items-center space-x-3">
+                    <button 
+                      type="button"
+                      onClick={() => setChildren(Math.max(0, children - 1))}
+                      className="w-8 h-8 rounded-full border border-gray-200 flex items-center justify-center hover:border-primary hover:text-primary transition-colors disabled:opacity-50 disabled:hover:border-gray-200 disabled:hover:text-current"
+                      disabled={children <= 0}
+                    >
+                      <Minus className="w-4 h-4" />
+                    </button>
+                    <span className="w-4 text-center text-sm font-semibold text-text-dark">{children}</span>
+                    <button 
+                      type="button"
+                      onClick={() => setChildren(children + 1)}
+                      className="w-8 h-8 rounded-full border border-gray-200 flex items-center justify-center hover:border-primary hover:text-primary transition-colors"
+                    >
+                      <Plus className="w-4 h-4" />
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          )}
         </div>
 
         {/* CTA Button */}

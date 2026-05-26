@@ -1,69 +1,69 @@
 import React from 'react';
-import { ChevronRight } from 'lucide-react';
 
 export default function RoomCard({ room, loading }) {
   if (loading) {
     return (
       <div 
-        className="bg-white rounded-xl md:rounded-2xl overflow-hidden shadow-md border border-gray-100 flex flex-row md:flex-col items-center md:items-stretch h-[120px] md:h-full w-full"
+        className="bg-white rounded-2xl overflow-hidden shadow-md border border-gold-dark/10 flex flex-col h-full"
       >
         {/* Image Placeholder */}
-        <div className="w-[120px] md:w-full h-full md:h-auto md:aspect-[16/10] bg-gray-200 animate-pulse flex-shrink-0" />
+        <div className="w-full aspect-[16/10] bg-gray-200 animate-pulse flex-shrink-0" />
 
         {/* Content Placeholder */}
-        <div className="p-3.5 md:p-4 md:pb-5 flex-1 flex flex-row md:flex-col justify-between items-center md:items-stretch w-full min-w-0">
-          <div className="text-left pr-2 md:pr-12 min-w-0 flex-1 space-y-2">
-            {/* Title Placeholder */}
-            <div className="w-2/3 h-4.5 rounded bg-gray-200 animate-pulse" />
-            {/* Price Placeholder */}
-            <div className="w-1/2 h-3 rounded bg-gray-200 animate-pulse" />
-          </div>
-
-          {/* Action Button Placeholder */}
-          <div className="w-9 h-9 md:w-10 md:h-10 rounded-full bg-gray-200 animate-pulse flex-shrink-0 ml-2 md:ml-0" />
+        <div className="p-5 flex-1 flex flex-col justify-between items-center space-y-4">
+          <div className="w-3/4 h-6 rounded bg-gray-200 animate-pulse mt-2 mb-4" />
+          <div className="w-full h-11 rounded-lg bg-gray-200 animate-pulse mt-auto" />
         </div>
       </div>
     );
   }
 
   if (!room) return null;
-  const { name, price, currency, image } = room;
+  const { name, image } = room;
+
+  const handleBookRoom = (e) => {
+    e.stopPropagation();
+    const message = `Hello Dire Dawa Ras Hotel, I am interested in reserving the "${name}". Please let me know room availability.`;
+    const url = `https://wa.me/251968094406?text=${encodeURIComponent(message)}`;
+    window.open(url, '_blank', 'noopener,noreferrer');
+  };
 
   return (
     <div 
-      className="bg-white rounded-xl md:rounded-2xl overflow-hidden shadow-md hover:shadow-xl hover:-translate-y-1 md:hover:-translate-y-2 transition-all duration-300 flex flex-row md:flex-col items-center md:items-stretch h-[120px] md:h-full border border-gray-100 group cursor-pointer"
+      className="bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-2xl border border-gold-dark/10 hover:border-gold-dark/30 transition-all duration-300 flex flex-col h-full group"
       id={`room-card-${name.toLowerCase().replace(/\s+/g, '-')}`}
     >
       {/* Image Container */}
-      <div className="w-[120px] md:w-full h-full md:h-auto flex-shrink-0 md:relative md:aspect-[16/10] overflow-hidden">
+      <div className="relative w-full aspect-[16/10] overflow-hidden flex-shrink-0">
         <img 
           src={image} 
           alt={name}
-          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+          className="w-full h-full object-cover group-hover:scale-103 transition-transform duration-700"
           loading="lazy"
         />
-        {/* Subtle Gradient Overlay */}
-        <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 hidden md:block" />
+        {/* Subtle Dark Gradient Overlay */}
+        <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-90" />
       </div>
 
       {/* Card Content */}
-      <div className="p-3.5 md:p-4 md:pb-5 flex-1 flex flex-row md:flex-col justify-between items-center md:items-stretch relative w-full min-w-0">
-        <div className="text-left pr-2 md:pr-12 min-w-0 flex-1">
+      <div className="p-5 sm:p-6 flex-1 flex flex-col justify-between items-stretch">
+        
+        {/* Room Details */}
+        <div className="text-center mb-6">
           {/* Room Title */}
-          <h3 className="font-serif text-[15px] sm:text-lg md:text-xl font-bold text-text-dark mb-1 md:mb-1.5 group-hover:text-gold transition-colors duration-300 truncate md:whitespace-normal">
+          <h3 className="font-serif text-xl sm:text-2xl font-bold text-primary mb-2 group-hover:text-gold-dark transition-colors duration-300">
             {name}
           </h3>
-          
-          {/* Room Price */}
-          <p className="font-sans text-[11px] sm:text-xs md:text-xs text-muted-gray leading-tight">
-            From <span className="font-semibold text-gold text-[13px] sm:text-sm md:text-sm">{currency} {price.toLocaleString()}</span> / Night
-          </p>
         </div>
 
-        {/* Circular Chevron Arrow Button */}
-        <div className="relative md:absolute md:bottom-5 md:right-4 w-9 h-9 md:w-10 md:h-10 rounded-full bg-primary text-white flex items-center justify-center group-hover:bg-gold group-hover:text-primary transition-colors duration-300 shadow-md flex-shrink-0 ml-2 md:ml-0">
-          <ChevronRight className="w-4.5 h-4.5 md:w-5 md:h-5" />
-        </div>
+        {/* Large, Touch-Friendly Booking Button */}
+        <button 
+          onClick={handleBookRoom}
+          className="w-full bg-primary hover:bg-gold text-white hover:text-primary border border-primary hover:border-gold font-sans text-xs font-bold tracking-widest py-3.5 rounded-xl transition-all duration-300 uppercase shadow-sm cursor-pointer"
+        >
+          BOOK ROOM NOW
+        </button>
+
       </div>
     </div>
   );

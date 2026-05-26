@@ -1,11 +1,13 @@
 @import "tailwindcss";
 
 @theme {
-  --color-primary: #0B3B2E;
-  --color-gold: #D4A24C;
+  --color-primary: #8B0000;
+  --color-gold: #D4AF37;
+  --color-gold-dark: #926A0B;
+  --color-earth: #C5A880;
   --color-bg-light: #F8F6F2;
   --color-text-dark: #1B1B1B;
-  --color-muted-gray: #6B7280;
+  --color-muted-gray: #4B5563;
 
   --font-serif: "Cormorant Garamond", Georgia, serif;
   --font-sans: "Inter", sans-serif;
@@ -35,12 +37,12 @@
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #D4A24C;
+  background: #D4AF37;
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #0B3B2E;
+  background: #8B0000;
 }
 
 @keyframes fadeIn {
