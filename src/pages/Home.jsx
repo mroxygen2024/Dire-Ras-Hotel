@@ -8,7 +8,6 @@ import FeaturesSection from '../components/FeaturesSection';
 import RoomsSection from '../components/RoomsSection';
 import WhyStaySection from '../components/WhyStaySection';
 import ReviewsSection from '../components/ReviewsSection';
-import ContactSection from '../components/ContactSection';
 import Footer from '../components/Footer';
 import WhatsAppFloatingButton from '../components/WhatsAppFloatingButton';
 
@@ -100,8 +99,6 @@ export default function Home() {
         {/* 7. Guest Reviews Section */}
         <ReviewsSection loading={loading} />
 
-        {/* 8. Contact & Location Section */}
-        <ContactSection loading={loading} />
       </main>
 
       {/* 6. Footer */}

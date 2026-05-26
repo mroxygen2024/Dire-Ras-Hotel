@@ -13,7 +13,7 @@ export default function ReviewsSection({ loading }) {
             <div className="w-16 h-[2px] bg-gold/30" />
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {[...Array(6)].map((_, i) => (
+            {[...Array(3)].map((_, i) => (
               <div key={i} className="bg-white p-8 rounded-2xl flex flex-col space-y-4 shadow-sm border border-gold/5">
                 <div className="flex space-x-1">
                   {[...Array(5)].map((_, idx) => (
@@ -94,12 +94,10 @@ export default function ReviewsSection({ loading }) {
 
         {/* Testimonials Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {reviews.map((r, i) => (
+          {reviews.slice(0, 3).map((r, i) => (
             <div 
               key={i}
-              className={`group bg-white border border-gold/5 hover:border-gold/20 hover:shadow-xl p-8 rounded-2xl flex flex-col justify-between transition-all duration-350 transform hover:-translate-y-1 ${
-                i === 6 ? 'md:col-span-2 lg:col-span-1 md:max-w-md md:mx-auto lg:max-w-none lg:mx-0' : ''
-              }`}
+              className="group bg-white border border-gold/5 hover:border-gold/20 hover:shadow-xl p-8 rounded-2xl flex flex-col justify-between transition-all duration-350 transform hover:-translate-y-1"
             >
               <div>
                 {/* Top Row: Stars and Quote */}
