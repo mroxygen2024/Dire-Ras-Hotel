@@ -7,6 +7,7 @@ import BookingCard from '../components/BookingCard';
 import FeaturesSection from '../components/FeaturesSection';
 import RoomsSection from '../components/RoomsSection';
 import Footer from '../components/Footer';
+import WhatsAppFloatingButton from '../components/WhatsAppFloatingButton';
 
 export default function Home() {
   const [loading, setLoading] = useState(true);
@@ -93,6 +94,9 @@ export default function Home() {
 
       {/* 6. Footer */}
       <Footer hotelInfo={hotelData.info} navLinks={hotelData.links} loading={loading} />
+
+      {/* 7. Premium Floating WhatsApp Button */}
+      {!loading && <WhatsAppFloatingButton />}
     </div>
   );
 }
