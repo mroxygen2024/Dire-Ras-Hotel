@@ -38,7 +38,7 @@ export const heritageIntroData = {
   paragraph1: "Dire Dawa Ras Hotel is a legendary monument of hospitality. Established during a golden age of rail travel, our hotel bridges historic Ethiopian heritage with refined, relaxed comforts. Nestled as a lush cool oasis in a warm, lively city, we have hosted royalty, international delegates, and generations of travelers.",
   paragraph2: "Every corner of our estate—from the serene courtyard gardens to our classic architectural design—tells a story of trust, safety, and legendary hospitality. We are not just a place to sleep; we are the historic gateway to the unique atmosphere of Dire Dawa.",
   ctaText: "EXPLORE OUR STORY",
-  imageUrl: "https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=1200&q=80",
+  imageUrl: "https://images.unsplash.com/photo-1670915198844-51975abf6955?q=80&w=2010&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
 };
 
 export const aboutPageData = {
