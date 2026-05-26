@@ -131,13 +131,11 @@ export default function Footer({ hotelInfo, navLinks, loading }) {
           {/* LEFT COLUMN — BRANDING */}
           <div className="flex flex-col space-y-5">
             <div className="flex items-center space-x-3">
-              <svg className="w-12 h-12 text-gold flex-shrink-0" viewBox="0 0 100 100" fill="currentColor">
-                <path d="M20,35 L35,48 L50,25 L65,48 L80,35 L75,70 L25,70 Z" fill="none" stroke="currentColor" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round" />
-                <circle cx="20" cy="32" r="3" />
-                <circle cx="50" cy="22" r="3" />
-                <circle cx="80" cy="32" r="3" />
-                <text x="50" y="62" fontSize="24" fontFamily="Georgia, serif" fontWeight="bold" textAnchor="middle" fill="currentColor">R</text>
-              </svg>
+              <img 
+                src="/logo.png" 
+                alt="Dire Dawa Ras Hotel Logo" 
+                className="w-12 h-12 object-contain mix-blend-screen flex-shrink-0" 
+              />
               <div className="flex flex-col leading-tight pl-2">
                 <span className="font-serif text-[17px] font-bold tracking-[0.15em] text-gold uppercase">
                   DIRE DAWA RAS HOTEL

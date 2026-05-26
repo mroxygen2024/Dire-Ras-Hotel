@@ -54,10 +54,16 @@ export default function HeroSection({ hotelInfo, loading }) {
         <div className="flex items-center space-x-2 bg-black/30 backdrop-blur-sm border border-gold/30 px-3.5 py-1.5 rounded-full mb-6 sm:mb-8 shadow-md">
           {/* Miniature Gold Crown SVG */}
           <svg className="w-3.5 h-3.5 text-gold flex-shrink-0" viewBox="0 0 100 100" fill="currentColor">
-            <path d="M20,35 L35,48 L50,25 L65,48 L80,35 L75,70 L25,70 Z" fill="none" stroke="currentColor" strokeWidth="6" strokeLinecap="round" strokeLinejoin="round" />
-            <circle cx="20" cy="32" r="4" />
-            <circle cx="50" cy="22" r="4" />
-            <circle cx="80" cy="32" r="4" />
+            {/* Elegant Crown */}
+            <path d="M 38,32 H 62 V 34 H 38 Z" />
+            <path d="M 39,29 H 61 V 30 H 39 Z" />
+            <path d="M 39,29 L 34,22 C 34,22 38,24 41,26 L 43,23 C 43,23 46,24 48,26 L 50,16 C 50,16 51,24 52,26 L 57,23 C 57,23 58,24 59,26 L 66,22 C 66,22 62,24 61,29 Z" />
+            {/* Crown Diamonds */}
+            <polygon points="50,12 52.5,15 50,18 47.5,15" />
+            <polygon points="34,18 36.5,21 34,24 31.5,21" />
+            <polygon points="66,18 68.5,21 66,24 63.5,21" />
+            <polygon points="43,19 45.5,22 43,25 40.5,22" />
+            <polygon points="57,19 59.5,22 57,25 54.5,22" />
           </svg>
           <span className="font-sans text-[9px] sm:text-[10px] tracking-[0.2em] text-gold font-medium uppercase">
             Established Since 1964 EC
