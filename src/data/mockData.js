@@ -1,7 +1,7 @@
 export const hotelInfo = {
   name: "DIRE DAWA RAS HOTEL",
   tagline: "Comfort. Hospitality. Dire Dawa.",
-  phone: "+251 251 113 255",
+  phone: "+251 25 111 3255",
   phone2: "+251 915 320 033",
   email: "ddrashotel1@gmail.com",
   address: "HVQ5+FGV Hotel, Dire Dawa 1487, Ethiopia",

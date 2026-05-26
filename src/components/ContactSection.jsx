@@ -50,7 +50,7 @@ export default function ContactSection({ loading }) {
       id: 'phone',
       title: 'Reception Desk',
       icon: <Phone className="w-5 h-5 text-gold" />,
-      content: '+251 251 113 255',
+      content: '+251 25 111 3255',
       content2: '0915 32 00 33',
       subtext: 'Available 24/7 for bookings',
       actionLabel: 'Call Reception',

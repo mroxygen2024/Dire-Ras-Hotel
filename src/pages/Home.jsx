@@ -6,6 +6,7 @@ import HeroSection from '../components/HeroSection';
 import BookingCard from '../components/BookingCard';
 import FeaturesSection from '../components/FeaturesSection';
 import RoomsSection from '../components/RoomsSection';
+import WhyStaySection from '../components/WhyStaySection';
 import ContactSection from '../components/ContactSection';
 import Footer from '../components/Footer';
 import WhatsAppFloatingButton from '../components/WhatsAppFloatingButton';
@@ -92,7 +93,10 @@ export default function Home() {
         {/* 5. Rooms Section */}
         <RoomsSection rooms={hotelData.roomsList} loading={loading} />
 
-        {/* 6. Contact & Location Section */}
+        {/* 6. Why Stay With Us Section */}
+        <WhyStaySection loading={loading} />
+
+        {/* 7. Contact & Location Section */}
         <ContactSection loading={loading} />
       </main>
 

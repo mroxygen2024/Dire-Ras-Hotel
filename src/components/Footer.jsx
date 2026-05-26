@@ -120,7 +120,7 @@ export default function Footer({ hotelInfo, navLinks, loading }) {
                 <Phone className="w-5 h-5 text-gold flex-shrink-0 mt-0.5" />
                 <div className="flex flex-col space-y-1">
                   <a href="tel:+251251113255" className="hover:text-gold transition-colors focus:outline-none focus:ring-1 focus:ring-gold">
-                    +251 251 113 255
+                    +251 25 111 3255
                   </a>
                   <a href="tel:+251915320033" className="hover:text-gold transition-colors focus:outline-none focus:ring-1 focus:ring-gold">
                     +251 915 320 033
