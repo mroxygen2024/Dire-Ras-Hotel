@@ -103,7 +103,9 @@ export default function Navbar({ hotelInfo, navLinks, loading }) {
             </a>
             
             <a
-              href="#booking"
+              href="https://wa.me/251968094406?text=Hello%20Dire%20Dawa%20Ras%20Hotel%2C%20I%20would%20like%20to%20reserve%20a%20room."
+              target="_blank"
+              rel="noopener noreferrer"
               className="border border-gold text-gold font-sans text-[13px] font-semibold tracking-widest px-5 py-2.5 rounded-sm hover:bg-gold hover:text-primary transition-all duration-300 uppercase"
               id="book-btn-desktop"
             >
@@ -181,7 +183,9 @@ export default function Navbar({ hotelInfo, navLinks, loading }) {
               <span className="text-white/90 font-medium">{hotelInfo.phone}</span>
             </a>
             <a
-              href="#booking"
+              href="https://wa.me/251968094406?text=Hello%20Dire%20Dawa%20Ras%20Hotel%2C%20I%20would%20like%20to%20reserve%20a%20room."
+              target="_blank"
+              rel="noopener noreferrer"
               onClick={toggleMenu}
               className="w-full text-center bg-gold text-primary font-sans text-[14px] font-bold tracking-widest py-3 rounded hover:bg-white hover:text-primary transition-all duration-300 uppercase"
               id="book-btn-drawer"

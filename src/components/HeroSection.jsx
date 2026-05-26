@@ -75,7 +75,9 @@ export default function HeroSection({ hotelInfo, loading }) {
         {/* Buttons Row */}
         <div className="flex flex-row items-center space-x-4 mb-6 lg:mb-5">
           <a
-            href="#booking"
+            href="https://wa.me/251968094406?text=Hello%20Dire%20Dawa%20Ras%20Hotel%2C%20I%20would%20like%20to%20reserve%20a%20room."
+            target="_blank"
+            rel="noopener noreferrer"
             className="flex-1 sm:flex-initial text-center bg-gold hover:bg-white text-primary font-sans text-[13px] sm:text-sm font-bold tracking-wider px-6 sm:px-8 lg:px-6 py-3 sm:py-4 lg:py-3 rounded-sm shadow-lg hover:text-primary transition-all duration-300 uppercase"
             id="hero-book-btn"
           >

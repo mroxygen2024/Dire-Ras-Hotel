@@ -19,7 +19,18 @@ export default function BookingCard({ loading }) {
 
   const handleCheckAvailability = (e) => {
     e.preventDefault();
-    alert(`Checking availability:\nCheck-in: ${checkIn || 'Not selected'}\nCheck-out: ${checkOut || 'Not selected'}\nGuests: ${guests}`);
+    let message = "Hello Dire Dawa Ras Hotel, I would like to reserve a room.";
+    const details = [];
+    if (checkIn) details.push(`Check-in: ${formatDate(checkIn)}`);
+    if (checkOut) details.push(`Check-out: ${formatDate(checkOut)}`);
+    if (guests) details.push(`Guests: ${guests}`);
+    
+    if (details.length > 0) {
+      message += ` (${details.join(', ')})`;
+    }
+    
+    const url = `https://wa.me/251968094406?text=${encodeURIComponent(message)}`;
+    window.open(url, '_blank', 'noopener,noreferrer');
   };
 
   if (loading) {
