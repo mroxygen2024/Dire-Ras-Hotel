@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Menu, X, Phone } from 'lucide-react';
+import { Menu, X, Phone, Facebook, Instagram, Twitter } from 'lucide-react';
 
 export default function Navbar({ hotelInfo, navLinks, loading }) {
   const [isOpen, setIsOpen] = useState(false);
@@ -187,11 +187,53 @@ export default function Navbar({ hotelInfo, navLinks, loading }) {
               target="_blank"
               rel="noopener noreferrer"
               onClick={toggleMenu}
-              className="w-full text-center bg-gold text-primary font-sans text-[14px] font-bold tracking-widest py-3 rounded hover:bg-white hover:text-primary transition-all duration-300 uppercase"
+              className="w-full text-center bg-gold text-primary font-sans text-[14px] font-bold tracking-widest py-3 rounded hover:bg-white hover:text-primary transition-all duration-300 uppercase animate-fade-in"
               id="book-btn-drawer"
             >
               Book Now
             </a>
+
+            {/* Drawer Social Links */}
+            <div className="flex space-x-3.5 mt-2 justify-center">
+              <a 
+                href="#" 
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-9 h-9 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-white hover:bg-gold hover:text-primary hover:border-gold transition-all duration-300 transform hover:scale-110 focus:outline-none focus:ring-1 focus:ring-gold"
+                aria-label="Facebook"
+              >
+                <Facebook className="w-4 h-4" />
+              </a>
+              <a 
+                href="#" 
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-9 h-9 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-white hover:bg-gold hover:text-primary hover:border-gold transition-all duration-300 transform hover:scale-110 focus:outline-none focus:ring-1 focus:ring-gold"
+                aria-label="Instagram"
+              >
+                <Instagram className="w-4 h-4" />
+              </a>
+              <a 
+                href="#" 
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-9 h-9 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-white hover:bg-gold hover:text-primary hover:border-gold transition-all duration-300 transform hover:scale-110 focus:outline-none focus:ring-1 focus:ring-gold"
+                aria-label="Twitter"
+              >
+                <Twitter className="w-4 h-4" />
+              </a>
+              <a 
+                href="https://www.tiktok.com/@ras_dire" 
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-9 h-9 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-white hover:bg-gold hover:text-primary hover:border-gold transition-all duration-300 transform hover:scale-110 focus:outline-none focus:ring-1 focus:ring-gold"
+                aria-label="TikTok"
+              >
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="w-4 h-4">
+                  <path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5" />
+                </svg>
+              </a>
+            </div>
           </div>
 
         </div>

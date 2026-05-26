@@ -4,14 +4,17 @@ import { Play } from 'lucide-react';
 export default function HeroSection({ hotelInfo, loading }) {
   if (loading) {
     return (
-      <section 
+      <section
         className="relative w-full h-[460px] lg:h-[480px] flex items-center bg-primary/95 overflow-hidden"
         id="home"
       >
         <div className="relative z-20 max-w-7xl lg:max-w-[1400px] mx-auto px-6 sm:px-8 lg:px-6 w-full text-white flex flex-col justify-center h-full">
+          {/* Heritage badge placeholder */}
+          <div className="w-52 h-7 rounded-full bg-gray-200/20 animate-pulse mb-4" />
+
           {/* Subtitle placeholder */}
           <div className="w-40 h-4 rounded bg-gray-200/20 animate-pulse mb-4" />
-          
+
           {/* Title placeholder */}
           <div className="space-y-3 mb-6 max-w-xl">
             <div className="w-3/4 h-10 lg:h-12 rounded bg-gray-200/20 animate-pulse" />
@@ -22,10 +25,7 @@ export default function HeroSection({ hotelInfo, loading }) {
           <div className="w-16 h-[1.5px] bg-gray-200/20 animate-pulse mb-6" />
 
           {/* Description placeholder */}
-          <div className="space-y-2 mb-8 lg:mb-6 max-w-md lg:max-w-lg">
-            <div className="w-full h-4 rounded bg-gray-200/20 animate-pulse" />
-            <div className="w-11/12 h-4 rounded bg-gray-200/20 animate-pulse" />
-          </div>
+          <div className="w-64 h-4 rounded bg-gray-200/20 animate-pulse mb-8 lg:mb-6" />
 
           {/* Buttons placeholder */}
           <div className="flex flex-row items-center space-x-4 mb-6 lg:mb-5">
@@ -40,7 +40,7 @@ export default function HeroSection({ hotelInfo, loading }) {
   if (!hotelInfo) return null;
 
   return (
-    <section 
+    <section
       className="relative w-full h-[460px] lg:h-[480px] flex items-center bg-cover bg-center overflow-hidden"
       style={{
         backgroundImage: `url('https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=1600&q=80')`,
@@ -52,7 +52,21 @@ export default function HeroSection({ hotelInfo, loading }) {
 
       {/* Hero Content */}
       <div className="relative z-20 max-w-7xl lg:max-w-[1400px] mx-auto px-6 sm:px-8 lg:px-6 w-full text-white flex flex-col justify-center h-full animate-fade-in">
-        
+
+        {/* Heritage Badge */}
+        <div className="flex items-center space-x-2 self-start bg-primary/80 backdrop-blur-sm border border-gold/40 px-3.5 py-1.5 rounded-full mb-4 shadow-md">
+          {/* Miniature Gold Crown SVG */}
+          <svg className="w-3.5 h-3.5 text-gold flex-shrink-0" viewBox="0 0 100 100" fill="currentColor">
+            <path d="M20,35 L35,48 L50,25 L65,48 L80,35 L75,70 L25,70 Z" fill="none" stroke="currentColor" strokeWidth="6" strokeLinecap="round" strokeLinejoin="round" />
+            <circle cx="20" cy="32" r="4" />
+            <circle cx="50" cy="22" r="4" />
+            <circle cx="80" cy="32" r="4" />
+          </svg>
+          <span className="font-serif text-[10px] sm:text-[11px] tracking-[0.15em] text-gold font-bold uppercase">
+            Established Since 1964 EC
+          </span>
+        </div>
+
         {/* Welcome Subtitle */}
         <p className="text-gold font-sans text-[14px] sm:text-[16px] lg:text-[16px] font-bold tracking-widest uppercase mb-3 sm:mb-4">
           {hotelInfo.heroSubtitle}
@@ -69,7 +83,7 @@ export default function HeroSection({ hotelInfo, loading }) {
 
         {/* Hero Description */}
         <p className="font-sans text-[16px] sm:text-[18px] lg:text-[17px] text-white/95 max-w-md lg:max-w-lg mb-6 lg:mb-5 leading-relaxed">
-          {hotelInfo.heroDescription}
+          Stay a cool place in warmer city
         </p>
 
         {/* Buttons Row */}

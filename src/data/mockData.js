@@ -1,10 +1,11 @@
 export const hotelInfo = {
-  name: "DIREDAWA RAS HOTEL",
-  tagline: "Comfort. Hospitality. Diredawa.",
-  phone: "+251 251 111 223",
-  email: "info@diredawarashotel.com",
-  address: "Ras Desta Damtew St, Dire Dawa, Ethiopia",
-  heroTitle: "Diredawa Ras Hotel",
+  name: "DIRE DAWA RAS HOTEL",
+  tagline: "Comfort. Hospitality. Dire Dawa.",
+  phone: "+251 251 113 255",
+  phone2: "+251 915 320 033",
+  email: "ddrashotel1@gmail.com",
+  address: "HVQ5+FGV Hotel, Dire Dawa 1487, Ethiopia",
+  heroTitle: "Dire Dawa Ras Hotel",
   heroSubtitle: "WELCOME TO",
   heroDescription:
     "Experience comfort, elegance and exceptional hospitality in the heart of Dire Dawa.",
