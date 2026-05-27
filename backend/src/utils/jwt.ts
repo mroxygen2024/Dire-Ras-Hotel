@@ -10,14 +10,14 @@ export interface JwtPayload {
 
 export class JwtUtil {
   private static readonly SECRET = env.JWT_SECRET;
-  private static readonly EXPIRES_IN = '24h';
+  private static readonly EXPIRES_IN = env.JWT_EXPIRES_IN;
 
   /**
    * Generates a signed JWT token containing user details.
    * @param payload Target token claims
    */
   static sign(payload: JwtPayload): string {
-    return jwt.sign(payload, this.SECRET, { expiresIn: this.EXPIRES_IN });
+    return jwt.sign(payload, this.SECRET, { expiresIn: this.EXPIRES_IN as any });
   }
 
   /**

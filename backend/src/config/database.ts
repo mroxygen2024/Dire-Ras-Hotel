@@ -9,9 +9,17 @@ declare global {
   var prisma: PrismaClient | undefined;
 }
 
-// Configure PostgreSQL connection pool using pg
+// Configure PostgreSQL connection pool using pg with production-ready security parameters
 const pool = new Pool({
   connectionString: env.DATABASE_URL,
+  // Limit concurrent connections to protect database resources
+  max: env.NODE_ENV === 'production' ? 20 : 5, 
+  // Close idle clients after 30 seconds to release memory and resources
+  idleTimeoutMillis: 30000, 
+  // Fail fast (5 seconds) if database is unreachable, avoiding hanging requests
+  connectionTimeoutMillis: 5000, 
+  // Periodically recycle database connections to prevent memory/resource leaks
+  maxUses: 5000, 
 });
 
 // Configure Prisma 7 driver adapter for PostgreSQL

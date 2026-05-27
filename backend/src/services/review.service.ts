@@ -1,3 +1,4 @@
+// Trivial change to force TS server cache invalidation and reload updated Prisma Client types
 import { prisma } from '../config/database';
 import { CreateReviewInput, UpdateReviewInput, UpdateReviewSectionInput } from '../validations/review.validation';
 import { AppError } from '../utils/custom-error';

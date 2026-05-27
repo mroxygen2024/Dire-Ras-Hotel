@@ -14,5 +14,5 @@
     "declaration": true,
     "verbatimModuleSyntax": false
   },
-  "include": ["src/**/*", "prisma/**/*.ts"]
+  "include": ["src/**/*"]
 }

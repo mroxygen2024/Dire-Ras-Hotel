@@ -5,6 +5,8 @@ import morgan from 'morgan';
 import { env } from './config/env';
 import { notFoundMiddleware } from './middlewares/not-found.middleware';
 import { errorMiddleware } from './middlewares/error.middleware';
+import { apiLimiter } from './middlewares/rate-limit.middleware';
+import { sanitizeMiddleware } from './middlewares/sanitize.middleware';
 import authRoutes from './routes/auth.routes';
 import hotelInfoRoutes from './routes/hotel-info.routes';
 import heroSectionRoutes from './routes/hero-section.routes';
@@ -19,24 +21,63 @@ const app: Application = express();
 // 1. Global Middlewares
 // ==========================================
 
-// Helmet for setting security headers
-app.use(helmet());
-
-// CORS setup
+// 1. Helmet for setting robust security headers
 app.use(
-  cors({
-    origin: '*', // Adjust to specific domains in production if needed
-    credentials: true,
+  helmet({
+    contentSecurityPolicy: env.NODE_ENV === 'production' ? {
+      directives: {
+        defaultSrc: ["'self'"],
+        scriptSrc: ["'self'"],
+        styleSrc: ["'self'", "'unsafe-inline'"],
+        imgSrc: ["'self'", "data:", "https:"],
+        connectSrc: ["'self'"],
+        fontSrc: ["'self'"],
+        objectSrc: ["'none'"],
+        mediaSrc: ["'self'"],
+        frameAncestors: ["'none'"], // Prevent clickjacking
+      },
+    } : false, // Allow lenient CSP in development
+    crossOriginResourcePolicy: { policy: 'cross-origin' }, // Allows frontend to request static media assets
+    referrerPolicy: { policy: 'same-origin' },
+    frameguard: { action: 'deny' }, // Shield against Clickjacking
   })
 );
 
-// Morgan for logging HTTP requests
+// 2. Secure CORS configuration using verified origin whitelist
+const allowedOrigins = env.ALLOWED_ORIGINS.split(',').map((origin) => origin.trim());
+
+app.use(
+  cors({
+    origin: (origin, callback) => {
+      // Allow requests with no origin (like mobile apps, curl, or same-origin)
+      if (!origin) return callback(null, true);
+      
+      if (allowedOrigins.includes('*') || allowedOrigins.includes(origin)) {
+        return callback(null, true);
+      }
+      
+      return callback(new Error('CORS Policy violation: Origin not allowed.'));
+    },
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
+    allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With', 'Accept'],
+    credentials: true,
+    maxAge: 86400, // Cache preflight requests for 24 hours to reduce server load
+  })
+);
+
+// 3. Morgan for logging HTTP requests
 const morganFormat = env.NODE_ENV === 'development' ? 'dev' : 'combined';
 app.use(morgan(morganFormat));
 
-// Body parsers
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
+// 4. Global API Rate Limiter
+app.use('/api', apiLimiter);
+
+// 5. Payload size restrictions to prevent Buffer Overflow & DoS
+app.use(express.json({ limit: '50kb' }));
+app.use(express.urlencoded({ extended: true, limit: '50kb' }));
+
+// 6. Deep XSS and input sanitization middleware
+app.use(sanitizeMiddleware);
 
 // ==========================================
 // 2. Global Routes
