@@ -5,6 +5,7 @@ import morgan from 'morgan';
 import { env } from './config/env';
 import { notFoundMiddleware } from './middlewares/not-found.middleware';
 import { errorMiddleware } from './middlewares/error.middleware';
+import authRoutes from './routes/auth.routes';
 
 const app: Application = express();
 
@@ -44,6 +45,9 @@ apiRouter.get('/health', (req, res) => {
     message: 'Server is running',
   });
 });
+
+// Register auth routes
+apiRouter.use('/auth', authRoutes);
 
 // Register all API routes with /api prefix
 app.use('/api', apiRouter);

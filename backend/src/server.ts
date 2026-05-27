@@ -1,9 +1,17 @@
 import app from './app';
 import { env } from './config/env';
 import { prisma } from './config/database';
+import { AuthService } from './services/auth.service';
 
-const server = app.listen(env.PORT, () => {
+const server = app.listen(env.PORT, async () => {
   console.log(`🚀 Server running in ${env.NODE_ENV} mode on port ${env.PORT}`);
+  
+  // Seed the default Super Admin if none exists
+  try {
+    await AuthService.seedSuperAdmin();
+  } catch (err) {
+    console.error('❌ Failed to seed default Super Admin:', err);
+  }
 });
 
 // Graceful shutdown helper
