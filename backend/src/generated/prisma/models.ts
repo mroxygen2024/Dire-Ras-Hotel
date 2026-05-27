@@ -8,4 +8,18 @@
  *
  * 🟢 You can import this file directly.
  */
+export type * from './models/Admin'
+export type * from './models/HotelInfo'
+export type * from './models/HeroSection'
+export type * from './models/HeritageSection'
+export type * from './models/AboutPage'
+export type * from './models/StorySection'
+export type * from './models/TimelineEvent'
+export type * from './models/WhyStaySection'
+export type * from './models/WhyStayFeature'
+export type * from './models/Service'
+export type * from './models/Room'
+export type * from './models/ReviewSection'
+export type * from './models/Review'
+export type * from './models/ContactPage'
 export type * from './commonInputTypes'

@@ -17,4 +17,73 @@ import * as Prisma from './internal/prismaNamespaceBrowser'
 export { Prisma }
 export * as $Enums from './enums'
 export * from './enums';
-
+/**
+ * Model Admin
+ * 
+ */
+export type Admin = Prisma.AdminModel
+/**
+ * Model HotelInfo
+ * 
+ */
+export type HotelInfo = Prisma.HotelInfoModel
+/**
+ * Model HeroSection
+ * 
+ */
+export type HeroSection = Prisma.HeroSectionModel
+/**
+ * Model HeritageSection
+ * 
+ */
+export type HeritageSection = Prisma.HeritageSectionModel
+/**
+ * Model AboutPage
+ * 
+ */
+export type AboutPage = Prisma.AboutPageModel
+/**
+ * Model StorySection
+ * 
+ */
+export type StorySection = Prisma.StorySectionModel
+/**
+ * Model TimelineEvent
+ * 
+ */
+export type TimelineEvent = Prisma.TimelineEventModel
+/**
+ * Model WhyStaySection
+ * 
+ */
+export type WhyStaySection = Prisma.WhyStaySectionModel
+/**
+ * Model WhyStayFeature
+ * 
+ */
+export type WhyStayFeature = Prisma.WhyStayFeatureModel
+/**
+ * Model Service
+ * 
+ */
+export type Service = Prisma.ServiceModel
+/**
+ * Model Room
+ * 
+ */
+export type Room = Prisma.RoomModel
+/**
+ * Model ReviewSection
+ * 
+ */
+export type ReviewSection = Prisma.ReviewSectionModel
+/**
+ * Model Review
+ * 
+ */
+export type Review = Prisma.ReviewModel
+/**
+ * Model ContactPage
+ * 
+ */
+export type ContactPage = Prisma.ContactPageModel

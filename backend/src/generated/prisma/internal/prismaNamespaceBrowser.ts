@@ -51,7 +51,20 @@ export const AnyNull = runtime.AnyNull
 
 
 export const ModelName = {
-
+  Admin: 'Admin',
+  HotelInfo: 'HotelInfo',
+  HeroSection: 'HeroSection',
+  HeritageSection: 'HeritageSection',
+  AboutPage: 'AboutPage',
+  StorySection: 'StorySection',
+  TimelineEvent: 'TimelineEvent',
+  WhyStaySection: 'WhyStaySection',
+  WhyStayFeature: 'WhyStayFeature',
+  Service: 'Service',
+  Room: 'Room',
+  ReviewSection: 'ReviewSection',
+  Review: 'Review',
+  ContactPage: 'ContactPage'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -68,4 +81,273 @@ export const TransactionIsolationLevel = runtime.makeStrictEnum({
 } as const)
 
 export type TransactionIsolationLevel = (typeof TransactionIsolationLevel)[keyof typeof TransactionIsolationLevel]
+
+
+export const AdminScalarFieldEnum = {
+  id: 'id',
+  email: 'email',
+  password: 'password',
+  firstName: 'firstName',
+  lastName: 'lastName',
+  role: 'role',
+  isActive: 'isActive',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  isDeleted: 'isDeleted',
+  deletedAt: 'deletedAt'
+} as const
+
+export type AdminScalarFieldEnum = (typeof AdminScalarFieldEnum)[keyof typeof AdminScalarFieldEnum]
+
+
+export const HotelInfoScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  logoUrl: 'logoUrl',
+  address: 'address',
+  email: 'email',
+  phone: 'phone',
+  whatsappNumber: 'whatsappNumber',
+  mapEmbedUrl: 'mapEmbedUrl',
+  facebookUrl: 'facebookUrl',
+  instagramUrl: 'instagramUrl',
+  twitterUrl: 'twitterUrl',
+  tripAdvisorUrl: 'tripAdvisorUrl',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  isDeleted: 'isDeleted',
+  deletedAt: 'deletedAt'
+} as const
+
+export type HotelInfoScalarFieldEnum = (typeof HotelInfoScalarFieldEnum)[keyof typeof HotelInfoScalarFieldEnum]
+
+
+export const HeroSectionScalarFieldEnum = {
+  id: 'id',
+  hotelId: 'hotelId',
+  title: 'title',
+  subtitle: 'subtitle',
+  bgImageUrl: 'bgImageUrl',
+  ctaText: 'ctaText',
+  ctaLink: 'ctaLink',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type HeroSectionScalarFieldEnum = (typeof HeroSectionScalarFieldEnum)[keyof typeof HeroSectionScalarFieldEnum]
+
+
+export const HeritageSectionScalarFieldEnum = {
+  id: 'id',
+  hotelId: 'hotelId',
+  title: 'title',
+  slogan: 'slogan',
+  description: 'description',
+  badgeUrl: 'badgeUrl',
+  bgImageUrl: 'bgImageUrl',
+  establishedYear: 'establishedYear',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type HeritageSectionScalarFieldEnum = (typeof HeritageSectionScalarFieldEnum)[keyof typeof HeritageSectionScalarFieldEnum]
+
+
+export const AboutPageScalarFieldEnum = {
+  id: 'id',
+  hotelId: 'hotelId',
+  title: 'title',
+  subtitle: 'subtitle',
+  mainImageUrl: 'mainImageUrl',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type AboutPageScalarFieldEnum = (typeof AboutPageScalarFieldEnum)[keyof typeof AboutPageScalarFieldEnum]
+
+
+export const StorySectionScalarFieldEnum = {
+  id: 'id',
+  aboutPageId: 'aboutPageId',
+  title: 'title',
+  description: 'description',
+  imageUrl: 'imageUrl',
+  order: 'order',
+  alignRight: 'alignRight',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type StorySectionScalarFieldEnum = (typeof StorySectionScalarFieldEnum)[keyof typeof StorySectionScalarFieldEnum]
+
+
+export const TimelineEventScalarFieldEnum = {
+  id: 'id',
+  aboutPageId: 'aboutPageId',
+  year: 'year',
+  title: 'title',
+  description: 'description',
+  order: 'order',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type TimelineEventScalarFieldEnum = (typeof TimelineEventScalarFieldEnum)[keyof typeof TimelineEventScalarFieldEnum]
+
+
+export const WhyStaySectionScalarFieldEnum = {
+  id: 'id',
+  hotelId: 'hotelId',
+  title: 'title',
+  subtitle: 'subtitle',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type WhyStaySectionScalarFieldEnum = (typeof WhyStaySectionScalarFieldEnum)[keyof typeof WhyStaySectionScalarFieldEnum]
+
+
+export const WhyStayFeatureScalarFieldEnum = {
+  id: 'id',
+  whyStaySectionId: 'whyStaySectionId',
+  icon: 'icon',
+  title: 'title',
+  description: 'description',
+  order: 'order',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type WhyStayFeatureScalarFieldEnum = (typeof WhyStayFeatureScalarFieldEnum)[keyof typeof WhyStayFeatureScalarFieldEnum]
+
+
+export const ServiceScalarFieldEnum = {
+  id: 'id',
+  hotelId: 'hotelId',
+  name: 'name',
+  description: 'description',
+  imageUrl: 'imageUrl',
+  icon: 'icon',
+  isFeatured: 'isFeatured',
+  isAvailable: 'isAvailable',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  isDeleted: 'isDeleted',
+  deletedAt: 'deletedAt'
+} as const
+
+export type ServiceScalarFieldEnum = (typeof ServiceScalarFieldEnum)[keyof typeof ServiceScalarFieldEnum]
+
+
+export const RoomScalarFieldEnum = {
+  id: 'id',
+  hotelId: 'hotelId',
+  name: 'name',
+  type: 'type',
+  description: 'description',
+  pricePerNight: 'pricePerNight',
+  maxOccupants: 'maxOccupants',
+  bedType: 'bedType',
+  roomSize: 'roomSize',
+  view: 'view',
+  isAvailable: 'isAvailable',
+  features: 'features',
+  images: 'images',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  isDeleted: 'isDeleted',
+  deletedAt: 'deletedAt'
+} as const
+
+export type RoomScalarFieldEnum = (typeof RoomScalarFieldEnum)[keyof typeof RoomScalarFieldEnum]
+
+
+export const ReviewSectionScalarFieldEnum = {
+  id: 'id',
+  hotelId: 'hotelId',
+  title: 'title',
+  subtitle: 'subtitle',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type ReviewSectionScalarFieldEnum = (typeof ReviewSectionScalarFieldEnum)[keyof typeof ReviewSectionScalarFieldEnum]
+
+
+export const ReviewScalarFieldEnum = {
+  id: 'id',
+  hotelId: 'hotelId',
+  reviewSectionId: 'reviewSectionId',
+  reviewerName: 'reviewerName',
+  reviewerAvatarUrl: 'reviewerAvatarUrl',
+  rating: 'rating',
+  comment: 'comment',
+  stayDate: 'stayDate',
+  isApproved: 'isApproved',
+  isFeatured: 'isFeatured',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  isDeleted: 'isDeleted',
+  deletedAt: 'deletedAt'
+} as const
+
+export type ReviewScalarFieldEnum = (typeof ReviewScalarFieldEnum)[keyof typeof ReviewScalarFieldEnum]
+
+
+export const ContactPageScalarFieldEnum = {
+  id: 'id',
+  hotelId: 'hotelId',
+  title: 'title',
+  subtitle: 'subtitle',
+  description: 'description',
+  phone: 'phone',
+  email: 'email',
+  whatsappLink: 'whatsappLink',
+  latitude: 'latitude',
+  longitude: 'longitude',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type ContactPageScalarFieldEnum = (typeof ContactPageScalarFieldEnum)[keyof typeof ContactPageScalarFieldEnum]
+
+
+export const SortOrder = {
+  asc: 'asc',
+  desc: 'desc'
+} as const
+
+export type SortOrder = (typeof SortOrder)[keyof typeof SortOrder]
+
+
+export const JsonNullValueInput = {
+  JsonNull: JsonNull
+} as const
+
+export type JsonNullValueInput = (typeof JsonNullValueInput)[keyof typeof JsonNullValueInput]
+
+
+export const QueryMode = {
+  default: 'default',
+  insensitive: 'insensitive'
+} as const
+
+export type QueryMode = (typeof QueryMode)[keyof typeof QueryMode]
+
+
+export const NullsOrder = {
+  first: 'first',
+  last: 'last'
+} as const
+
+export type NullsOrder = (typeof NullsOrder)[keyof typeof NullsOrder]
+
+
+export const JsonNullValueFilter = {
+  DbNull: DbNull,
+  JsonNull: JsonNull,
+  AnyNull: AnyNull
+} as const
+
+export type JsonNullValueFilter = (typeof JsonNullValueFilter)[keyof typeof JsonNullValueFilter]
 

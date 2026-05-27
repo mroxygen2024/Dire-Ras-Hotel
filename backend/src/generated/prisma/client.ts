@@ -29,8 +29,8 @@ export * from "./enums"
  * const prisma = new PrismaClient({
  *   adapter: new PrismaPg({ connectionString: process.env.DATABASE_URL })
  * })
- * // Fetch zero or more Users
- * const users = await prisma.user.findMany()
+ * // Fetch zero or more Admins
+ * const admins = await prisma.admin.findMany()
  * ```
  * 
  * Read more in our [docs](https://pris.ly/d/client).
@@ -39,4 +39,73 @@ export const PrismaClient = $Class.getPrismaClientClass()
 export type PrismaClient<LogOpts extends Prisma.LogLevel = never, OmitOpts extends Prisma.PrismaClientOptions["omit"] = Prisma.PrismaClientOptions["omit"], ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = $Class.PrismaClient<LogOpts, OmitOpts, ExtArgs>
 export { Prisma }
 
-
+/**
+ * Model Admin
+ * 
+ */
+export type Admin = Prisma.AdminModel
+/**
+ * Model HotelInfo
+ * 
+ */
+export type HotelInfo = Prisma.HotelInfoModel
+/**
+ * Model HeroSection
+ * 
+ */
+export type HeroSection = Prisma.HeroSectionModel
+/**
+ * Model HeritageSection
+ * 
+ */
+export type HeritageSection = Prisma.HeritageSectionModel
+/**
+ * Model AboutPage
+ * 
+ */
+export type AboutPage = Prisma.AboutPageModel
+/**
+ * Model StorySection
+ * 
+ */
+export type StorySection = Prisma.StorySectionModel
+/**
+ * Model TimelineEvent
+ * 
+ */
+export type TimelineEvent = Prisma.TimelineEventModel
+/**
+ * Model WhyStaySection
+ * 
+ */
+export type WhyStaySection = Prisma.WhyStaySectionModel
+/**
+ * Model WhyStayFeature
+ * 
+ */
+export type WhyStayFeature = Prisma.WhyStayFeatureModel
+/**
+ * Model Service
+ * 
+ */
+export type Service = Prisma.ServiceModel
+/**
+ * Model Room
+ * 
+ */
+export type Room = Prisma.RoomModel
+/**
+ * Model ReviewSection
+ * 
+ */
+export type ReviewSection = Prisma.ReviewSectionModel
+/**
+ * Model Review
+ * 
+ */
+export type Review = Prisma.ReviewModel
+/**
+ * Model ContactPage
+ * 
+ */
+export type ContactPage = Prisma.ContactPageModel
