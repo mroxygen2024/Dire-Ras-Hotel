@@ -28,10 +28,13 @@ export type HotelInfoMinAggregateOutputType = {
   id: string | null
   name: string | null
   logoUrl: string | null
+  tagline: string | null
   address: string | null
   email: string | null
   phone: string | null
+  phone2: string | null
   whatsappNumber: string | null
+  establishedText: string | null
   mapEmbedUrl: string | null
   facebookUrl: string | null
   instagramUrl: string | null
@@ -47,10 +50,13 @@ export type HotelInfoMaxAggregateOutputType = {
   id: string | null
   name: string | null
   logoUrl: string | null
+  tagline: string | null
   address: string | null
   email: string | null
   phone: string | null
+  phone2: string | null
   whatsappNumber: string | null
+  establishedText: string | null
   mapEmbedUrl: string | null
   facebookUrl: string | null
   instagramUrl: string | null
@@ -66,10 +72,13 @@ export type HotelInfoCountAggregateOutputType = {
   id: number
   name: number
   logoUrl: number
+  tagline: number
   address: number
   email: number
   phone: number
+  phone2: number
   whatsappNumber: number
+  establishedText: number
   mapEmbedUrl: number
   facebookUrl: number
   instagramUrl: number
@@ -87,10 +96,13 @@ export type HotelInfoMinAggregateInputType = {
   id?: true
   name?: true
   logoUrl?: true
+  tagline?: true
   address?: true
   email?: true
   phone?: true
+  phone2?: true
   whatsappNumber?: true
+  establishedText?: true
   mapEmbedUrl?: true
   facebookUrl?: true
   instagramUrl?: true
@@ -106,10 +118,13 @@ export type HotelInfoMaxAggregateInputType = {
   id?: true
   name?: true
   logoUrl?: true
+  tagline?: true
   address?: true
   email?: true
   phone?: true
+  phone2?: true
   whatsappNumber?: true
+  establishedText?: true
   mapEmbedUrl?: true
   facebookUrl?: true
   instagramUrl?: true
@@ -125,10 +140,13 @@ export type HotelInfoCountAggregateInputType = {
   id?: true
   name?: true
   logoUrl?: true
+  tagline?: true
   address?: true
   email?: true
   phone?: true
+  phone2?: true
   whatsappNumber?: true
+  establishedText?: true
   mapEmbedUrl?: true
   facebookUrl?: true
   instagramUrl?: true
@@ -217,10 +235,13 @@ export type HotelInfoGroupByOutputType = {
   id: string
   name: string
   logoUrl: string | null
+  tagline: string | null
   address: string
   email: string
   phone: string
+  phone2: string | null
   whatsappNumber: string | null
+  establishedText: string | null
   mapEmbedUrl: string | null
   facebookUrl: string | null
   instagramUrl: string | null
@@ -257,10 +278,13 @@ export type HotelInfoWhereInput = {
   id?: Prisma.UuidFilter<"HotelInfo"> | string
   name?: Prisma.StringFilter<"HotelInfo"> | string
   logoUrl?: Prisma.StringNullableFilter<"HotelInfo"> | string | null
+  tagline?: Prisma.StringNullableFilter<"HotelInfo"> | string | null
   address?: Prisma.StringFilter<"HotelInfo"> | string
   email?: Prisma.StringFilter<"HotelInfo"> | string
   phone?: Prisma.StringFilter<"HotelInfo"> | string
+  phone2?: Prisma.StringNullableFilter<"HotelInfo"> | string | null
   whatsappNumber?: Prisma.StringNullableFilter<"HotelInfo"> | string | null
+  establishedText?: Prisma.StringNullableFilter<"HotelInfo"> | string | null
   mapEmbedUrl?: Prisma.StringNullableFilter<"HotelInfo"> | string | null
   facebookUrl?: Prisma.StringNullableFilter<"HotelInfo"> | string | null
   instagramUrl?: Prisma.StringNullableFilter<"HotelInfo"> | string | null
@@ -285,10 +309,13 @@ export type HotelInfoOrderByWithRelationInput = {
   id?: Prisma.SortOrder
   name?: Prisma.SortOrder
   logoUrl?: Prisma.SortOrderInput | Prisma.SortOrder
+  tagline?: Prisma.SortOrderInput | Prisma.SortOrder
   address?: Prisma.SortOrder
   email?: Prisma.SortOrder
   phone?: Prisma.SortOrder
+  phone2?: Prisma.SortOrderInput | Prisma.SortOrder
   whatsappNumber?: Prisma.SortOrderInput | Prisma.SortOrder
+  establishedText?: Prisma.SortOrderInput | Prisma.SortOrder
   mapEmbedUrl?: Prisma.SortOrderInput | Prisma.SortOrder
   facebookUrl?: Prisma.SortOrderInput | Prisma.SortOrder
   instagramUrl?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -316,10 +343,13 @@ export type HotelInfoWhereUniqueInput = Prisma.AtLeast<{
   NOT?: Prisma.HotelInfoWhereInput | Prisma.HotelInfoWhereInput[]
   name?: Prisma.StringFilter<"HotelInfo"> | string
   logoUrl?: Prisma.StringNullableFilter<"HotelInfo"> | string | null
+  tagline?: Prisma.StringNullableFilter<"HotelInfo"> | string | null
   address?: Prisma.StringFilter<"HotelInfo"> | string
   email?: Prisma.StringFilter<"HotelInfo"> | string
   phone?: Prisma.StringFilter<"HotelInfo"> | string
+  phone2?: Prisma.StringNullableFilter<"HotelInfo"> | string | null
   whatsappNumber?: Prisma.StringNullableFilter<"HotelInfo"> | string | null
+  establishedText?: Prisma.StringNullableFilter<"HotelInfo"> | string | null
   mapEmbedUrl?: Prisma.StringNullableFilter<"HotelInfo"> | string | null
   facebookUrl?: Prisma.StringNullableFilter<"HotelInfo"> | string | null
   instagramUrl?: Prisma.StringNullableFilter<"HotelInfo"> | string | null
@@ -344,10 +374,13 @@ export type HotelInfoOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
   name?: Prisma.SortOrder
   logoUrl?: Prisma.SortOrderInput | Prisma.SortOrder
+  tagline?: Prisma.SortOrderInput | Prisma.SortOrder
   address?: Prisma.SortOrder
   email?: Prisma.SortOrder
   phone?: Prisma.SortOrder
+  phone2?: Prisma.SortOrderInput | Prisma.SortOrder
   whatsappNumber?: Prisma.SortOrderInput | Prisma.SortOrder
+  establishedText?: Prisma.SortOrderInput | Prisma.SortOrder
   mapEmbedUrl?: Prisma.SortOrderInput | Prisma.SortOrder
   facebookUrl?: Prisma.SortOrderInput | Prisma.SortOrder
   instagramUrl?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -369,10 +402,13 @@ export type HotelInfoScalarWhereWithAggregatesInput = {
   id?: Prisma.UuidWithAggregatesFilter<"HotelInfo"> | string
   name?: Prisma.StringWithAggregatesFilter<"HotelInfo"> | string
   logoUrl?: Prisma.StringNullableWithAggregatesFilter<"HotelInfo"> | string | null
+  tagline?: Prisma.StringNullableWithAggregatesFilter<"HotelInfo"> | string | null
   address?: Prisma.StringWithAggregatesFilter<"HotelInfo"> | string
   email?: Prisma.StringWithAggregatesFilter<"HotelInfo"> | string
   phone?: Prisma.StringWithAggregatesFilter<"HotelInfo"> | string
+  phone2?: Prisma.StringNullableWithAggregatesFilter<"HotelInfo"> | string | null
   whatsappNumber?: Prisma.StringNullableWithAggregatesFilter<"HotelInfo"> | string | null
+  establishedText?: Prisma.StringNullableWithAggregatesFilter<"HotelInfo"> | string | null
   mapEmbedUrl?: Prisma.StringNullableWithAggregatesFilter<"HotelInfo"> | string | null
   facebookUrl?: Prisma.StringNullableWithAggregatesFilter<"HotelInfo"> | string | null
   instagramUrl?: Prisma.StringNullableWithAggregatesFilter<"HotelInfo"> | string | null
@@ -388,10 +424,13 @@ export type HotelInfoCreateInput = {
   id?: string
   name: string
   logoUrl?: string | null
+  tagline?: string | null
   address: string
   email: string
   phone: string
+  phone2?: string | null
   whatsappNumber?: string | null
+  establishedText?: string | null
   mapEmbedUrl?: string | null
   facebookUrl?: string | null
   instagramUrl?: string | null
@@ -416,10 +455,13 @@ export type HotelInfoUncheckedCreateInput = {
   id?: string
   name: string
   logoUrl?: string | null
+  tagline?: string | null
   address: string
   email: string
   phone: string
+  phone2?: string | null
   whatsappNumber?: string | null
+  establishedText?: string | null
   mapEmbedUrl?: string | null
   facebookUrl?: string | null
   instagramUrl?: string | null
@@ -444,10 +486,13 @@ export type HotelInfoUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   logoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  tagline?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   address?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
   phone?: Prisma.StringFieldUpdateOperationsInput | string
+  phone2?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   whatsappNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  establishedText?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   mapEmbedUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   facebookUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   instagramUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -472,10 +517,13 @@ export type HotelInfoUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   logoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  tagline?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   address?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
   phone?: Prisma.StringFieldUpdateOperationsInput | string
+  phone2?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   whatsappNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  establishedText?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   mapEmbedUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   facebookUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   instagramUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -500,10 +548,13 @@ export type HotelInfoCreateManyInput = {
   id?: string
   name: string
   logoUrl?: string | null
+  tagline?: string | null
   address: string
   email: string
   phone: string
+  phone2?: string | null
   whatsappNumber?: string | null
+  establishedText?: string | null
   mapEmbedUrl?: string | null
   facebookUrl?: string | null
   instagramUrl?: string | null
@@ -519,10 +570,13 @@ export type HotelInfoUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   logoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  tagline?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   address?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
   phone?: Prisma.StringFieldUpdateOperationsInput | string
+  phone2?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   whatsappNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  establishedText?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   mapEmbedUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   facebookUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   instagramUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -538,10 +592,13 @@ export type HotelInfoUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   logoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  tagline?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   address?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
   phone?: Prisma.StringFieldUpdateOperationsInput | string
+  phone2?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   whatsappNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  establishedText?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   mapEmbedUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   facebookUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   instagramUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -557,10 +614,13 @@ export type HotelInfoCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
   name?: Prisma.SortOrder
   logoUrl?: Prisma.SortOrder
+  tagline?: Prisma.SortOrder
   address?: Prisma.SortOrder
   email?: Prisma.SortOrder
   phone?: Prisma.SortOrder
+  phone2?: Prisma.SortOrder
   whatsappNumber?: Prisma.SortOrder
+  establishedText?: Prisma.SortOrder
   mapEmbedUrl?: Prisma.SortOrder
   facebookUrl?: Prisma.SortOrder
   instagramUrl?: Prisma.SortOrder
@@ -576,10 +636,13 @@ export type HotelInfoMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
   name?: Prisma.SortOrder
   logoUrl?: Prisma.SortOrder
+  tagline?: Prisma.SortOrder
   address?: Prisma.SortOrder
   email?: Prisma.SortOrder
   phone?: Prisma.SortOrder
+  phone2?: Prisma.SortOrder
   whatsappNumber?: Prisma.SortOrder
+  establishedText?: Prisma.SortOrder
   mapEmbedUrl?: Prisma.SortOrder
   facebookUrl?: Prisma.SortOrder
   instagramUrl?: Prisma.SortOrder
@@ -595,10 +658,13 @@ export type HotelInfoMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
   name?: Prisma.SortOrder
   logoUrl?: Prisma.SortOrder
+  tagline?: Prisma.SortOrder
   address?: Prisma.SortOrder
   email?: Prisma.SortOrder
   phone?: Prisma.SortOrder
+  phone2?: Prisma.SortOrder
   whatsappNumber?: Prisma.SortOrder
+  establishedText?: Prisma.SortOrder
   mapEmbedUrl?: Prisma.SortOrder
   facebookUrl?: Prisma.SortOrder
   instagramUrl?: Prisma.SortOrder
@@ -745,10 +811,13 @@ export type HotelInfoCreateWithoutHeroSectionInput = {
   id?: string
   name: string
   logoUrl?: string | null
+  tagline?: string | null
   address: string
   email: string
   phone: string
+  phone2?: string | null
   whatsappNumber?: string | null
+  establishedText?: string | null
   mapEmbedUrl?: string | null
   facebookUrl?: string | null
   instagramUrl?: string | null
@@ -772,10 +841,13 @@ export type HotelInfoUncheckedCreateWithoutHeroSectionInput = {
   id?: string
   name: string
   logoUrl?: string | null
+  tagline?: string | null
   address: string
   email: string
   phone: string
+  phone2?: string | null
   whatsappNumber?: string | null
+  establishedText?: string | null
   mapEmbedUrl?: string | null
   facebookUrl?: string | null
   instagramUrl?: string | null
@@ -815,10 +887,13 @@ export type HotelInfoUpdateWithoutHeroSectionInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   logoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  tagline?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   address?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
   phone?: Prisma.StringFieldUpdateOperationsInput | string
+  phone2?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   whatsappNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  establishedText?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   mapEmbedUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   facebookUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   instagramUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -842,10 +917,13 @@ export type HotelInfoUncheckedUpdateWithoutHeroSectionInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   logoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  tagline?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   address?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
   phone?: Prisma.StringFieldUpdateOperationsInput | string
+  phone2?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   whatsappNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  establishedText?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   mapEmbedUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   facebookUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   instagramUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -869,10 +947,13 @@ export type HotelInfoCreateWithoutHeritageSectionInput = {
   id?: string
   name: string
   logoUrl?: string | null
+  tagline?: string | null
   address: string
   email: string
   phone: string
+  phone2?: string | null
   whatsappNumber?: string | null
+  establishedText?: string | null
   mapEmbedUrl?: string | null
   facebookUrl?: string | null
   instagramUrl?: string | null
@@ -896,10 +977,13 @@ export type HotelInfoUncheckedCreateWithoutHeritageSectionInput = {
   id?: string
   name: string
   logoUrl?: string | null
+  tagline?: string | null
   address: string
   email: string
   phone: string
+  phone2?: string | null
   whatsappNumber?: string | null
+  establishedText?: string | null
   mapEmbedUrl?: string | null
   facebookUrl?: string | null
   instagramUrl?: string | null
@@ -939,10 +1023,13 @@ export type HotelInfoUpdateWithoutHeritageSectionInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   logoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  tagline?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   address?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
   phone?: Prisma.StringFieldUpdateOperationsInput | string
+  phone2?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   whatsappNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  establishedText?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   mapEmbedUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   facebookUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   instagramUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -966,10 +1053,13 @@ export type HotelInfoUncheckedUpdateWithoutHeritageSectionInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   logoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  tagline?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   address?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
   phone?: Prisma.StringFieldUpdateOperationsInput | string
+  phone2?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   whatsappNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  establishedText?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   mapEmbedUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   facebookUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   instagramUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -993,10 +1083,13 @@ export type HotelInfoCreateWithoutAboutPageInput = {
   id?: string
   name: string
   logoUrl?: string | null
+  tagline?: string | null
   address: string
   email: string
   phone: string
+  phone2?: string | null
   whatsappNumber?: string | null
+  establishedText?: string | null
   mapEmbedUrl?: string | null
   facebookUrl?: string | null
   instagramUrl?: string | null
@@ -1020,10 +1113,13 @@ export type HotelInfoUncheckedCreateWithoutAboutPageInput = {
   id?: string
   name: string
   logoUrl?: string | null
+  tagline?: string | null
   address: string
   email: string
   phone: string
+  phone2?: string | null
   whatsappNumber?: string | null
+  establishedText?: string | null
   mapEmbedUrl?: string | null
   facebookUrl?: string | null
   instagramUrl?: string | null
@@ -1063,10 +1159,13 @@ export type HotelInfoUpdateWithoutAboutPageInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   logoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  tagline?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   address?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
   phone?: Prisma.StringFieldUpdateOperationsInput | string
+  phone2?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   whatsappNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  establishedText?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   mapEmbedUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   facebookUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   instagramUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1090,10 +1189,13 @@ export type HotelInfoUncheckedUpdateWithoutAboutPageInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   logoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  tagline?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   address?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
   phone?: Prisma.StringFieldUpdateOperationsInput | string
+  phone2?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   whatsappNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  establishedText?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   mapEmbedUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   facebookUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   instagramUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1117,10 +1219,13 @@ export type HotelInfoCreateWithoutWhyStaySectionInput = {
   id?: string
   name: string
   logoUrl?: string | null
+  tagline?: string | null
   address: string
   email: string
   phone: string
+  phone2?: string | null
   whatsappNumber?: string | null
+  establishedText?: string | null
   mapEmbedUrl?: string | null
   facebookUrl?: string | null
   instagramUrl?: string | null
@@ -1144,10 +1249,13 @@ export type HotelInfoUncheckedCreateWithoutWhyStaySectionInput = {
   id?: string
   name: string
   logoUrl?: string | null
+  tagline?: string | null
   address: string
   email: string
   phone: string
+  phone2?: string | null
   whatsappNumber?: string | null
+  establishedText?: string | null
   mapEmbedUrl?: string | null
   facebookUrl?: string | null
   instagramUrl?: string | null
@@ -1187,10 +1295,13 @@ export type HotelInfoUpdateWithoutWhyStaySectionInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   logoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  tagline?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   address?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
   phone?: Prisma.StringFieldUpdateOperationsInput | string
+  phone2?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   whatsappNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  establishedText?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   mapEmbedUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   facebookUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   instagramUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1214,10 +1325,13 @@ export type HotelInfoUncheckedUpdateWithoutWhyStaySectionInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   logoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  tagline?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   address?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
   phone?: Prisma.StringFieldUpdateOperationsInput | string
+  phone2?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   whatsappNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  establishedText?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   mapEmbedUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   facebookUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   instagramUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1241,10 +1355,13 @@ export type HotelInfoCreateWithoutServicesInput = {
   id?: string
   name: string
   logoUrl?: string | null
+  tagline?: string | null
   address: string
   email: string
   phone: string
+  phone2?: string | null
   whatsappNumber?: string | null
+  establishedText?: string | null
   mapEmbedUrl?: string | null
   facebookUrl?: string | null
   instagramUrl?: string | null
@@ -1268,10 +1385,13 @@ export type HotelInfoUncheckedCreateWithoutServicesInput = {
   id?: string
   name: string
   logoUrl?: string | null
+  tagline?: string | null
   address: string
   email: string
   phone: string
+  phone2?: string | null
   whatsappNumber?: string | null
+  establishedText?: string | null
   mapEmbedUrl?: string | null
   facebookUrl?: string | null
   instagramUrl?: string | null
@@ -1311,10 +1431,13 @@ export type HotelInfoUpdateWithoutServicesInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   logoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  tagline?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   address?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
   phone?: Prisma.StringFieldUpdateOperationsInput | string
+  phone2?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   whatsappNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  establishedText?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   mapEmbedUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   facebookUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   instagramUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1338,10 +1461,13 @@ export type HotelInfoUncheckedUpdateWithoutServicesInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   logoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  tagline?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   address?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
   phone?: Prisma.StringFieldUpdateOperationsInput | string
+  phone2?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   whatsappNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  establishedText?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   mapEmbedUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   facebookUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   instagramUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1365,10 +1491,13 @@ export type HotelInfoCreateWithoutRoomsInput = {
   id?: string
   name: string
   logoUrl?: string | null
+  tagline?: string | null
   address: string
   email: string
   phone: string
+  phone2?: string | null
   whatsappNumber?: string | null
+  establishedText?: string | null
   mapEmbedUrl?: string | null
   facebookUrl?: string | null
   instagramUrl?: string | null
@@ -1392,10 +1521,13 @@ export type HotelInfoUncheckedCreateWithoutRoomsInput = {
   id?: string
   name: string
   logoUrl?: string | null
+  tagline?: string | null
   address: string
   email: string
   phone: string
+  phone2?: string | null
   whatsappNumber?: string | null
+  establishedText?: string | null
   mapEmbedUrl?: string | null
   facebookUrl?: string | null
   instagramUrl?: string | null
@@ -1435,10 +1567,13 @@ export type HotelInfoUpdateWithoutRoomsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   logoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  tagline?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   address?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
   phone?: Prisma.StringFieldUpdateOperationsInput | string
+  phone2?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   whatsappNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  establishedText?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   mapEmbedUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   facebookUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   instagramUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1462,10 +1597,13 @@ export type HotelInfoUncheckedUpdateWithoutRoomsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   logoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  tagline?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   address?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
   phone?: Prisma.StringFieldUpdateOperationsInput | string
+  phone2?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   whatsappNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  establishedText?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   mapEmbedUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   facebookUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   instagramUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1489,10 +1627,13 @@ export type HotelInfoCreateWithoutReviewSectionInput = {
   id?: string
   name: string
   logoUrl?: string | null
+  tagline?: string | null
   address: string
   email: string
   phone: string
+  phone2?: string | null
   whatsappNumber?: string | null
+  establishedText?: string | null
   mapEmbedUrl?: string | null
   facebookUrl?: string | null
   instagramUrl?: string | null
@@ -1516,10 +1657,13 @@ export type HotelInfoUncheckedCreateWithoutReviewSectionInput = {
   id?: string
   name: string
   logoUrl?: string | null
+  tagline?: string | null
   address: string
   email: string
   phone: string
+  phone2?: string | null
   whatsappNumber?: string | null
+  establishedText?: string | null
   mapEmbedUrl?: string | null
   facebookUrl?: string | null
   instagramUrl?: string | null
@@ -1559,10 +1703,13 @@ export type HotelInfoUpdateWithoutReviewSectionInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   logoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  tagline?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   address?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
   phone?: Prisma.StringFieldUpdateOperationsInput | string
+  phone2?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   whatsappNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  establishedText?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   mapEmbedUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   facebookUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   instagramUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1586,10 +1733,13 @@ export type HotelInfoUncheckedUpdateWithoutReviewSectionInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   logoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  tagline?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   address?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
   phone?: Prisma.StringFieldUpdateOperationsInput | string
+  phone2?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   whatsappNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  establishedText?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   mapEmbedUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   facebookUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   instagramUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1613,10 +1763,13 @@ export type HotelInfoCreateWithoutReviewsInput = {
   id?: string
   name: string
   logoUrl?: string | null
+  tagline?: string | null
   address: string
   email: string
   phone: string
+  phone2?: string | null
   whatsappNumber?: string | null
+  establishedText?: string | null
   mapEmbedUrl?: string | null
   facebookUrl?: string | null
   instagramUrl?: string | null
@@ -1640,10 +1793,13 @@ export type HotelInfoUncheckedCreateWithoutReviewsInput = {
   id?: string
   name: string
   logoUrl?: string | null
+  tagline?: string | null
   address: string
   email: string
   phone: string
+  phone2?: string | null
   whatsappNumber?: string | null
+  establishedText?: string | null
   mapEmbedUrl?: string | null
   facebookUrl?: string | null
   instagramUrl?: string | null
@@ -1683,10 +1839,13 @@ export type HotelInfoUpdateWithoutReviewsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   logoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  tagline?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   address?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
   phone?: Prisma.StringFieldUpdateOperationsInput | string
+  phone2?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   whatsappNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  establishedText?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   mapEmbedUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   facebookUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   instagramUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1710,10 +1869,13 @@ export type HotelInfoUncheckedUpdateWithoutReviewsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   logoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  tagline?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   address?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
   phone?: Prisma.StringFieldUpdateOperationsInput | string
+  phone2?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   whatsappNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  establishedText?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   mapEmbedUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   facebookUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   instagramUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1737,10 +1899,13 @@ export type HotelInfoCreateWithoutContactPageInput = {
   id?: string
   name: string
   logoUrl?: string | null
+  tagline?: string | null
   address: string
   email: string
   phone: string
+  phone2?: string | null
   whatsappNumber?: string | null
+  establishedText?: string | null
   mapEmbedUrl?: string | null
   facebookUrl?: string | null
   instagramUrl?: string | null
@@ -1764,10 +1929,13 @@ export type HotelInfoUncheckedCreateWithoutContactPageInput = {
   id?: string
   name: string
   logoUrl?: string | null
+  tagline?: string | null
   address: string
   email: string
   phone: string
+  phone2?: string | null
   whatsappNumber?: string | null
+  establishedText?: string | null
   mapEmbedUrl?: string | null
   facebookUrl?: string | null
   instagramUrl?: string | null
@@ -1807,10 +1975,13 @@ export type HotelInfoUpdateWithoutContactPageInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   logoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  tagline?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   address?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
   phone?: Prisma.StringFieldUpdateOperationsInput | string
+  phone2?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   whatsappNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  establishedText?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   mapEmbedUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   facebookUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   instagramUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1834,10 +2005,13 @@ export type HotelInfoUncheckedUpdateWithoutContactPageInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   logoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  tagline?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   address?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
   phone?: Prisma.StringFieldUpdateOperationsInput | string
+  phone2?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   whatsappNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  establishedText?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   mapEmbedUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   facebookUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   instagramUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1910,10 +2084,13 @@ export type HotelInfoSelect<ExtArgs extends runtime.Types.Extensions.InternalArg
   id?: boolean
   name?: boolean
   logoUrl?: boolean
+  tagline?: boolean
   address?: boolean
   email?: boolean
   phone?: boolean
+  phone2?: boolean
   whatsappNumber?: boolean
+  establishedText?: boolean
   mapEmbedUrl?: boolean
   facebookUrl?: boolean
   instagramUrl?: boolean
@@ -1939,10 +2116,13 @@ export type HotelInfoSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Ext
   id?: boolean
   name?: boolean
   logoUrl?: boolean
+  tagline?: boolean
   address?: boolean
   email?: boolean
   phone?: boolean
+  phone2?: boolean
   whatsappNumber?: boolean
+  establishedText?: boolean
   mapEmbedUrl?: boolean
   facebookUrl?: boolean
   instagramUrl?: boolean
@@ -1958,10 +2138,13 @@ export type HotelInfoSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Ext
   id?: boolean
   name?: boolean
   logoUrl?: boolean
+  tagline?: boolean
   address?: boolean
   email?: boolean
   phone?: boolean
+  phone2?: boolean
   whatsappNumber?: boolean
+  establishedText?: boolean
   mapEmbedUrl?: boolean
   facebookUrl?: boolean
   instagramUrl?: boolean
@@ -1977,10 +2160,13 @@ export type HotelInfoSelectScalar = {
   id?: boolean
   name?: boolean
   logoUrl?: boolean
+  tagline?: boolean
   address?: boolean
   email?: boolean
   phone?: boolean
+  phone2?: boolean
   whatsappNumber?: boolean
+  establishedText?: boolean
   mapEmbedUrl?: boolean
   facebookUrl?: boolean
   instagramUrl?: boolean
@@ -1992,7 +2178,7 @@ export type HotelInfoSelectScalar = {
   deletedAt?: boolean
 }
 
-export type HotelInfoOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "logoUrl" | "address" | "email" | "phone" | "whatsappNumber" | "mapEmbedUrl" | "facebookUrl" | "instagramUrl" | "twitterUrl" | "tripAdvisorUrl" | "createdAt" | "updatedAt" | "isDeleted" | "deletedAt", ExtArgs["result"]["hotelInfo"]>
+export type HotelInfoOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "logoUrl" | "tagline" | "address" | "email" | "phone" | "phone2" | "whatsappNumber" | "establishedText" | "mapEmbedUrl" | "facebookUrl" | "instagramUrl" | "twitterUrl" | "tripAdvisorUrl" | "createdAt" | "updatedAt" | "isDeleted" | "deletedAt", ExtArgs["result"]["hotelInfo"]>
 export type HotelInfoInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   heroSection?: boolean | Prisma.HotelInfo$heroSectionArgs<ExtArgs>
   heritageSection?: boolean | Prisma.HotelInfo$heritageSectionArgs<ExtArgs>
@@ -2025,10 +2211,13 @@ export type $HotelInfoPayload<ExtArgs extends runtime.Types.Extensions.InternalA
     id: string
     name: string
     logoUrl: string | null
+    tagline: string | null
     address: string
     email: string
     phone: string
+    phone2: string | null
     whatsappNumber: string | null
+    establishedText: string | null
     mapEmbedUrl: string | null
     facebookUrl: string | null
     instagramUrl: string | null
@@ -2473,10 +2662,13 @@ export interface HotelInfoFieldRefs {
   readonly id: Prisma.FieldRef<"HotelInfo", 'String'>
   readonly name: Prisma.FieldRef<"HotelInfo", 'String'>
   readonly logoUrl: Prisma.FieldRef<"HotelInfo", 'String'>
+  readonly tagline: Prisma.FieldRef<"HotelInfo", 'String'>
   readonly address: Prisma.FieldRef<"HotelInfo", 'String'>
   readonly email: Prisma.FieldRef<"HotelInfo", 'String'>
   readonly phone: Prisma.FieldRef<"HotelInfo", 'String'>
+  readonly phone2: Prisma.FieldRef<"HotelInfo", 'String'>
   readonly whatsappNumber: Prisma.FieldRef<"HotelInfo", 'String'>
+  readonly establishedText: Prisma.FieldRef<"HotelInfo", 'String'>
   readonly mapEmbedUrl: Prisma.FieldRef<"HotelInfo", 'String'>
   readonly facebookUrl: Prisma.FieldRef<"HotelInfo", 'String'>
   readonly instagramUrl: Prisma.FieldRef<"HotelInfo", 'String'>

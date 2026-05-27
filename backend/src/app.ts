@@ -6,6 +6,9 @@ import { env } from './config/env';
 import { notFoundMiddleware } from './middlewares/not-found.middleware';
 import { errorMiddleware } from './middlewares/error.middleware';
 import authRoutes from './routes/auth.routes';
+import hotelInfoRoutes from './routes/hotel-info.routes';
+import heroSectionRoutes from './routes/hero-section.routes';
+import roomRoutes from './routes/room.routes';
 
 const app: Application = express();
 
@@ -48,6 +51,15 @@ apiRouter.get('/health', (req, res) => {
 
 // Register auth routes
 apiRouter.use('/auth', authRoutes);
+
+// Register hotel info routes
+apiRouter.use('/', hotelInfoRoutes);
+
+// Register hero section routes
+apiRouter.use('/', heroSectionRoutes);
+
+// Register room routes
+apiRouter.use('/', roomRoutes);
 
 // Register all API routes with /api prefix
 app.use('/api', apiRouter);

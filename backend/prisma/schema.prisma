@@ -40,18 +40,21 @@ model Admin {
 }
 
 model HotelInfo {
-  id             String    @id @default(uuid()) @db.Uuid
-  name           String
-  logoUrl        String?
-  address        String
-  email          String
-  phone          String
-  whatsappNumber String?
-  mapEmbedUrl    String?
-  facebookUrl    String?
-  instagramUrl   String?
-  twitterUrl     String?
-  tripAdvisorUrl String?
+  id              String    @id @default(uuid()) @db.Uuid
+  name            String
+  logoUrl         String?
+  tagline         String?
+  address         String
+  email           String
+  phone           String
+  phone2          String?
+  whatsappNumber  String?
+  establishedText String?
+  mapEmbedUrl     String?
+  facebookUrl     String?
+  instagramUrl    String?
+  twitterUrl      String?
+  tripAdvisorUrl  String?
 
   createdAt DateTime  @default(now())
   updatedAt DateTime  @updatedAt
@@ -75,13 +78,17 @@ model HotelInfo {
 }
 
 model HeroSection {
-  id          String   @id @default(uuid()) @db.Uuid
-  hotelId     String   @unique @db.Uuid
-  title       String
-  subtitle    String?
-  bgImageUrl  String
-  ctaText     String?
-  ctaLink     String?
+  id              String   @id @default(uuid()) @db.Uuid
+  hotelId         String   @unique @db.Uuid
+  badgeText       String?
+  subtitle        String?
+  titlePart1      String
+  titlePart2      String?
+  tagline         String?
+  ctaBookText     String?
+  ctaVideoText    String?
+  videoUrl        String?
+  backgroundImage String
   
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
@@ -222,16 +229,16 @@ model Room {
   id            String    @id @default(uuid()) @db.Uuid
   hotelId       String    @db.Uuid
   name          String
-  type          RoomType  @default(STANDARD)
+  price         Decimal   @db.Decimal(10, 2)
+  currency      String    @default("USD")
+  image         String
   description   String
-  pricePerNight Decimal   @db.Decimal(10, 2)
-  maxOccupants  Int       @default(2)
-  bedType       String
-  roomSize      String?
-  view          String?
-  isAvailable   Boolean   @default(true)
+  size          String?
+  occupancy     Int       @default(2)
+  bed           String?
   features      Json      @default("[]")
-  images        String[]
+  featured      Boolean   @default(false)
+  isAvailable   Boolean   @default(true)
   
   createdAt     DateTime  @default(now())
   updatedAt     DateTime  @updatedAt
@@ -241,7 +248,7 @@ model Room {
   hotel         HotelInfo @relation(fields: [hotelId], references: [id], onDelete: Cascade)
 
   @@index([hotelId])
-  @@index([type])
+  @@index([featured])
   @@index([isAvailable])
   @@index([isDeleted])
 }

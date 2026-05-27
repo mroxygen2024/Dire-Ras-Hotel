@@ -29,6 +29,7 @@ export type HeroSectionMinAggregateOutputType = {
   hotelId: string | null
   title: string | null
   subtitle: string | null
+  description: string | null
   bgImageUrl: string | null
   ctaText: string | null
   ctaLink: string | null
@@ -41,6 +42,7 @@ export type HeroSectionMaxAggregateOutputType = {
   hotelId: string | null
   title: string | null
   subtitle: string | null
+  description: string | null
   bgImageUrl: string | null
   ctaText: string | null
   ctaLink: string | null
@@ -53,6 +55,7 @@ export type HeroSectionCountAggregateOutputType = {
   hotelId: number
   title: number
   subtitle: number
+  description: number
   bgImageUrl: number
   ctaText: number
   ctaLink: number
@@ -67,6 +70,7 @@ export type HeroSectionMinAggregateInputType = {
   hotelId?: true
   title?: true
   subtitle?: true
+  description?: true
   bgImageUrl?: true
   ctaText?: true
   ctaLink?: true
@@ -79,6 +83,7 @@ export type HeroSectionMaxAggregateInputType = {
   hotelId?: true
   title?: true
   subtitle?: true
+  description?: true
   bgImageUrl?: true
   ctaText?: true
   ctaLink?: true
@@ -91,6 +96,7 @@ export type HeroSectionCountAggregateInputType = {
   hotelId?: true
   title?: true
   subtitle?: true
+  description?: true
   bgImageUrl?: true
   ctaText?: true
   ctaLink?: true
@@ -176,6 +182,7 @@ export type HeroSectionGroupByOutputType = {
   hotelId: string
   title: string
   subtitle: string | null
+  description: string | null
   bgImageUrl: string
   ctaText: string | null
   ctaLink: string | null
@@ -209,6 +216,7 @@ export type HeroSectionWhereInput = {
   hotelId?: Prisma.UuidFilter<"HeroSection"> | string
   title?: Prisma.StringFilter<"HeroSection"> | string
   subtitle?: Prisma.StringNullableFilter<"HeroSection"> | string | null
+  description?: Prisma.StringNullableFilter<"HeroSection"> | string | null
   bgImageUrl?: Prisma.StringFilter<"HeroSection"> | string
   ctaText?: Prisma.StringNullableFilter<"HeroSection"> | string | null
   ctaLink?: Prisma.StringNullableFilter<"HeroSection"> | string | null
@@ -222,6 +230,7 @@ export type HeroSectionOrderByWithRelationInput = {
   hotelId?: Prisma.SortOrder
   title?: Prisma.SortOrder
   subtitle?: Prisma.SortOrderInput | Prisma.SortOrder
+  description?: Prisma.SortOrderInput | Prisma.SortOrder
   bgImageUrl?: Prisma.SortOrder
   ctaText?: Prisma.SortOrderInput | Prisma.SortOrder
   ctaLink?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -238,6 +247,7 @@ export type HeroSectionWhereUniqueInput = Prisma.AtLeast<{
   NOT?: Prisma.HeroSectionWhereInput | Prisma.HeroSectionWhereInput[]
   title?: Prisma.StringFilter<"HeroSection"> | string
   subtitle?: Prisma.StringNullableFilter<"HeroSection"> | string | null
+  description?: Prisma.StringNullableFilter<"HeroSection"> | string | null
   bgImageUrl?: Prisma.StringFilter<"HeroSection"> | string
   ctaText?: Prisma.StringNullableFilter<"HeroSection"> | string | null
   ctaLink?: Prisma.StringNullableFilter<"HeroSection"> | string | null
@@ -251,6 +261,7 @@ export type HeroSectionOrderByWithAggregationInput = {
   hotelId?: Prisma.SortOrder
   title?: Prisma.SortOrder
   subtitle?: Prisma.SortOrderInput | Prisma.SortOrder
+  description?: Prisma.SortOrderInput | Prisma.SortOrder
   bgImageUrl?: Prisma.SortOrder
   ctaText?: Prisma.SortOrderInput | Prisma.SortOrder
   ctaLink?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -269,6 +280,7 @@ export type HeroSectionScalarWhereWithAggregatesInput = {
   hotelId?: Prisma.UuidWithAggregatesFilter<"HeroSection"> | string
   title?: Prisma.StringWithAggregatesFilter<"HeroSection"> | string
   subtitle?: Prisma.StringNullableWithAggregatesFilter<"HeroSection"> | string | null
+  description?: Prisma.StringNullableWithAggregatesFilter<"HeroSection"> | string | null
   bgImageUrl?: Prisma.StringWithAggregatesFilter<"HeroSection"> | string
   ctaText?: Prisma.StringNullableWithAggregatesFilter<"HeroSection"> | string | null
   ctaLink?: Prisma.StringNullableWithAggregatesFilter<"HeroSection"> | string | null
@@ -280,6 +292,7 @@ export type HeroSectionCreateInput = {
   id?: string
   title: string
   subtitle?: string | null
+  description?: string | null
   bgImageUrl: string
   ctaText?: string | null
   ctaLink?: string | null
@@ -293,6 +306,7 @@ export type HeroSectionUncheckedCreateInput = {
   hotelId: string
   title: string
   subtitle?: string | null
+  description?: string | null
   bgImageUrl: string
   ctaText?: string | null
   ctaLink?: string | null
@@ -304,6 +318,7 @@ export type HeroSectionUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   title?: Prisma.StringFieldUpdateOperationsInput | string
   subtitle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   bgImageUrl?: Prisma.StringFieldUpdateOperationsInput | string
   ctaText?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   ctaLink?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -317,6 +332,7 @@ export type HeroSectionUncheckedUpdateInput = {
   hotelId?: Prisma.StringFieldUpdateOperationsInput | string
   title?: Prisma.StringFieldUpdateOperationsInput | string
   subtitle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   bgImageUrl?: Prisma.StringFieldUpdateOperationsInput | string
   ctaText?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   ctaLink?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -329,6 +345,7 @@ export type HeroSectionCreateManyInput = {
   hotelId: string
   title: string
   subtitle?: string | null
+  description?: string | null
   bgImageUrl: string
   ctaText?: string | null
   ctaLink?: string | null
@@ -340,6 +357,7 @@ export type HeroSectionUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   title?: Prisma.StringFieldUpdateOperationsInput | string
   subtitle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   bgImageUrl?: Prisma.StringFieldUpdateOperationsInput | string
   ctaText?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   ctaLink?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -352,6 +370,7 @@ export type HeroSectionUncheckedUpdateManyInput = {
   hotelId?: Prisma.StringFieldUpdateOperationsInput | string
   title?: Prisma.StringFieldUpdateOperationsInput | string
   subtitle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   bgImageUrl?: Prisma.StringFieldUpdateOperationsInput | string
   ctaText?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   ctaLink?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -369,6 +388,7 @@ export type HeroSectionCountOrderByAggregateInput = {
   hotelId?: Prisma.SortOrder
   title?: Prisma.SortOrder
   subtitle?: Prisma.SortOrder
+  description?: Prisma.SortOrder
   bgImageUrl?: Prisma.SortOrder
   ctaText?: Prisma.SortOrder
   ctaLink?: Prisma.SortOrder
@@ -381,6 +401,7 @@ export type HeroSectionMaxOrderByAggregateInput = {
   hotelId?: Prisma.SortOrder
   title?: Prisma.SortOrder
   subtitle?: Prisma.SortOrder
+  description?: Prisma.SortOrder
   bgImageUrl?: Prisma.SortOrder
   ctaText?: Prisma.SortOrder
   ctaLink?: Prisma.SortOrder
@@ -393,6 +414,7 @@ export type HeroSectionMinOrderByAggregateInput = {
   hotelId?: Prisma.SortOrder
   title?: Prisma.SortOrder
   subtitle?: Prisma.SortOrder
+  description?: Prisma.SortOrder
   bgImageUrl?: Prisma.SortOrder
   ctaText?: Prisma.SortOrder
   ctaLink?: Prisma.SortOrder
@@ -436,6 +458,7 @@ export type HeroSectionCreateWithoutHotelInput = {
   id?: string
   title: string
   subtitle?: string | null
+  description?: string | null
   bgImageUrl: string
   ctaText?: string | null
   ctaLink?: string | null
@@ -447,6 +470,7 @@ export type HeroSectionUncheckedCreateWithoutHotelInput = {
   id?: string
   title: string
   subtitle?: string | null
+  description?: string | null
   bgImageUrl: string
   ctaText?: string | null
   ctaLink?: string | null
@@ -474,6 +498,7 @@ export type HeroSectionUpdateWithoutHotelInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   title?: Prisma.StringFieldUpdateOperationsInput | string
   subtitle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   bgImageUrl?: Prisma.StringFieldUpdateOperationsInput | string
   ctaText?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   ctaLink?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -485,6 +510,7 @@ export type HeroSectionUncheckedUpdateWithoutHotelInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   title?: Prisma.StringFieldUpdateOperationsInput | string
   subtitle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   bgImageUrl?: Prisma.StringFieldUpdateOperationsInput | string
   ctaText?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   ctaLink?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -499,6 +525,7 @@ export type HeroSectionSelect<ExtArgs extends runtime.Types.Extensions.InternalA
   hotelId?: boolean
   title?: boolean
   subtitle?: boolean
+  description?: boolean
   bgImageUrl?: boolean
   ctaText?: boolean
   ctaLink?: boolean
@@ -512,6 +539,7 @@ export type HeroSectionSelectCreateManyAndReturn<ExtArgs extends runtime.Types.E
   hotelId?: boolean
   title?: boolean
   subtitle?: boolean
+  description?: boolean
   bgImageUrl?: boolean
   ctaText?: boolean
   ctaLink?: boolean
@@ -525,6 +553,7 @@ export type HeroSectionSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.E
   hotelId?: boolean
   title?: boolean
   subtitle?: boolean
+  description?: boolean
   bgImageUrl?: boolean
   ctaText?: boolean
   ctaLink?: boolean
@@ -538,6 +567,7 @@ export type HeroSectionSelectScalar = {
   hotelId?: boolean
   title?: boolean
   subtitle?: boolean
+  description?: boolean
   bgImageUrl?: boolean
   ctaText?: boolean
   ctaLink?: boolean
@@ -545,7 +575,7 @@ export type HeroSectionSelectScalar = {
   updatedAt?: boolean
 }
 
-export type HeroSectionOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "hotelId" | "title" | "subtitle" | "bgImageUrl" | "ctaText" | "ctaLink" | "createdAt" | "updatedAt", ExtArgs["result"]["heroSection"]>
+export type HeroSectionOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "hotelId" | "title" | "subtitle" | "description" | "bgImageUrl" | "ctaText" | "ctaLink" | "createdAt" | "updatedAt", ExtArgs["result"]["heroSection"]>
 export type HeroSectionInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   hotel?: boolean | Prisma.HotelInfoDefaultArgs<ExtArgs>
 }
@@ -566,6 +596,7 @@ export type $HeroSectionPayload<ExtArgs extends runtime.Types.Extensions.Interna
     hotelId: string
     title: string
     subtitle: string | null
+    description: string | null
     bgImageUrl: string
     ctaText: string | null
     ctaLink: string | null
@@ -999,6 +1030,7 @@ export interface HeroSectionFieldRefs {
   readonly hotelId: Prisma.FieldRef<"HeroSection", 'String'>
   readonly title: Prisma.FieldRef<"HeroSection", 'String'>
   readonly subtitle: Prisma.FieldRef<"HeroSection", 'String'>
+  readonly description: Prisma.FieldRef<"HeroSection", 'String'>
   readonly bgImageUrl: Prisma.FieldRef<"HeroSection", 'String'>
   readonly ctaText: Prisma.FieldRef<"HeroSection", 'String'>
   readonly ctaLink: Prisma.FieldRef<"HeroSection", 'String'>
