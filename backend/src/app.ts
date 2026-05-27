@@ -9,6 +9,7 @@ import authRoutes from './routes/auth.routes';
 import hotelInfoRoutes from './routes/hotel-info.routes';
 import heroSectionRoutes from './routes/hero-section.routes';
 import roomRoutes from './routes/room.routes';
+import serviceRoutes from './routes/service.routes';
 
 const app: Application = express();
 
@@ -60,6 +61,9 @@ apiRouter.use('/', heroSectionRoutes);
 
 // Register room routes
 apiRouter.use('/', roomRoutes);
+
+// Register service routes
+apiRouter.use('/', serviceRoutes);
 
 // Register all API routes with /api prefix
 app.use('/api', apiRouter);

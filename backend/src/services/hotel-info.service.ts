@@ -1,19 +1,21 @@
 import { prisma } from '../config/database';
 import { UpdateHotelInfoInput } from '../validations/hotel-info.validation';
 
+const db = prisma as any;
+
 export class HotelInfoService {
   /**
    * Internal helper to retrieve or initialize the single active hotel record.
    */
   private static async getOrCreateActiveHotel() {
-    let hotel = await prisma.hotelInfo.findFirst({
+    let hotel = await db.hotelInfo.findFirst({
       where: { isDeleted: false },
       include: { heroSection: true },
     });
 
     if (!hotel) {
       // Seed default site branding configuration on initial access
-      hotel = await prisma.hotelInfo.create({
+      hotel = await db.hotelInfo.create({
         data: {
           name: 'Dire Dawa Ras Hotel',
           tagline: 'The Heritage Sensation of Dire Dawa',
@@ -70,7 +72,7 @@ export class HotelInfoService {
   static async updateHotelInfo(input: UpdateHotelInfoInput) {
     const activeHotel = await this.getOrCreateActiveHotel();
 
-    const updatedHotel = await prisma.$transaction(async (tx) => {
+    const updatedHotel = await db.$transaction(async (tx: any) => {
       // 1. Update general contact configurations
       await tx.hotelInfo.update({
         where: { id: activeHotel.id },

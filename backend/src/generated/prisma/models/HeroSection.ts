@@ -9,8 +9,8 @@
  * 🟢 You can import this file directly.
  */
 import type * as runtime from "@prisma/client/runtime/client"
-import type * as $Enums from "../enums"
-import type * as Prisma from "../internal/prismaNamespace"
+import type * as $Enums from "../enums.js"
+import type * as Prisma from "../internal/prismaNamespace.js"
 
 /**
  * Model HeroSection
@@ -27,12 +27,15 @@ export type AggregateHeroSection = {
 export type HeroSectionMinAggregateOutputType = {
   id: string | null
   hotelId: string | null
-  title: string | null
+  badgeText: string | null
   subtitle: string | null
-  description: string | null
-  bgImageUrl: string | null
-  ctaText: string | null
-  ctaLink: string | null
+  titlePart1: string | null
+  titlePart2: string | null
+  tagline: string | null
+  ctaBookText: string | null
+  ctaVideoText: string | null
+  videoUrl: string | null
+  backgroundImage: string | null
   createdAt: Date | null
   updatedAt: Date | null
 }
@@ -40,12 +43,15 @@ export type HeroSectionMinAggregateOutputType = {
 export type HeroSectionMaxAggregateOutputType = {
   id: string | null
   hotelId: string | null
-  title: string | null
+  badgeText: string | null
   subtitle: string | null
-  description: string | null
-  bgImageUrl: string | null
-  ctaText: string | null
-  ctaLink: string | null
+  titlePart1: string | null
+  titlePart2: string | null
+  tagline: string | null
+  ctaBookText: string | null
+  ctaVideoText: string | null
+  videoUrl: string | null
+  backgroundImage: string | null
   createdAt: Date | null
   updatedAt: Date | null
 }
@@ -53,12 +59,15 @@ export type HeroSectionMaxAggregateOutputType = {
 export type HeroSectionCountAggregateOutputType = {
   id: number
   hotelId: number
-  title: number
+  badgeText: number
   subtitle: number
-  description: number
-  bgImageUrl: number
-  ctaText: number
-  ctaLink: number
+  titlePart1: number
+  titlePart2: number
+  tagline: number
+  ctaBookText: number
+  ctaVideoText: number
+  videoUrl: number
+  backgroundImage: number
   createdAt: number
   updatedAt: number
   _all: number
@@ -68,12 +77,15 @@ export type HeroSectionCountAggregateOutputType = {
 export type HeroSectionMinAggregateInputType = {
   id?: true
   hotelId?: true
-  title?: true
+  badgeText?: true
   subtitle?: true
-  description?: true
-  bgImageUrl?: true
-  ctaText?: true
-  ctaLink?: true
+  titlePart1?: true
+  titlePart2?: true
+  tagline?: true
+  ctaBookText?: true
+  ctaVideoText?: true
+  videoUrl?: true
+  backgroundImage?: true
   createdAt?: true
   updatedAt?: true
 }
@@ -81,12 +93,15 @@ export type HeroSectionMinAggregateInputType = {
 export type HeroSectionMaxAggregateInputType = {
   id?: true
   hotelId?: true
-  title?: true
+  badgeText?: true
   subtitle?: true
-  description?: true
-  bgImageUrl?: true
-  ctaText?: true
-  ctaLink?: true
+  titlePart1?: true
+  titlePart2?: true
+  tagline?: true
+  ctaBookText?: true
+  ctaVideoText?: true
+  videoUrl?: true
+  backgroundImage?: true
   createdAt?: true
   updatedAt?: true
 }
@@ -94,12 +109,15 @@ export type HeroSectionMaxAggregateInputType = {
 export type HeroSectionCountAggregateInputType = {
   id?: true
   hotelId?: true
-  title?: true
+  badgeText?: true
   subtitle?: true
-  description?: true
-  bgImageUrl?: true
-  ctaText?: true
-  ctaLink?: true
+  titlePart1?: true
+  titlePart2?: true
+  tagline?: true
+  ctaBookText?: true
+  ctaVideoText?: true
+  videoUrl?: true
+  backgroundImage?: true
   createdAt?: true
   updatedAt?: true
   _all?: true
@@ -180,12 +198,15 @@ export type HeroSectionGroupByArgs<ExtArgs extends runtime.Types.Extensions.Inte
 export type HeroSectionGroupByOutputType = {
   id: string
   hotelId: string
-  title: string
+  badgeText: string | null
   subtitle: string | null
-  description: string | null
-  bgImageUrl: string
-  ctaText: string | null
-  ctaLink: string | null
+  titlePart1: string
+  titlePart2: string | null
+  tagline: string | null
+  ctaBookText: string | null
+  ctaVideoText: string | null
+  videoUrl: string | null
+  backgroundImage: string
   createdAt: Date
   updatedAt: Date
   _count: HeroSectionCountAggregateOutputType | null
@@ -214,12 +235,15 @@ export type HeroSectionWhereInput = {
   NOT?: Prisma.HeroSectionWhereInput | Prisma.HeroSectionWhereInput[]
   id?: Prisma.UuidFilter<"HeroSection"> | string
   hotelId?: Prisma.UuidFilter<"HeroSection"> | string
-  title?: Prisma.StringFilter<"HeroSection"> | string
+  badgeText?: Prisma.StringNullableFilter<"HeroSection"> | string | null
   subtitle?: Prisma.StringNullableFilter<"HeroSection"> | string | null
-  description?: Prisma.StringNullableFilter<"HeroSection"> | string | null
-  bgImageUrl?: Prisma.StringFilter<"HeroSection"> | string
-  ctaText?: Prisma.StringNullableFilter<"HeroSection"> | string | null
-  ctaLink?: Prisma.StringNullableFilter<"HeroSection"> | string | null
+  titlePart1?: Prisma.StringFilter<"HeroSection"> | string
+  titlePart2?: Prisma.StringNullableFilter<"HeroSection"> | string | null
+  tagline?: Prisma.StringNullableFilter<"HeroSection"> | string | null
+  ctaBookText?: Prisma.StringNullableFilter<"HeroSection"> | string | null
+  ctaVideoText?: Prisma.StringNullableFilter<"HeroSection"> | string | null
+  videoUrl?: Prisma.StringNullableFilter<"HeroSection"> | string | null
+  backgroundImage?: Prisma.StringFilter<"HeroSection"> | string
   createdAt?: Prisma.DateTimeFilter<"HeroSection"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"HeroSection"> | Date | string
   hotel?: Prisma.XOR<Prisma.HotelInfoScalarRelationFilter, Prisma.HotelInfoWhereInput>
@@ -228,12 +252,15 @@ export type HeroSectionWhereInput = {
 export type HeroSectionOrderByWithRelationInput = {
   id?: Prisma.SortOrder
   hotelId?: Prisma.SortOrder
-  title?: Prisma.SortOrder
+  badgeText?: Prisma.SortOrderInput | Prisma.SortOrder
   subtitle?: Prisma.SortOrderInput | Prisma.SortOrder
-  description?: Prisma.SortOrderInput | Prisma.SortOrder
-  bgImageUrl?: Prisma.SortOrder
-  ctaText?: Prisma.SortOrderInput | Prisma.SortOrder
-  ctaLink?: Prisma.SortOrderInput | Prisma.SortOrder
+  titlePart1?: Prisma.SortOrder
+  titlePart2?: Prisma.SortOrderInput | Prisma.SortOrder
+  tagline?: Prisma.SortOrderInput | Prisma.SortOrder
+  ctaBookText?: Prisma.SortOrderInput | Prisma.SortOrder
+  ctaVideoText?: Prisma.SortOrderInput | Prisma.SortOrder
+  videoUrl?: Prisma.SortOrderInput | Prisma.SortOrder
+  backgroundImage?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   hotel?: Prisma.HotelInfoOrderByWithRelationInput
@@ -245,12 +272,15 @@ export type HeroSectionWhereUniqueInput = Prisma.AtLeast<{
   AND?: Prisma.HeroSectionWhereInput | Prisma.HeroSectionWhereInput[]
   OR?: Prisma.HeroSectionWhereInput[]
   NOT?: Prisma.HeroSectionWhereInput | Prisma.HeroSectionWhereInput[]
-  title?: Prisma.StringFilter<"HeroSection"> | string
+  badgeText?: Prisma.StringNullableFilter<"HeroSection"> | string | null
   subtitle?: Prisma.StringNullableFilter<"HeroSection"> | string | null
-  description?: Prisma.StringNullableFilter<"HeroSection"> | string | null
-  bgImageUrl?: Prisma.StringFilter<"HeroSection"> | string
-  ctaText?: Prisma.StringNullableFilter<"HeroSection"> | string | null
-  ctaLink?: Prisma.StringNullableFilter<"HeroSection"> | string | null
+  titlePart1?: Prisma.StringFilter<"HeroSection"> | string
+  titlePart2?: Prisma.StringNullableFilter<"HeroSection"> | string | null
+  tagline?: Prisma.StringNullableFilter<"HeroSection"> | string | null
+  ctaBookText?: Prisma.StringNullableFilter<"HeroSection"> | string | null
+  ctaVideoText?: Prisma.StringNullableFilter<"HeroSection"> | string | null
+  videoUrl?: Prisma.StringNullableFilter<"HeroSection"> | string | null
+  backgroundImage?: Prisma.StringFilter<"HeroSection"> | string
   createdAt?: Prisma.DateTimeFilter<"HeroSection"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"HeroSection"> | Date | string
   hotel?: Prisma.XOR<Prisma.HotelInfoScalarRelationFilter, Prisma.HotelInfoWhereInput>
@@ -259,12 +289,15 @@ export type HeroSectionWhereUniqueInput = Prisma.AtLeast<{
 export type HeroSectionOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
   hotelId?: Prisma.SortOrder
-  title?: Prisma.SortOrder
+  badgeText?: Prisma.SortOrderInput | Prisma.SortOrder
   subtitle?: Prisma.SortOrderInput | Prisma.SortOrder
-  description?: Prisma.SortOrderInput | Prisma.SortOrder
-  bgImageUrl?: Prisma.SortOrder
-  ctaText?: Prisma.SortOrderInput | Prisma.SortOrder
-  ctaLink?: Prisma.SortOrderInput | Prisma.SortOrder
+  titlePart1?: Prisma.SortOrder
+  titlePart2?: Prisma.SortOrderInput | Prisma.SortOrder
+  tagline?: Prisma.SortOrderInput | Prisma.SortOrder
+  ctaBookText?: Prisma.SortOrderInput | Prisma.SortOrder
+  ctaVideoText?: Prisma.SortOrderInput | Prisma.SortOrder
+  videoUrl?: Prisma.SortOrderInput | Prisma.SortOrder
+  backgroundImage?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   _count?: Prisma.HeroSectionCountOrderByAggregateInput
@@ -278,24 +311,30 @@ export type HeroSectionScalarWhereWithAggregatesInput = {
   NOT?: Prisma.HeroSectionScalarWhereWithAggregatesInput | Prisma.HeroSectionScalarWhereWithAggregatesInput[]
   id?: Prisma.UuidWithAggregatesFilter<"HeroSection"> | string
   hotelId?: Prisma.UuidWithAggregatesFilter<"HeroSection"> | string
-  title?: Prisma.StringWithAggregatesFilter<"HeroSection"> | string
+  badgeText?: Prisma.StringNullableWithAggregatesFilter<"HeroSection"> | string | null
   subtitle?: Prisma.StringNullableWithAggregatesFilter<"HeroSection"> | string | null
-  description?: Prisma.StringNullableWithAggregatesFilter<"HeroSection"> | string | null
-  bgImageUrl?: Prisma.StringWithAggregatesFilter<"HeroSection"> | string
-  ctaText?: Prisma.StringNullableWithAggregatesFilter<"HeroSection"> | string | null
-  ctaLink?: Prisma.StringNullableWithAggregatesFilter<"HeroSection"> | string | null
+  titlePart1?: Prisma.StringWithAggregatesFilter<"HeroSection"> | string
+  titlePart2?: Prisma.StringNullableWithAggregatesFilter<"HeroSection"> | string | null
+  tagline?: Prisma.StringNullableWithAggregatesFilter<"HeroSection"> | string | null
+  ctaBookText?: Prisma.StringNullableWithAggregatesFilter<"HeroSection"> | string | null
+  ctaVideoText?: Prisma.StringNullableWithAggregatesFilter<"HeroSection"> | string | null
+  videoUrl?: Prisma.StringNullableWithAggregatesFilter<"HeroSection"> | string | null
+  backgroundImage?: Prisma.StringWithAggregatesFilter<"HeroSection"> | string
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"HeroSection"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"HeroSection"> | Date | string
 }
 
 export type HeroSectionCreateInput = {
   id?: string
-  title: string
+  badgeText?: string | null
   subtitle?: string | null
-  description?: string | null
-  bgImageUrl: string
-  ctaText?: string | null
-  ctaLink?: string | null
+  titlePart1: string
+  titlePart2?: string | null
+  tagline?: string | null
+  ctaBookText?: string | null
+  ctaVideoText?: string | null
+  videoUrl?: string | null
+  backgroundImage: string
   createdAt?: Date | string
   updatedAt?: Date | string
   hotel: Prisma.HotelInfoCreateNestedOneWithoutHeroSectionInput
@@ -304,24 +343,30 @@ export type HeroSectionCreateInput = {
 export type HeroSectionUncheckedCreateInput = {
   id?: string
   hotelId: string
-  title: string
+  badgeText?: string | null
   subtitle?: string | null
-  description?: string | null
-  bgImageUrl: string
-  ctaText?: string | null
-  ctaLink?: string | null
+  titlePart1: string
+  titlePart2?: string | null
+  tagline?: string | null
+  ctaBookText?: string | null
+  ctaVideoText?: string | null
+  videoUrl?: string | null
+  backgroundImage: string
   createdAt?: Date | string
   updatedAt?: Date | string
 }
 
 export type HeroSectionUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  title?: Prisma.StringFieldUpdateOperationsInput | string
+  badgeText?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   subtitle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  bgImageUrl?: Prisma.StringFieldUpdateOperationsInput | string
-  ctaText?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  ctaLink?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  titlePart1?: Prisma.StringFieldUpdateOperationsInput | string
+  titlePart2?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  tagline?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  ctaBookText?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  ctaVideoText?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  videoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  backgroundImage?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   hotel?: Prisma.HotelInfoUpdateOneRequiredWithoutHeroSectionNestedInput
@@ -330,12 +375,15 @@ export type HeroSectionUpdateInput = {
 export type HeroSectionUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   hotelId?: Prisma.StringFieldUpdateOperationsInput | string
-  title?: Prisma.StringFieldUpdateOperationsInput | string
+  badgeText?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   subtitle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  bgImageUrl?: Prisma.StringFieldUpdateOperationsInput | string
-  ctaText?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  ctaLink?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  titlePart1?: Prisma.StringFieldUpdateOperationsInput | string
+  titlePart2?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  tagline?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  ctaBookText?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  ctaVideoText?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  videoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  backgroundImage?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -343,24 +391,30 @@ export type HeroSectionUncheckedUpdateInput = {
 export type HeroSectionCreateManyInput = {
   id?: string
   hotelId: string
-  title: string
+  badgeText?: string | null
   subtitle?: string | null
-  description?: string | null
-  bgImageUrl: string
-  ctaText?: string | null
-  ctaLink?: string | null
+  titlePart1: string
+  titlePart2?: string | null
+  tagline?: string | null
+  ctaBookText?: string | null
+  ctaVideoText?: string | null
+  videoUrl?: string | null
+  backgroundImage: string
   createdAt?: Date | string
   updatedAt?: Date | string
 }
 
 export type HeroSectionUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  title?: Prisma.StringFieldUpdateOperationsInput | string
+  badgeText?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   subtitle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  bgImageUrl?: Prisma.StringFieldUpdateOperationsInput | string
-  ctaText?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  ctaLink?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  titlePart1?: Prisma.StringFieldUpdateOperationsInput | string
+  titlePart2?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  tagline?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  ctaBookText?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  ctaVideoText?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  videoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  backgroundImage?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -368,12 +422,15 @@ export type HeroSectionUpdateManyMutationInput = {
 export type HeroSectionUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   hotelId?: Prisma.StringFieldUpdateOperationsInput | string
-  title?: Prisma.StringFieldUpdateOperationsInput | string
+  badgeText?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   subtitle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  bgImageUrl?: Prisma.StringFieldUpdateOperationsInput | string
-  ctaText?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  ctaLink?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  titlePart1?: Prisma.StringFieldUpdateOperationsInput | string
+  titlePart2?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  tagline?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  ctaBookText?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  ctaVideoText?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  videoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  backgroundImage?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -386,12 +443,15 @@ export type HeroSectionNullableScalarRelationFilter = {
 export type HeroSectionCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
   hotelId?: Prisma.SortOrder
-  title?: Prisma.SortOrder
+  badgeText?: Prisma.SortOrder
   subtitle?: Prisma.SortOrder
-  description?: Prisma.SortOrder
-  bgImageUrl?: Prisma.SortOrder
-  ctaText?: Prisma.SortOrder
-  ctaLink?: Prisma.SortOrder
+  titlePart1?: Prisma.SortOrder
+  titlePart2?: Prisma.SortOrder
+  tagline?: Prisma.SortOrder
+  ctaBookText?: Prisma.SortOrder
+  ctaVideoText?: Prisma.SortOrder
+  videoUrl?: Prisma.SortOrder
+  backgroundImage?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -399,12 +459,15 @@ export type HeroSectionCountOrderByAggregateInput = {
 export type HeroSectionMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
   hotelId?: Prisma.SortOrder
-  title?: Prisma.SortOrder
+  badgeText?: Prisma.SortOrder
   subtitle?: Prisma.SortOrder
-  description?: Prisma.SortOrder
-  bgImageUrl?: Prisma.SortOrder
-  ctaText?: Prisma.SortOrder
-  ctaLink?: Prisma.SortOrder
+  titlePart1?: Prisma.SortOrder
+  titlePart2?: Prisma.SortOrder
+  tagline?: Prisma.SortOrder
+  ctaBookText?: Prisma.SortOrder
+  ctaVideoText?: Prisma.SortOrder
+  videoUrl?: Prisma.SortOrder
+  backgroundImage?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -412,12 +475,15 @@ export type HeroSectionMaxOrderByAggregateInput = {
 export type HeroSectionMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
   hotelId?: Prisma.SortOrder
-  title?: Prisma.SortOrder
+  badgeText?: Prisma.SortOrder
   subtitle?: Prisma.SortOrder
-  description?: Prisma.SortOrder
-  bgImageUrl?: Prisma.SortOrder
-  ctaText?: Prisma.SortOrder
-  ctaLink?: Prisma.SortOrder
+  titlePart1?: Prisma.SortOrder
+  titlePart2?: Prisma.SortOrder
+  tagline?: Prisma.SortOrder
+  ctaBookText?: Prisma.SortOrder
+  ctaVideoText?: Prisma.SortOrder
+  videoUrl?: Prisma.SortOrder
+  backgroundImage?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -456,24 +522,30 @@ export type HeroSectionUncheckedUpdateOneWithoutHotelNestedInput = {
 
 export type HeroSectionCreateWithoutHotelInput = {
   id?: string
-  title: string
+  badgeText?: string | null
   subtitle?: string | null
-  description?: string | null
-  bgImageUrl: string
-  ctaText?: string | null
-  ctaLink?: string | null
+  titlePart1: string
+  titlePart2?: string | null
+  tagline?: string | null
+  ctaBookText?: string | null
+  ctaVideoText?: string | null
+  videoUrl?: string | null
+  backgroundImage: string
   createdAt?: Date | string
   updatedAt?: Date | string
 }
 
 export type HeroSectionUncheckedCreateWithoutHotelInput = {
   id?: string
-  title: string
+  badgeText?: string | null
   subtitle?: string | null
-  description?: string | null
-  bgImageUrl: string
-  ctaText?: string | null
-  ctaLink?: string | null
+  titlePart1: string
+  titlePart2?: string | null
+  tagline?: string | null
+  ctaBookText?: string | null
+  ctaVideoText?: string | null
+  videoUrl?: string | null
+  backgroundImage: string
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -496,24 +568,30 @@ export type HeroSectionUpdateToOneWithWhereWithoutHotelInput = {
 
 export type HeroSectionUpdateWithoutHotelInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  title?: Prisma.StringFieldUpdateOperationsInput | string
+  badgeText?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   subtitle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  bgImageUrl?: Prisma.StringFieldUpdateOperationsInput | string
-  ctaText?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  ctaLink?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  titlePart1?: Prisma.StringFieldUpdateOperationsInput | string
+  titlePart2?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  tagline?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  ctaBookText?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  ctaVideoText?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  videoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  backgroundImage?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type HeroSectionUncheckedUpdateWithoutHotelInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  title?: Prisma.StringFieldUpdateOperationsInput | string
+  badgeText?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   subtitle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  bgImageUrl?: Prisma.StringFieldUpdateOperationsInput | string
-  ctaText?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  ctaLink?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  titlePart1?: Prisma.StringFieldUpdateOperationsInput | string
+  titlePart2?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  tagline?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  ctaBookText?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  ctaVideoText?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  videoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  backgroundImage?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -523,12 +601,15 @@ export type HeroSectionUncheckedUpdateWithoutHotelInput = {
 export type HeroSectionSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   hotelId?: boolean
-  title?: boolean
+  badgeText?: boolean
   subtitle?: boolean
-  description?: boolean
-  bgImageUrl?: boolean
-  ctaText?: boolean
-  ctaLink?: boolean
+  titlePart1?: boolean
+  titlePart2?: boolean
+  tagline?: boolean
+  ctaBookText?: boolean
+  ctaVideoText?: boolean
+  videoUrl?: boolean
+  backgroundImage?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   hotel?: boolean | Prisma.HotelInfoDefaultArgs<ExtArgs>
@@ -537,12 +618,15 @@ export type HeroSectionSelect<ExtArgs extends runtime.Types.Extensions.InternalA
 export type HeroSectionSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   hotelId?: boolean
-  title?: boolean
+  badgeText?: boolean
   subtitle?: boolean
-  description?: boolean
-  bgImageUrl?: boolean
-  ctaText?: boolean
-  ctaLink?: boolean
+  titlePart1?: boolean
+  titlePart2?: boolean
+  tagline?: boolean
+  ctaBookText?: boolean
+  ctaVideoText?: boolean
+  videoUrl?: boolean
+  backgroundImage?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   hotel?: boolean | Prisma.HotelInfoDefaultArgs<ExtArgs>
@@ -551,12 +635,15 @@ export type HeroSectionSelectCreateManyAndReturn<ExtArgs extends runtime.Types.E
 export type HeroSectionSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   hotelId?: boolean
-  title?: boolean
+  badgeText?: boolean
   subtitle?: boolean
-  description?: boolean
-  bgImageUrl?: boolean
-  ctaText?: boolean
-  ctaLink?: boolean
+  titlePart1?: boolean
+  titlePart2?: boolean
+  tagline?: boolean
+  ctaBookText?: boolean
+  ctaVideoText?: boolean
+  videoUrl?: boolean
+  backgroundImage?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   hotel?: boolean | Prisma.HotelInfoDefaultArgs<ExtArgs>
@@ -565,17 +652,20 @@ export type HeroSectionSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.E
 export type HeroSectionSelectScalar = {
   id?: boolean
   hotelId?: boolean
-  title?: boolean
+  badgeText?: boolean
   subtitle?: boolean
-  description?: boolean
-  bgImageUrl?: boolean
-  ctaText?: boolean
-  ctaLink?: boolean
+  titlePart1?: boolean
+  titlePart2?: boolean
+  tagline?: boolean
+  ctaBookText?: boolean
+  ctaVideoText?: boolean
+  videoUrl?: boolean
+  backgroundImage?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }
 
-export type HeroSectionOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "hotelId" | "title" | "subtitle" | "description" | "bgImageUrl" | "ctaText" | "ctaLink" | "createdAt" | "updatedAt", ExtArgs["result"]["heroSection"]>
+export type HeroSectionOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "hotelId" | "badgeText" | "subtitle" | "titlePart1" | "titlePart2" | "tagline" | "ctaBookText" | "ctaVideoText" | "videoUrl" | "backgroundImage" | "createdAt" | "updatedAt", ExtArgs["result"]["heroSection"]>
 export type HeroSectionInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   hotel?: boolean | Prisma.HotelInfoDefaultArgs<ExtArgs>
 }
@@ -594,12 +684,15 @@ export type $HeroSectionPayload<ExtArgs extends runtime.Types.Extensions.Interna
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
     hotelId: string
-    title: string
+    badgeText: string | null
     subtitle: string | null
-    description: string | null
-    bgImageUrl: string
-    ctaText: string | null
-    ctaLink: string | null
+    titlePart1: string
+    titlePart2: string | null
+    tagline: string | null
+    ctaBookText: string | null
+    ctaVideoText: string | null
+    videoUrl: string | null
+    backgroundImage: string
     createdAt: Date
     updatedAt: Date
   }, ExtArgs["result"]["heroSection"]>
@@ -1028,12 +1121,15 @@ export interface Prisma__HeroSectionClient<T, Null = never, ExtArgs extends runt
 export interface HeroSectionFieldRefs {
   readonly id: Prisma.FieldRef<"HeroSection", 'String'>
   readonly hotelId: Prisma.FieldRef<"HeroSection", 'String'>
-  readonly title: Prisma.FieldRef<"HeroSection", 'String'>
+  readonly badgeText: Prisma.FieldRef<"HeroSection", 'String'>
   readonly subtitle: Prisma.FieldRef<"HeroSection", 'String'>
-  readonly description: Prisma.FieldRef<"HeroSection", 'String'>
-  readonly bgImageUrl: Prisma.FieldRef<"HeroSection", 'String'>
-  readonly ctaText: Prisma.FieldRef<"HeroSection", 'String'>
-  readonly ctaLink: Prisma.FieldRef<"HeroSection", 'String'>
+  readonly titlePart1: Prisma.FieldRef<"HeroSection", 'String'>
+  readonly titlePart2: Prisma.FieldRef<"HeroSection", 'String'>
+  readonly tagline: Prisma.FieldRef<"HeroSection", 'String'>
+  readonly ctaBookText: Prisma.FieldRef<"HeroSection", 'String'>
+  readonly ctaVideoText: Prisma.FieldRef<"HeroSection", 'String'>
+  readonly videoUrl: Prisma.FieldRef<"HeroSection", 'String'>
+  readonly backgroundImage: Prisma.FieldRef<"HeroSection", 'String'>
   readonly createdAt: Prisma.FieldRef<"HeroSection", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"HeroSection", 'DateTime'>
 }

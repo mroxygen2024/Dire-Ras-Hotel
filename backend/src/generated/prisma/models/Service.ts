@@ -9,8 +9,8 @@
  * 🟢 You can import this file directly.
  */
 import type * as runtime from "@prisma/client/runtime/client"
-import type * as $Enums from "../enums"
-import type * as Prisma from "../internal/prismaNamespace"
+import type * as $Enums from "../enums.js"
+import type * as Prisma from "../internal/prismaNamespace.js"
 
 /**
  * Model Service
@@ -20,18 +20,27 @@ export type ServiceModel = runtime.Types.Result.DefaultSelection<Prisma.$Service
 
 export type AggregateService = {
   _count: ServiceCountAggregateOutputType | null
+  _avg: ServiceAvgAggregateOutputType | null
+  _sum: ServiceSumAggregateOutputType | null
   _min: ServiceMinAggregateOutputType | null
   _max: ServiceMaxAggregateOutputType | null
+}
+
+export type ServiceAvgAggregateOutputType = {
+  order: number | null
+}
+
+export type ServiceSumAggregateOutputType = {
+  order: number | null
 }
 
 export type ServiceMinAggregateOutputType = {
   id: string | null
   hotelId: string | null
-  name: string | null
+  title: string | null
   description: string | null
-  imageUrl: string | null
   icon: string | null
-  isFeatured: boolean | null
+  order: number | null
   isAvailable: boolean | null
   createdAt: Date | null
   updatedAt: Date | null
@@ -42,11 +51,10 @@ export type ServiceMinAggregateOutputType = {
 export type ServiceMaxAggregateOutputType = {
   id: string | null
   hotelId: string | null
-  name: string | null
+  title: string | null
   description: string | null
-  imageUrl: string | null
   icon: string | null
-  isFeatured: boolean | null
+  order: number | null
   isAvailable: boolean | null
   createdAt: Date | null
   updatedAt: Date | null
@@ -57,11 +65,10 @@ export type ServiceMaxAggregateOutputType = {
 export type ServiceCountAggregateOutputType = {
   id: number
   hotelId: number
-  name: number
+  title: number
   description: number
-  imageUrl: number
   icon: number
-  isFeatured: number
+  order: number
   isAvailable: number
   createdAt: number
   updatedAt: number
@@ -71,14 +78,21 @@ export type ServiceCountAggregateOutputType = {
 }
 
 
+export type ServiceAvgAggregateInputType = {
+  order?: true
+}
+
+export type ServiceSumAggregateInputType = {
+  order?: true
+}
+
 export type ServiceMinAggregateInputType = {
   id?: true
   hotelId?: true
-  name?: true
+  title?: true
   description?: true
-  imageUrl?: true
   icon?: true
-  isFeatured?: true
+  order?: true
   isAvailable?: true
   createdAt?: true
   updatedAt?: true
@@ -89,11 +103,10 @@ export type ServiceMinAggregateInputType = {
 export type ServiceMaxAggregateInputType = {
   id?: true
   hotelId?: true
-  name?: true
+  title?: true
   description?: true
-  imageUrl?: true
   icon?: true
-  isFeatured?: true
+  order?: true
   isAvailable?: true
   createdAt?: true
   updatedAt?: true
@@ -104,11 +117,10 @@ export type ServiceMaxAggregateInputType = {
 export type ServiceCountAggregateInputType = {
   id?: true
   hotelId?: true
-  name?: true
+  title?: true
   description?: true
-  imageUrl?: true
   icon?: true
-  isFeatured?: true
+  order?: true
   isAvailable?: true
   createdAt?: true
   updatedAt?: true
@@ -155,6 +167,18 @@ export type ServiceAggregateArgs<ExtArgs extends runtime.Types.Extensions.Intern
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
    * 
+   * Select which fields to average
+  **/
+  _avg?: ServiceAvgAggregateInputType
+  /**
+   * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+   * 
+   * Select which fields to sum
+  **/
+  _sum?: ServiceSumAggregateInputType
+  /**
+   * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+   * 
    * Select which fields to find the minimum value
   **/
   _min?: ServiceMinAggregateInputType
@@ -185,6 +209,8 @@ export type ServiceGroupByArgs<ExtArgs extends runtime.Types.Extensions.Internal
   take?: number
   skip?: number
   _count?: ServiceCountAggregateInputType | true
+  _avg?: ServiceAvgAggregateInputType
+  _sum?: ServiceSumAggregateInputType
   _min?: ServiceMinAggregateInputType
   _max?: ServiceMaxAggregateInputType
 }
@@ -192,17 +218,18 @@ export type ServiceGroupByArgs<ExtArgs extends runtime.Types.Extensions.Internal
 export type ServiceGroupByOutputType = {
   id: string
   hotelId: string
-  name: string
+  title: string
   description: string
-  imageUrl: string | null
   icon: string | null
-  isFeatured: boolean
+  order: number
   isAvailable: boolean
   createdAt: Date
   updatedAt: Date
   isDeleted: boolean
   deletedAt: Date | null
   _count: ServiceCountAggregateOutputType | null
+  _avg: ServiceAvgAggregateOutputType | null
+  _sum: ServiceSumAggregateOutputType | null
   _min: ServiceMinAggregateOutputType | null
   _max: ServiceMaxAggregateOutputType | null
 }
@@ -228,11 +255,10 @@ export type ServiceWhereInput = {
   NOT?: Prisma.ServiceWhereInput | Prisma.ServiceWhereInput[]
   id?: Prisma.UuidFilter<"Service"> | string
   hotelId?: Prisma.UuidFilter<"Service"> | string
-  name?: Prisma.StringFilter<"Service"> | string
+  title?: Prisma.StringFilter<"Service"> | string
   description?: Prisma.StringFilter<"Service"> | string
-  imageUrl?: Prisma.StringNullableFilter<"Service"> | string | null
   icon?: Prisma.StringNullableFilter<"Service"> | string | null
-  isFeatured?: Prisma.BoolFilter<"Service"> | boolean
+  order?: Prisma.IntFilter<"Service"> | number
   isAvailable?: Prisma.BoolFilter<"Service"> | boolean
   createdAt?: Prisma.DateTimeFilter<"Service"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Service"> | Date | string
@@ -244,11 +270,10 @@ export type ServiceWhereInput = {
 export type ServiceOrderByWithRelationInput = {
   id?: Prisma.SortOrder
   hotelId?: Prisma.SortOrder
-  name?: Prisma.SortOrder
+  title?: Prisma.SortOrder
   description?: Prisma.SortOrder
-  imageUrl?: Prisma.SortOrderInput | Prisma.SortOrder
   icon?: Prisma.SortOrderInput | Prisma.SortOrder
-  isFeatured?: Prisma.SortOrder
+  order?: Prisma.SortOrder
   isAvailable?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
@@ -263,11 +288,10 @@ export type ServiceWhereUniqueInput = Prisma.AtLeast<{
   OR?: Prisma.ServiceWhereInput[]
   NOT?: Prisma.ServiceWhereInput | Prisma.ServiceWhereInput[]
   hotelId?: Prisma.UuidFilter<"Service"> | string
-  name?: Prisma.StringFilter<"Service"> | string
+  title?: Prisma.StringFilter<"Service"> | string
   description?: Prisma.StringFilter<"Service"> | string
-  imageUrl?: Prisma.StringNullableFilter<"Service"> | string | null
   icon?: Prisma.StringNullableFilter<"Service"> | string | null
-  isFeatured?: Prisma.BoolFilter<"Service"> | boolean
+  order?: Prisma.IntFilter<"Service"> | number
   isAvailable?: Prisma.BoolFilter<"Service"> | boolean
   createdAt?: Prisma.DateTimeFilter<"Service"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Service"> | Date | string
@@ -279,19 +303,20 @@ export type ServiceWhereUniqueInput = Prisma.AtLeast<{
 export type ServiceOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
   hotelId?: Prisma.SortOrder
-  name?: Prisma.SortOrder
+  title?: Prisma.SortOrder
   description?: Prisma.SortOrder
-  imageUrl?: Prisma.SortOrderInput | Prisma.SortOrder
   icon?: Prisma.SortOrderInput | Prisma.SortOrder
-  isFeatured?: Prisma.SortOrder
+  order?: Prisma.SortOrder
   isAvailable?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   isDeleted?: Prisma.SortOrder
   deletedAt?: Prisma.SortOrderInput | Prisma.SortOrder
   _count?: Prisma.ServiceCountOrderByAggregateInput
+  _avg?: Prisma.ServiceAvgOrderByAggregateInput
   _max?: Prisma.ServiceMaxOrderByAggregateInput
   _min?: Prisma.ServiceMinOrderByAggregateInput
+  _sum?: Prisma.ServiceSumOrderByAggregateInput
 }
 
 export type ServiceScalarWhereWithAggregatesInput = {
@@ -300,11 +325,10 @@ export type ServiceScalarWhereWithAggregatesInput = {
   NOT?: Prisma.ServiceScalarWhereWithAggregatesInput | Prisma.ServiceScalarWhereWithAggregatesInput[]
   id?: Prisma.UuidWithAggregatesFilter<"Service"> | string
   hotelId?: Prisma.UuidWithAggregatesFilter<"Service"> | string
-  name?: Prisma.StringWithAggregatesFilter<"Service"> | string
+  title?: Prisma.StringWithAggregatesFilter<"Service"> | string
   description?: Prisma.StringWithAggregatesFilter<"Service"> | string
-  imageUrl?: Prisma.StringNullableWithAggregatesFilter<"Service"> | string | null
   icon?: Prisma.StringNullableWithAggregatesFilter<"Service"> | string | null
-  isFeatured?: Prisma.BoolWithAggregatesFilter<"Service"> | boolean
+  order?: Prisma.IntWithAggregatesFilter<"Service"> | number
   isAvailable?: Prisma.BoolWithAggregatesFilter<"Service"> | boolean
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Service"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"Service"> | Date | string
@@ -314,11 +338,10 @@ export type ServiceScalarWhereWithAggregatesInput = {
 
 export type ServiceCreateInput = {
   id?: string
-  name: string
+  title: string
   description: string
-  imageUrl?: string | null
   icon?: string | null
-  isFeatured?: boolean
+  order?: number
   isAvailable?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -330,11 +353,10 @@ export type ServiceCreateInput = {
 export type ServiceUncheckedCreateInput = {
   id?: string
   hotelId: string
-  name: string
+  title: string
   description: string
-  imageUrl?: string | null
   icon?: string | null
-  isFeatured?: boolean
+  order?: number
   isAvailable?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -344,11 +366,10 @@ export type ServiceUncheckedCreateInput = {
 
 export type ServiceUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  name?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
-  imageUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   icon?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  isFeatured?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  order?: Prisma.IntFieldUpdateOperationsInput | number
   isAvailable?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -360,11 +381,10 @@ export type ServiceUpdateInput = {
 export type ServiceUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   hotelId?: Prisma.StringFieldUpdateOperationsInput | string
-  name?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
-  imageUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   icon?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  isFeatured?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  order?: Prisma.IntFieldUpdateOperationsInput | number
   isAvailable?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -375,11 +395,10 @@ export type ServiceUncheckedUpdateInput = {
 export type ServiceCreateManyInput = {
   id?: string
   hotelId: string
-  name: string
+  title: string
   description: string
-  imageUrl?: string | null
   icon?: string | null
-  isFeatured?: boolean
+  order?: number
   isAvailable?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -389,11 +408,10 @@ export type ServiceCreateManyInput = {
 
 export type ServiceUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  name?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
-  imageUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   icon?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  isFeatured?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  order?: Prisma.IntFieldUpdateOperationsInput | number
   isAvailable?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -404,11 +422,10 @@ export type ServiceUpdateManyMutationInput = {
 export type ServiceUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   hotelId?: Prisma.StringFieldUpdateOperationsInput | string
-  name?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
-  imageUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   icon?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  isFeatured?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  order?: Prisma.IntFieldUpdateOperationsInput | number
   isAvailable?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -429,11 +446,10 @@ export type ServiceOrderByRelationAggregateInput = {
 export type ServiceCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
   hotelId?: Prisma.SortOrder
-  name?: Prisma.SortOrder
+  title?: Prisma.SortOrder
   description?: Prisma.SortOrder
-  imageUrl?: Prisma.SortOrder
   icon?: Prisma.SortOrder
-  isFeatured?: Prisma.SortOrder
+  order?: Prisma.SortOrder
   isAvailable?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
@@ -441,14 +457,17 @@ export type ServiceCountOrderByAggregateInput = {
   deletedAt?: Prisma.SortOrder
 }
 
+export type ServiceAvgOrderByAggregateInput = {
+  order?: Prisma.SortOrder
+}
+
 export type ServiceMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
   hotelId?: Prisma.SortOrder
-  name?: Prisma.SortOrder
+  title?: Prisma.SortOrder
   description?: Prisma.SortOrder
-  imageUrl?: Prisma.SortOrder
   icon?: Prisma.SortOrder
-  isFeatured?: Prisma.SortOrder
+  order?: Prisma.SortOrder
   isAvailable?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
@@ -459,16 +478,19 @@ export type ServiceMaxOrderByAggregateInput = {
 export type ServiceMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
   hotelId?: Prisma.SortOrder
-  name?: Prisma.SortOrder
+  title?: Prisma.SortOrder
   description?: Prisma.SortOrder
-  imageUrl?: Prisma.SortOrder
   icon?: Prisma.SortOrder
-  isFeatured?: Prisma.SortOrder
+  order?: Prisma.SortOrder
   isAvailable?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   isDeleted?: Prisma.SortOrder
   deletedAt?: Prisma.SortOrder
+}
+
+export type ServiceSumOrderByAggregateInput = {
+  order?: Prisma.SortOrder
 }
 
 export type ServiceCreateNestedManyWithoutHotelInput = {
@@ -515,11 +537,10 @@ export type ServiceUncheckedUpdateManyWithoutHotelNestedInput = {
 
 export type ServiceCreateWithoutHotelInput = {
   id?: string
-  name: string
+  title: string
   description: string
-  imageUrl?: string | null
   icon?: string | null
-  isFeatured?: boolean
+  order?: number
   isAvailable?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -529,11 +550,10 @@ export type ServiceCreateWithoutHotelInput = {
 
 export type ServiceUncheckedCreateWithoutHotelInput = {
   id?: string
-  name: string
+  title: string
   description: string
-  imageUrl?: string | null
   icon?: string | null
-  isFeatured?: boolean
+  order?: number
   isAvailable?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -573,11 +593,10 @@ export type ServiceScalarWhereInput = {
   NOT?: Prisma.ServiceScalarWhereInput | Prisma.ServiceScalarWhereInput[]
   id?: Prisma.UuidFilter<"Service"> | string
   hotelId?: Prisma.UuidFilter<"Service"> | string
-  name?: Prisma.StringFilter<"Service"> | string
+  title?: Prisma.StringFilter<"Service"> | string
   description?: Prisma.StringFilter<"Service"> | string
-  imageUrl?: Prisma.StringNullableFilter<"Service"> | string | null
   icon?: Prisma.StringNullableFilter<"Service"> | string | null
-  isFeatured?: Prisma.BoolFilter<"Service"> | boolean
+  order?: Prisma.IntFilter<"Service"> | number
   isAvailable?: Prisma.BoolFilter<"Service"> | boolean
   createdAt?: Prisma.DateTimeFilter<"Service"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Service"> | Date | string
@@ -587,11 +606,10 @@ export type ServiceScalarWhereInput = {
 
 export type ServiceCreateManyHotelInput = {
   id?: string
-  name: string
+  title: string
   description: string
-  imageUrl?: string | null
   icon?: string | null
-  isFeatured?: boolean
+  order?: number
   isAvailable?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -601,11 +619,10 @@ export type ServiceCreateManyHotelInput = {
 
 export type ServiceUpdateWithoutHotelInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  name?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
-  imageUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   icon?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  isFeatured?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  order?: Prisma.IntFieldUpdateOperationsInput | number
   isAvailable?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -615,11 +632,10 @@ export type ServiceUpdateWithoutHotelInput = {
 
 export type ServiceUncheckedUpdateWithoutHotelInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  name?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
-  imageUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   icon?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  isFeatured?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  order?: Prisma.IntFieldUpdateOperationsInput | number
   isAvailable?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -629,11 +645,10 @@ export type ServiceUncheckedUpdateWithoutHotelInput = {
 
 export type ServiceUncheckedUpdateManyWithoutHotelInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  name?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
-  imageUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   icon?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  isFeatured?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  order?: Prisma.IntFieldUpdateOperationsInput | number
   isAvailable?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -646,11 +661,10 @@ export type ServiceUncheckedUpdateManyWithoutHotelInput = {
 export type ServiceSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   hotelId?: boolean
-  name?: boolean
+  title?: boolean
   description?: boolean
-  imageUrl?: boolean
   icon?: boolean
-  isFeatured?: boolean
+  order?: boolean
   isAvailable?: boolean
   createdAt?: boolean
   updatedAt?: boolean
@@ -662,11 +676,10 @@ export type ServiceSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs 
 export type ServiceSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   hotelId?: boolean
-  name?: boolean
+  title?: boolean
   description?: boolean
-  imageUrl?: boolean
   icon?: boolean
-  isFeatured?: boolean
+  order?: boolean
   isAvailable?: boolean
   createdAt?: boolean
   updatedAt?: boolean
@@ -678,11 +691,10 @@ export type ServiceSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Exten
 export type ServiceSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   hotelId?: boolean
-  name?: boolean
+  title?: boolean
   description?: boolean
-  imageUrl?: boolean
   icon?: boolean
-  isFeatured?: boolean
+  order?: boolean
   isAvailable?: boolean
   createdAt?: boolean
   updatedAt?: boolean
@@ -694,11 +706,10 @@ export type ServiceSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Exten
 export type ServiceSelectScalar = {
   id?: boolean
   hotelId?: boolean
-  name?: boolean
+  title?: boolean
   description?: boolean
-  imageUrl?: boolean
   icon?: boolean
-  isFeatured?: boolean
+  order?: boolean
   isAvailable?: boolean
   createdAt?: boolean
   updatedAt?: boolean
@@ -706,7 +717,7 @@ export type ServiceSelectScalar = {
   deletedAt?: boolean
 }
 
-export type ServiceOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "hotelId" | "name" | "description" | "imageUrl" | "icon" | "isFeatured" | "isAvailable" | "createdAt" | "updatedAt" | "isDeleted" | "deletedAt", ExtArgs["result"]["service"]>
+export type ServiceOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "hotelId" | "title" | "description" | "icon" | "order" | "isAvailable" | "createdAt" | "updatedAt" | "isDeleted" | "deletedAt", ExtArgs["result"]["service"]>
 export type ServiceInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   hotel?: boolean | Prisma.HotelInfoDefaultArgs<ExtArgs>
 }
@@ -725,11 +736,10 @@ export type $ServicePayload<ExtArgs extends runtime.Types.Extensions.InternalArg
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
     hotelId: string
-    name: string
+    title: string
     description: string
-    imageUrl: string | null
     icon: string | null
-    isFeatured: boolean
+    order: number
     isAvailable: boolean
     createdAt: Date
     updatedAt: Date
@@ -1161,11 +1171,10 @@ export interface Prisma__ServiceClient<T, Null = never, ExtArgs extends runtime.
 export interface ServiceFieldRefs {
   readonly id: Prisma.FieldRef<"Service", 'String'>
   readonly hotelId: Prisma.FieldRef<"Service", 'String'>
-  readonly name: Prisma.FieldRef<"Service", 'String'>
+  readonly title: Prisma.FieldRef<"Service", 'String'>
   readonly description: Prisma.FieldRef<"Service", 'String'>
-  readonly imageUrl: Prisma.FieldRef<"Service", 'String'>
   readonly icon: Prisma.FieldRef<"Service", 'String'>
-  readonly isFeatured: Prisma.FieldRef<"Service", 'Boolean'>
+  readonly order: Prisma.FieldRef<"Service", 'Int'>
   readonly isAvailable: Prisma.FieldRef<"Service", 'Boolean'>
   readonly createdAt: Prisma.FieldRef<"Service", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"Service", 'DateTime'>

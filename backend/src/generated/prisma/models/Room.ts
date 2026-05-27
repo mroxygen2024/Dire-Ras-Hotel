@@ -9,8 +9,8 @@
  * 🟢 You can import this file directly.
  */
 import type * as runtime from "@prisma/client/runtime/client"
-import type * as $Enums from "../enums"
-import type * as Prisma from "../internal/prismaNamespace"
+import type * as $Enums from "../enums.js"
+import type * as Prisma from "../internal/prismaNamespace.js"
 
 /**
  * Model Room
@@ -27,26 +27,27 @@ export type AggregateRoom = {
 }
 
 export type RoomAvgAggregateOutputType = {
-  pricePerNight: runtime.Decimal | null
-  maxOccupants: number | null
+  price: runtime.Decimal | null
+  occupancy: number | null
 }
 
 export type RoomSumAggregateOutputType = {
-  pricePerNight: runtime.Decimal | null
-  maxOccupants: number | null
+  price: runtime.Decimal | null
+  occupancy: number | null
 }
 
 export type RoomMinAggregateOutputType = {
   id: string | null
   hotelId: string | null
   name: string | null
-  type: $Enums.RoomType | null
+  price: runtime.Decimal | null
+  currency: string | null
+  image: string | null
   description: string | null
-  pricePerNight: runtime.Decimal | null
-  maxOccupants: number | null
-  bedType: string | null
-  roomSize: string | null
-  view: string | null
+  size: string | null
+  occupancy: number | null
+  bed: string | null
+  featured: boolean | null
   isAvailable: boolean | null
   createdAt: Date | null
   updatedAt: Date | null
@@ -58,13 +59,14 @@ export type RoomMaxAggregateOutputType = {
   id: string | null
   hotelId: string | null
   name: string | null
-  type: $Enums.RoomType | null
+  price: runtime.Decimal | null
+  currency: string | null
+  image: string | null
   description: string | null
-  pricePerNight: runtime.Decimal | null
-  maxOccupants: number | null
-  bedType: string | null
-  roomSize: string | null
-  view: string | null
+  size: string | null
+  occupancy: number | null
+  bed: string | null
+  featured: boolean | null
   isAvailable: boolean | null
   createdAt: Date | null
   updatedAt: Date | null
@@ -76,16 +78,16 @@ export type RoomCountAggregateOutputType = {
   id: number
   hotelId: number
   name: number
-  type: number
+  price: number
+  currency: number
+  image: number
   description: number
-  pricePerNight: number
-  maxOccupants: number
-  bedType: number
-  roomSize: number
-  view: number
-  isAvailable: number
+  size: number
+  occupancy: number
+  bed: number
   features: number
-  images: number
+  featured: number
+  isAvailable: number
   createdAt: number
   updatedAt: number
   isDeleted: number
@@ -95,26 +97,27 @@ export type RoomCountAggregateOutputType = {
 
 
 export type RoomAvgAggregateInputType = {
-  pricePerNight?: true
-  maxOccupants?: true
+  price?: true
+  occupancy?: true
 }
 
 export type RoomSumAggregateInputType = {
-  pricePerNight?: true
-  maxOccupants?: true
+  price?: true
+  occupancy?: true
 }
 
 export type RoomMinAggregateInputType = {
   id?: true
   hotelId?: true
   name?: true
-  type?: true
+  price?: true
+  currency?: true
+  image?: true
   description?: true
-  pricePerNight?: true
-  maxOccupants?: true
-  bedType?: true
-  roomSize?: true
-  view?: true
+  size?: true
+  occupancy?: true
+  bed?: true
+  featured?: true
   isAvailable?: true
   createdAt?: true
   updatedAt?: true
@@ -126,13 +129,14 @@ export type RoomMaxAggregateInputType = {
   id?: true
   hotelId?: true
   name?: true
-  type?: true
+  price?: true
+  currency?: true
+  image?: true
   description?: true
-  pricePerNight?: true
-  maxOccupants?: true
-  bedType?: true
-  roomSize?: true
-  view?: true
+  size?: true
+  occupancy?: true
+  bed?: true
+  featured?: true
   isAvailable?: true
   createdAt?: true
   updatedAt?: true
@@ -144,16 +148,16 @@ export type RoomCountAggregateInputType = {
   id?: true
   hotelId?: true
   name?: true
-  type?: true
+  price?: true
+  currency?: true
+  image?: true
   description?: true
-  pricePerNight?: true
-  maxOccupants?: true
-  bedType?: true
-  roomSize?: true
-  view?: true
-  isAvailable?: true
+  size?: true
+  occupancy?: true
+  bed?: true
   features?: true
-  images?: true
+  featured?: true
+  isAvailable?: true
   createdAt?: true
   updatedAt?: true
   isDeleted?: true
@@ -251,16 +255,16 @@ export type RoomGroupByOutputType = {
   id: string
   hotelId: string
   name: string
-  type: $Enums.RoomType
+  price: runtime.Decimal
+  currency: string
+  image: string
   description: string
-  pricePerNight: runtime.Decimal
-  maxOccupants: number
-  bedType: string
-  roomSize: string | null
-  view: string | null
-  isAvailable: boolean
+  size: string | null
+  occupancy: number
+  bed: string | null
   features: runtime.JsonValue
-  images: string[]
+  featured: boolean
+  isAvailable: boolean
   createdAt: Date
   updatedAt: Date
   isDeleted: boolean
@@ -294,16 +298,16 @@ export type RoomWhereInput = {
   id?: Prisma.UuidFilter<"Room"> | string
   hotelId?: Prisma.UuidFilter<"Room"> | string
   name?: Prisma.StringFilter<"Room"> | string
-  type?: Prisma.EnumRoomTypeFilter<"Room"> | $Enums.RoomType
+  price?: Prisma.DecimalFilter<"Room"> | runtime.Decimal | runtime.DecimalJsLike | number | string
+  currency?: Prisma.StringFilter<"Room"> | string
+  image?: Prisma.StringFilter<"Room"> | string
   description?: Prisma.StringFilter<"Room"> | string
-  pricePerNight?: Prisma.DecimalFilter<"Room"> | runtime.Decimal | runtime.DecimalJsLike | number | string
-  maxOccupants?: Prisma.IntFilter<"Room"> | number
-  bedType?: Prisma.StringFilter<"Room"> | string
-  roomSize?: Prisma.StringNullableFilter<"Room"> | string | null
-  view?: Prisma.StringNullableFilter<"Room"> | string | null
-  isAvailable?: Prisma.BoolFilter<"Room"> | boolean
+  size?: Prisma.StringNullableFilter<"Room"> | string | null
+  occupancy?: Prisma.IntFilter<"Room"> | number
+  bed?: Prisma.StringNullableFilter<"Room"> | string | null
   features?: Prisma.JsonFilter<"Room">
-  images?: Prisma.StringNullableListFilter<"Room">
+  featured?: Prisma.BoolFilter<"Room"> | boolean
+  isAvailable?: Prisma.BoolFilter<"Room"> | boolean
   createdAt?: Prisma.DateTimeFilter<"Room"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Room"> | Date | string
   isDeleted?: Prisma.BoolFilter<"Room"> | boolean
@@ -315,16 +319,16 @@ export type RoomOrderByWithRelationInput = {
   id?: Prisma.SortOrder
   hotelId?: Prisma.SortOrder
   name?: Prisma.SortOrder
-  type?: Prisma.SortOrder
+  price?: Prisma.SortOrder
+  currency?: Prisma.SortOrder
+  image?: Prisma.SortOrder
   description?: Prisma.SortOrder
-  pricePerNight?: Prisma.SortOrder
-  maxOccupants?: Prisma.SortOrder
-  bedType?: Prisma.SortOrder
-  roomSize?: Prisma.SortOrderInput | Prisma.SortOrder
-  view?: Prisma.SortOrderInput | Prisma.SortOrder
-  isAvailable?: Prisma.SortOrder
+  size?: Prisma.SortOrderInput | Prisma.SortOrder
+  occupancy?: Prisma.SortOrder
+  bed?: Prisma.SortOrderInput | Prisma.SortOrder
   features?: Prisma.SortOrder
-  images?: Prisma.SortOrder
+  featured?: Prisma.SortOrder
+  isAvailable?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   isDeleted?: Prisma.SortOrder
@@ -339,16 +343,16 @@ export type RoomWhereUniqueInput = Prisma.AtLeast<{
   NOT?: Prisma.RoomWhereInput | Prisma.RoomWhereInput[]
   hotelId?: Prisma.UuidFilter<"Room"> | string
   name?: Prisma.StringFilter<"Room"> | string
-  type?: Prisma.EnumRoomTypeFilter<"Room"> | $Enums.RoomType
+  price?: Prisma.DecimalFilter<"Room"> | runtime.Decimal | runtime.DecimalJsLike | number | string
+  currency?: Prisma.StringFilter<"Room"> | string
+  image?: Prisma.StringFilter<"Room"> | string
   description?: Prisma.StringFilter<"Room"> | string
-  pricePerNight?: Prisma.DecimalFilter<"Room"> | runtime.Decimal | runtime.DecimalJsLike | number | string
-  maxOccupants?: Prisma.IntFilter<"Room"> | number
-  bedType?: Prisma.StringFilter<"Room"> | string
-  roomSize?: Prisma.StringNullableFilter<"Room"> | string | null
-  view?: Prisma.StringNullableFilter<"Room"> | string | null
-  isAvailable?: Prisma.BoolFilter<"Room"> | boolean
+  size?: Prisma.StringNullableFilter<"Room"> | string | null
+  occupancy?: Prisma.IntFilter<"Room"> | number
+  bed?: Prisma.StringNullableFilter<"Room"> | string | null
   features?: Prisma.JsonFilter<"Room">
-  images?: Prisma.StringNullableListFilter<"Room">
+  featured?: Prisma.BoolFilter<"Room"> | boolean
+  isAvailable?: Prisma.BoolFilter<"Room"> | boolean
   createdAt?: Prisma.DateTimeFilter<"Room"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Room"> | Date | string
   isDeleted?: Prisma.BoolFilter<"Room"> | boolean
@@ -360,16 +364,16 @@ export type RoomOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
   hotelId?: Prisma.SortOrder
   name?: Prisma.SortOrder
-  type?: Prisma.SortOrder
+  price?: Prisma.SortOrder
+  currency?: Prisma.SortOrder
+  image?: Prisma.SortOrder
   description?: Prisma.SortOrder
-  pricePerNight?: Prisma.SortOrder
-  maxOccupants?: Prisma.SortOrder
-  bedType?: Prisma.SortOrder
-  roomSize?: Prisma.SortOrderInput | Prisma.SortOrder
-  view?: Prisma.SortOrderInput | Prisma.SortOrder
-  isAvailable?: Prisma.SortOrder
+  size?: Prisma.SortOrderInput | Prisma.SortOrder
+  occupancy?: Prisma.SortOrder
+  bed?: Prisma.SortOrderInput | Prisma.SortOrder
   features?: Prisma.SortOrder
-  images?: Prisma.SortOrder
+  featured?: Prisma.SortOrder
+  isAvailable?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   isDeleted?: Prisma.SortOrder
@@ -388,16 +392,16 @@ export type RoomScalarWhereWithAggregatesInput = {
   id?: Prisma.UuidWithAggregatesFilter<"Room"> | string
   hotelId?: Prisma.UuidWithAggregatesFilter<"Room"> | string
   name?: Prisma.StringWithAggregatesFilter<"Room"> | string
-  type?: Prisma.EnumRoomTypeWithAggregatesFilter<"Room"> | $Enums.RoomType
+  price?: Prisma.DecimalWithAggregatesFilter<"Room"> | runtime.Decimal | runtime.DecimalJsLike | number | string
+  currency?: Prisma.StringWithAggregatesFilter<"Room"> | string
+  image?: Prisma.StringWithAggregatesFilter<"Room"> | string
   description?: Prisma.StringWithAggregatesFilter<"Room"> | string
-  pricePerNight?: Prisma.DecimalWithAggregatesFilter<"Room"> | runtime.Decimal | runtime.DecimalJsLike | number | string
-  maxOccupants?: Prisma.IntWithAggregatesFilter<"Room"> | number
-  bedType?: Prisma.StringWithAggregatesFilter<"Room"> | string
-  roomSize?: Prisma.StringNullableWithAggregatesFilter<"Room"> | string | null
-  view?: Prisma.StringNullableWithAggregatesFilter<"Room"> | string | null
-  isAvailable?: Prisma.BoolWithAggregatesFilter<"Room"> | boolean
+  size?: Prisma.StringNullableWithAggregatesFilter<"Room"> | string | null
+  occupancy?: Prisma.IntWithAggregatesFilter<"Room"> | number
+  bed?: Prisma.StringNullableWithAggregatesFilter<"Room"> | string | null
   features?: Prisma.JsonWithAggregatesFilter<"Room">
-  images?: Prisma.StringNullableListFilter<"Room">
+  featured?: Prisma.BoolWithAggregatesFilter<"Room"> | boolean
+  isAvailable?: Prisma.BoolWithAggregatesFilter<"Room"> | boolean
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Room"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"Room"> | Date | string
   isDeleted?: Prisma.BoolWithAggregatesFilter<"Room"> | boolean
@@ -407,16 +411,16 @@ export type RoomScalarWhereWithAggregatesInput = {
 export type RoomCreateInput = {
   id?: string
   name: string
-  type?: $Enums.RoomType
+  price: runtime.Decimal | runtime.DecimalJsLike | number | string
+  currency?: string
+  image: string
   description: string
-  pricePerNight: runtime.Decimal | runtime.DecimalJsLike | number | string
-  maxOccupants?: number
-  bedType: string
-  roomSize?: string | null
-  view?: string | null
-  isAvailable?: boolean
+  size?: string | null
+  occupancy?: number
+  bed?: string | null
   features?: Prisma.JsonNullValueInput | runtime.InputJsonValue
-  images?: Prisma.RoomCreateimagesInput | string[]
+  featured?: boolean
+  isAvailable?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
   isDeleted?: boolean
@@ -428,16 +432,16 @@ export type RoomUncheckedCreateInput = {
   id?: string
   hotelId: string
   name: string
-  type?: $Enums.RoomType
+  price: runtime.Decimal | runtime.DecimalJsLike | number | string
+  currency?: string
+  image: string
   description: string
-  pricePerNight: runtime.Decimal | runtime.DecimalJsLike | number | string
-  maxOccupants?: number
-  bedType: string
-  roomSize?: string | null
-  view?: string | null
-  isAvailable?: boolean
+  size?: string | null
+  occupancy?: number
+  bed?: string | null
   features?: Prisma.JsonNullValueInput | runtime.InputJsonValue
-  images?: Prisma.RoomCreateimagesInput | string[]
+  featured?: boolean
+  isAvailable?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
   isDeleted?: boolean
@@ -447,16 +451,16 @@ export type RoomUncheckedCreateInput = {
 export type RoomUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
-  type?: Prisma.EnumRoomTypeFieldUpdateOperationsInput | $Enums.RoomType
+  price?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  currency?: Prisma.StringFieldUpdateOperationsInput | string
+  image?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
-  pricePerNight?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
-  maxOccupants?: Prisma.IntFieldUpdateOperationsInput | number
-  bedType?: Prisma.StringFieldUpdateOperationsInput | string
-  roomSize?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  view?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  isAvailable?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  size?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  occupancy?: Prisma.IntFieldUpdateOperationsInput | number
+  bed?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   features?: Prisma.JsonNullValueInput | runtime.InputJsonValue
-  images?: Prisma.RoomUpdateimagesInput | string[]
+  featured?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isAvailable?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -468,16 +472,16 @@ export type RoomUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   hotelId?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
-  type?: Prisma.EnumRoomTypeFieldUpdateOperationsInput | $Enums.RoomType
+  price?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  currency?: Prisma.StringFieldUpdateOperationsInput | string
+  image?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
-  pricePerNight?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
-  maxOccupants?: Prisma.IntFieldUpdateOperationsInput | number
-  bedType?: Prisma.StringFieldUpdateOperationsInput | string
-  roomSize?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  view?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  isAvailable?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  size?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  occupancy?: Prisma.IntFieldUpdateOperationsInput | number
+  bed?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   features?: Prisma.JsonNullValueInput | runtime.InputJsonValue
-  images?: Prisma.RoomUpdateimagesInput | string[]
+  featured?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isAvailable?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -488,16 +492,16 @@ export type RoomCreateManyInput = {
   id?: string
   hotelId: string
   name: string
-  type?: $Enums.RoomType
+  price: runtime.Decimal | runtime.DecimalJsLike | number | string
+  currency?: string
+  image: string
   description: string
-  pricePerNight: runtime.Decimal | runtime.DecimalJsLike | number | string
-  maxOccupants?: number
-  bedType: string
-  roomSize?: string | null
-  view?: string | null
-  isAvailable?: boolean
+  size?: string | null
+  occupancy?: number
+  bed?: string | null
   features?: Prisma.JsonNullValueInput | runtime.InputJsonValue
-  images?: Prisma.RoomCreateimagesInput | string[]
+  featured?: boolean
+  isAvailable?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
   isDeleted?: boolean
@@ -507,16 +511,16 @@ export type RoomCreateManyInput = {
 export type RoomUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
-  type?: Prisma.EnumRoomTypeFieldUpdateOperationsInput | $Enums.RoomType
+  price?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  currency?: Prisma.StringFieldUpdateOperationsInput | string
+  image?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
-  pricePerNight?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
-  maxOccupants?: Prisma.IntFieldUpdateOperationsInput | number
-  bedType?: Prisma.StringFieldUpdateOperationsInput | string
-  roomSize?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  view?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  isAvailable?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  size?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  occupancy?: Prisma.IntFieldUpdateOperationsInput | number
+  bed?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   features?: Prisma.JsonNullValueInput | runtime.InputJsonValue
-  images?: Prisma.RoomUpdateimagesInput | string[]
+  featured?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isAvailable?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -527,16 +531,16 @@ export type RoomUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   hotelId?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
-  type?: Prisma.EnumRoomTypeFieldUpdateOperationsInput | $Enums.RoomType
+  price?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  currency?: Prisma.StringFieldUpdateOperationsInput | string
+  image?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
-  pricePerNight?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
-  maxOccupants?: Prisma.IntFieldUpdateOperationsInput | number
-  bedType?: Prisma.StringFieldUpdateOperationsInput | string
-  roomSize?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  view?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  isAvailable?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  size?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  occupancy?: Prisma.IntFieldUpdateOperationsInput | number
+  bed?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   features?: Prisma.JsonNullValueInput | runtime.InputJsonValue
-  images?: Prisma.RoomUpdateimagesInput | string[]
+  featured?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isAvailable?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -553,28 +557,20 @@ export type RoomOrderByRelationAggregateInput = {
   _count?: Prisma.SortOrder
 }
 
-export type StringNullableListFilter<$PrismaModel = never> = {
-  equals?: string[] | Prisma.ListStringFieldRefInput<$PrismaModel> | null
-  has?: string | Prisma.StringFieldRefInput<$PrismaModel> | null
-  hasEvery?: string[] | Prisma.ListStringFieldRefInput<$PrismaModel>
-  hasSome?: string[] | Prisma.ListStringFieldRefInput<$PrismaModel>
-  isEmpty?: boolean
-}
-
 export type RoomCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
   hotelId?: Prisma.SortOrder
   name?: Prisma.SortOrder
-  type?: Prisma.SortOrder
+  price?: Prisma.SortOrder
+  currency?: Prisma.SortOrder
+  image?: Prisma.SortOrder
   description?: Prisma.SortOrder
-  pricePerNight?: Prisma.SortOrder
-  maxOccupants?: Prisma.SortOrder
-  bedType?: Prisma.SortOrder
-  roomSize?: Prisma.SortOrder
-  view?: Prisma.SortOrder
-  isAvailable?: Prisma.SortOrder
+  size?: Prisma.SortOrder
+  occupancy?: Prisma.SortOrder
+  bed?: Prisma.SortOrder
   features?: Prisma.SortOrder
-  images?: Prisma.SortOrder
+  featured?: Prisma.SortOrder
+  isAvailable?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   isDeleted?: Prisma.SortOrder
@@ -582,21 +578,22 @@ export type RoomCountOrderByAggregateInput = {
 }
 
 export type RoomAvgOrderByAggregateInput = {
-  pricePerNight?: Prisma.SortOrder
-  maxOccupants?: Prisma.SortOrder
+  price?: Prisma.SortOrder
+  occupancy?: Prisma.SortOrder
 }
 
 export type RoomMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
   hotelId?: Prisma.SortOrder
   name?: Prisma.SortOrder
-  type?: Prisma.SortOrder
+  price?: Prisma.SortOrder
+  currency?: Prisma.SortOrder
+  image?: Prisma.SortOrder
   description?: Prisma.SortOrder
-  pricePerNight?: Prisma.SortOrder
-  maxOccupants?: Prisma.SortOrder
-  bedType?: Prisma.SortOrder
-  roomSize?: Prisma.SortOrder
-  view?: Prisma.SortOrder
+  size?: Prisma.SortOrder
+  occupancy?: Prisma.SortOrder
+  bed?: Prisma.SortOrder
+  featured?: Prisma.SortOrder
   isAvailable?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
@@ -608,13 +605,14 @@ export type RoomMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
   hotelId?: Prisma.SortOrder
   name?: Prisma.SortOrder
-  type?: Prisma.SortOrder
+  price?: Prisma.SortOrder
+  currency?: Prisma.SortOrder
+  image?: Prisma.SortOrder
   description?: Prisma.SortOrder
-  pricePerNight?: Prisma.SortOrder
-  maxOccupants?: Prisma.SortOrder
-  bedType?: Prisma.SortOrder
-  roomSize?: Prisma.SortOrder
-  view?: Prisma.SortOrder
+  size?: Prisma.SortOrder
+  occupancy?: Prisma.SortOrder
+  bed?: Prisma.SortOrder
+  featured?: Prisma.SortOrder
   isAvailable?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
@@ -623,8 +621,8 @@ export type RoomMinOrderByAggregateInput = {
 }
 
 export type RoomSumOrderByAggregateInput = {
-  pricePerNight?: Prisma.SortOrder
-  maxOccupants?: Prisma.SortOrder
+  price?: Prisma.SortOrder
+  occupancy?: Prisma.SortOrder
 }
 
 export type RoomCreateNestedManyWithoutHotelInput = {
@@ -669,14 +667,6 @@ export type RoomUncheckedUpdateManyWithoutHotelNestedInput = {
   deleteMany?: Prisma.RoomScalarWhereInput | Prisma.RoomScalarWhereInput[]
 }
 
-export type RoomCreateimagesInput = {
-  set: string[]
-}
-
-export type EnumRoomTypeFieldUpdateOperationsInput = {
-  set?: $Enums.RoomType
-}
-
 export type DecimalFieldUpdateOperationsInput = {
   set?: runtime.Decimal | runtime.DecimalJsLike | number | string
   increment?: runtime.Decimal | runtime.DecimalJsLike | number | string
@@ -685,24 +675,19 @@ export type DecimalFieldUpdateOperationsInput = {
   divide?: runtime.Decimal | runtime.DecimalJsLike | number | string
 }
 
-export type RoomUpdateimagesInput = {
-  set?: string[]
-  push?: string | string[]
-}
-
 export type RoomCreateWithoutHotelInput = {
   id?: string
   name: string
-  type?: $Enums.RoomType
+  price: runtime.Decimal | runtime.DecimalJsLike | number | string
+  currency?: string
+  image: string
   description: string
-  pricePerNight: runtime.Decimal | runtime.DecimalJsLike | number | string
-  maxOccupants?: number
-  bedType: string
-  roomSize?: string | null
-  view?: string | null
-  isAvailable?: boolean
+  size?: string | null
+  occupancy?: number
+  bed?: string | null
   features?: Prisma.JsonNullValueInput | runtime.InputJsonValue
-  images?: Prisma.RoomCreateimagesInput | string[]
+  featured?: boolean
+  isAvailable?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
   isDeleted?: boolean
@@ -712,16 +697,16 @@ export type RoomCreateWithoutHotelInput = {
 export type RoomUncheckedCreateWithoutHotelInput = {
   id?: string
   name: string
-  type?: $Enums.RoomType
+  price: runtime.Decimal | runtime.DecimalJsLike | number | string
+  currency?: string
+  image: string
   description: string
-  pricePerNight: runtime.Decimal | runtime.DecimalJsLike | number | string
-  maxOccupants?: number
-  bedType: string
-  roomSize?: string | null
-  view?: string | null
-  isAvailable?: boolean
+  size?: string | null
+  occupancy?: number
+  bed?: string | null
   features?: Prisma.JsonNullValueInput | runtime.InputJsonValue
-  images?: Prisma.RoomCreateimagesInput | string[]
+  featured?: boolean
+  isAvailable?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
   isDeleted?: boolean
@@ -761,16 +746,16 @@ export type RoomScalarWhereInput = {
   id?: Prisma.UuidFilter<"Room"> | string
   hotelId?: Prisma.UuidFilter<"Room"> | string
   name?: Prisma.StringFilter<"Room"> | string
-  type?: Prisma.EnumRoomTypeFilter<"Room"> | $Enums.RoomType
+  price?: Prisma.DecimalFilter<"Room"> | runtime.Decimal | runtime.DecimalJsLike | number | string
+  currency?: Prisma.StringFilter<"Room"> | string
+  image?: Prisma.StringFilter<"Room"> | string
   description?: Prisma.StringFilter<"Room"> | string
-  pricePerNight?: Prisma.DecimalFilter<"Room"> | runtime.Decimal | runtime.DecimalJsLike | number | string
-  maxOccupants?: Prisma.IntFilter<"Room"> | number
-  bedType?: Prisma.StringFilter<"Room"> | string
-  roomSize?: Prisma.StringNullableFilter<"Room"> | string | null
-  view?: Prisma.StringNullableFilter<"Room"> | string | null
-  isAvailable?: Prisma.BoolFilter<"Room"> | boolean
+  size?: Prisma.StringNullableFilter<"Room"> | string | null
+  occupancy?: Prisma.IntFilter<"Room"> | number
+  bed?: Prisma.StringNullableFilter<"Room"> | string | null
   features?: Prisma.JsonFilter<"Room">
-  images?: Prisma.StringNullableListFilter<"Room">
+  featured?: Prisma.BoolFilter<"Room"> | boolean
+  isAvailable?: Prisma.BoolFilter<"Room"> | boolean
   createdAt?: Prisma.DateTimeFilter<"Room"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Room"> | Date | string
   isDeleted?: Prisma.BoolFilter<"Room"> | boolean
@@ -780,16 +765,16 @@ export type RoomScalarWhereInput = {
 export type RoomCreateManyHotelInput = {
   id?: string
   name: string
-  type?: $Enums.RoomType
+  price: runtime.Decimal | runtime.DecimalJsLike | number | string
+  currency?: string
+  image: string
   description: string
-  pricePerNight: runtime.Decimal | runtime.DecimalJsLike | number | string
-  maxOccupants?: number
-  bedType: string
-  roomSize?: string | null
-  view?: string | null
-  isAvailable?: boolean
+  size?: string | null
+  occupancy?: number
+  bed?: string | null
   features?: Prisma.JsonNullValueInput | runtime.InputJsonValue
-  images?: Prisma.RoomCreateimagesInput | string[]
+  featured?: boolean
+  isAvailable?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
   isDeleted?: boolean
@@ -799,16 +784,16 @@ export type RoomCreateManyHotelInput = {
 export type RoomUpdateWithoutHotelInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
-  type?: Prisma.EnumRoomTypeFieldUpdateOperationsInput | $Enums.RoomType
+  price?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  currency?: Prisma.StringFieldUpdateOperationsInput | string
+  image?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
-  pricePerNight?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
-  maxOccupants?: Prisma.IntFieldUpdateOperationsInput | number
-  bedType?: Prisma.StringFieldUpdateOperationsInput | string
-  roomSize?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  view?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  isAvailable?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  size?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  occupancy?: Prisma.IntFieldUpdateOperationsInput | number
+  bed?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   features?: Prisma.JsonNullValueInput | runtime.InputJsonValue
-  images?: Prisma.RoomUpdateimagesInput | string[]
+  featured?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isAvailable?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -818,16 +803,16 @@ export type RoomUpdateWithoutHotelInput = {
 export type RoomUncheckedUpdateWithoutHotelInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
-  type?: Prisma.EnumRoomTypeFieldUpdateOperationsInput | $Enums.RoomType
+  price?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  currency?: Prisma.StringFieldUpdateOperationsInput | string
+  image?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
-  pricePerNight?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
-  maxOccupants?: Prisma.IntFieldUpdateOperationsInput | number
-  bedType?: Prisma.StringFieldUpdateOperationsInput | string
-  roomSize?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  view?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  isAvailable?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  size?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  occupancy?: Prisma.IntFieldUpdateOperationsInput | number
+  bed?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   features?: Prisma.JsonNullValueInput | runtime.InputJsonValue
-  images?: Prisma.RoomUpdateimagesInput | string[]
+  featured?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isAvailable?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -837,16 +822,16 @@ export type RoomUncheckedUpdateWithoutHotelInput = {
 export type RoomUncheckedUpdateManyWithoutHotelInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
-  type?: Prisma.EnumRoomTypeFieldUpdateOperationsInput | $Enums.RoomType
+  price?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  currency?: Prisma.StringFieldUpdateOperationsInput | string
+  image?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
-  pricePerNight?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
-  maxOccupants?: Prisma.IntFieldUpdateOperationsInput | number
-  bedType?: Prisma.StringFieldUpdateOperationsInput | string
-  roomSize?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  view?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  isAvailable?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  size?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  occupancy?: Prisma.IntFieldUpdateOperationsInput | number
+  bed?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   features?: Prisma.JsonNullValueInput | runtime.InputJsonValue
-  images?: Prisma.RoomUpdateimagesInput | string[]
+  featured?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isAvailable?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -859,16 +844,16 @@ export type RoomSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   id?: boolean
   hotelId?: boolean
   name?: boolean
-  type?: boolean
+  price?: boolean
+  currency?: boolean
+  image?: boolean
   description?: boolean
-  pricePerNight?: boolean
-  maxOccupants?: boolean
-  bedType?: boolean
-  roomSize?: boolean
-  view?: boolean
-  isAvailable?: boolean
+  size?: boolean
+  occupancy?: boolean
+  bed?: boolean
   features?: boolean
-  images?: boolean
+  featured?: boolean
+  isAvailable?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   isDeleted?: boolean
@@ -880,16 +865,16 @@ export type RoomSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensio
   id?: boolean
   hotelId?: boolean
   name?: boolean
-  type?: boolean
+  price?: boolean
+  currency?: boolean
+  image?: boolean
   description?: boolean
-  pricePerNight?: boolean
-  maxOccupants?: boolean
-  bedType?: boolean
-  roomSize?: boolean
-  view?: boolean
-  isAvailable?: boolean
+  size?: boolean
+  occupancy?: boolean
+  bed?: boolean
   features?: boolean
-  images?: boolean
+  featured?: boolean
+  isAvailable?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   isDeleted?: boolean
@@ -901,16 +886,16 @@ export type RoomSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensio
   id?: boolean
   hotelId?: boolean
   name?: boolean
-  type?: boolean
+  price?: boolean
+  currency?: boolean
+  image?: boolean
   description?: boolean
-  pricePerNight?: boolean
-  maxOccupants?: boolean
-  bedType?: boolean
-  roomSize?: boolean
-  view?: boolean
-  isAvailable?: boolean
+  size?: boolean
+  occupancy?: boolean
+  bed?: boolean
   features?: boolean
-  images?: boolean
+  featured?: boolean
+  isAvailable?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   isDeleted?: boolean
@@ -922,23 +907,23 @@ export type RoomSelectScalar = {
   id?: boolean
   hotelId?: boolean
   name?: boolean
-  type?: boolean
+  price?: boolean
+  currency?: boolean
+  image?: boolean
   description?: boolean
-  pricePerNight?: boolean
-  maxOccupants?: boolean
-  bedType?: boolean
-  roomSize?: boolean
-  view?: boolean
-  isAvailable?: boolean
+  size?: boolean
+  occupancy?: boolean
+  bed?: boolean
   features?: boolean
-  images?: boolean
+  featured?: boolean
+  isAvailable?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   isDeleted?: boolean
   deletedAt?: boolean
 }
 
-export type RoomOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "hotelId" | "name" | "type" | "description" | "pricePerNight" | "maxOccupants" | "bedType" | "roomSize" | "view" | "isAvailable" | "features" | "images" | "createdAt" | "updatedAt" | "isDeleted" | "deletedAt", ExtArgs["result"]["room"]>
+export type RoomOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "hotelId" | "name" | "price" | "currency" | "image" | "description" | "size" | "occupancy" | "bed" | "features" | "featured" | "isAvailable" | "createdAt" | "updatedAt" | "isDeleted" | "deletedAt", ExtArgs["result"]["room"]>
 export type RoomInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   hotel?: boolean | Prisma.HotelInfoDefaultArgs<ExtArgs>
 }
@@ -958,16 +943,16 @@ export type $RoomPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
     id: string
     hotelId: string
     name: string
-    type: $Enums.RoomType
+    price: runtime.Decimal
+    currency: string
+    image: string
     description: string
-    pricePerNight: runtime.Decimal
-    maxOccupants: number
-    bedType: string
-    roomSize: string | null
-    view: string | null
-    isAvailable: boolean
+    size: string | null
+    occupancy: number
+    bed: string | null
     features: runtime.JsonValue
-    images: string[]
+    featured: boolean
+    isAvailable: boolean
     createdAt: Date
     updatedAt: Date
     isDeleted: boolean
@@ -1399,16 +1384,16 @@ export interface RoomFieldRefs {
   readonly id: Prisma.FieldRef<"Room", 'String'>
   readonly hotelId: Prisma.FieldRef<"Room", 'String'>
   readonly name: Prisma.FieldRef<"Room", 'String'>
-  readonly type: Prisma.FieldRef<"Room", 'RoomType'>
+  readonly price: Prisma.FieldRef<"Room", 'Decimal'>
+  readonly currency: Prisma.FieldRef<"Room", 'String'>
+  readonly image: Prisma.FieldRef<"Room", 'String'>
   readonly description: Prisma.FieldRef<"Room", 'String'>
-  readonly pricePerNight: Prisma.FieldRef<"Room", 'Decimal'>
-  readonly maxOccupants: Prisma.FieldRef<"Room", 'Int'>
-  readonly bedType: Prisma.FieldRef<"Room", 'String'>
-  readonly roomSize: Prisma.FieldRef<"Room", 'String'>
-  readonly view: Prisma.FieldRef<"Room", 'String'>
-  readonly isAvailable: Prisma.FieldRef<"Room", 'Boolean'>
+  readonly size: Prisma.FieldRef<"Room", 'String'>
+  readonly occupancy: Prisma.FieldRef<"Room", 'Int'>
+  readonly bed: Prisma.FieldRef<"Room", 'String'>
   readonly features: Prisma.FieldRef<"Room", 'Json'>
-  readonly images: Prisma.FieldRef<"Room", 'String[]'>
+  readonly featured: Prisma.FieldRef<"Room", 'Boolean'>
+  readonly isAvailable: Prisma.FieldRef<"Room", 'Boolean'>
   readonly createdAt: Prisma.FieldRef<"Room", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"Room", 'DateTime'>
   readonly isDeleted: Prisma.FieldRef<"Room", 'Boolean'>

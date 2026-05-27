@@ -9,8 +9,8 @@
  * 🟢 You can import this file directly.
  */
 import type * as runtime from "@prisma/client/runtime/client"
-import type * as $Enums from "../enums"
-import type * as Prisma from "../internal/prismaNamespace"
+import type * as $Enums from "../enums.js"
+import type * as Prisma from "../internal/prismaNamespace.js"
 
 /**
  * Model ReviewSection
@@ -27,6 +27,7 @@ export type AggregateReviewSection = {
 export type ReviewSectionMinAggregateOutputType = {
   id: string | null
   hotelId: string | null
+  badge: string | null
   title: string | null
   subtitle: string | null
   createdAt: Date | null
@@ -36,6 +37,7 @@ export type ReviewSectionMinAggregateOutputType = {
 export type ReviewSectionMaxAggregateOutputType = {
   id: string | null
   hotelId: string | null
+  badge: string | null
   title: string | null
   subtitle: string | null
   createdAt: Date | null
@@ -45,6 +47,7 @@ export type ReviewSectionMaxAggregateOutputType = {
 export type ReviewSectionCountAggregateOutputType = {
   id: number
   hotelId: number
+  badge: number
   title: number
   subtitle: number
   createdAt: number
@@ -56,6 +59,7 @@ export type ReviewSectionCountAggregateOutputType = {
 export type ReviewSectionMinAggregateInputType = {
   id?: true
   hotelId?: true
+  badge?: true
   title?: true
   subtitle?: true
   createdAt?: true
@@ -65,6 +69,7 @@ export type ReviewSectionMinAggregateInputType = {
 export type ReviewSectionMaxAggregateInputType = {
   id?: true
   hotelId?: true
+  badge?: true
   title?: true
   subtitle?: true
   createdAt?: true
@@ -74,6 +79,7 @@ export type ReviewSectionMaxAggregateInputType = {
 export type ReviewSectionCountAggregateInputType = {
   id?: true
   hotelId?: true
+  badge?: true
   title?: true
   subtitle?: true
   createdAt?: true
@@ -156,6 +162,7 @@ export type ReviewSectionGroupByArgs<ExtArgs extends runtime.Types.Extensions.In
 export type ReviewSectionGroupByOutputType = {
   id: string
   hotelId: string
+  badge: string | null
   title: string
   subtitle: string | null
   createdAt: Date
@@ -186,6 +193,7 @@ export type ReviewSectionWhereInput = {
   NOT?: Prisma.ReviewSectionWhereInput | Prisma.ReviewSectionWhereInput[]
   id?: Prisma.UuidFilter<"ReviewSection"> | string
   hotelId?: Prisma.UuidFilter<"ReviewSection"> | string
+  badge?: Prisma.StringNullableFilter<"ReviewSection"> | string | null
   title?: Prisma.StringFilter<"ReviewSection"> | string
   subtitle?: Prisma.StringNullableFilter<"ReviewSection"> | string | null
   createdAt?: Prisma.DateTimeFilter<"ReviewSection"> | Date | string
@@ -197,6 +205,7 @@ export type ReviewSectionWhereInput = {
 export type ReviewSectionOrderByWithRelationInput = {
   id?: Prisma.SortOrder
   hotelId?: Prisma.SortOrder
+  badge?: Prisma.SortOrderInput | Prisma.SortOrder
   title?: Prisma.SortOrder
   subtitle?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
@@ -211,6 +220,7 @@ export type ReviewSectionWhereUniqueInput = Prisma.AtLeast<{
   AND?: Prisma.ReviewSectionWhereInput | Prisma.ReviewSectionWhereInput[]
   OR?: Prisma.ReviewSectionWhereInput[]
   NOT?: Prisma.ReviewSectionWhereInput | Prisma.ReviewSectionWhereInput[]
+  badge?: Prisma.StringNullableFilter<"ReviewSection"> | string | null
   title?: Prisma.StringFilter<"ReviewSection"> | string
   subtitle?: Prisma.StringNullableFilter<"ReviewSection"> | string | null
   createdAt?: Prisma.DateTimeFilter<"ReviewSection"> | Date | string
@@ -222,6 +232,7 @@ export type ReviewSectionWhereUniqueInput = Prisma.AtLeast<{
 export type ReviewSectionOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
   hotelId?: Prisma.SortOrder
+  badge?: Prisma.SortOrderInput | Prisma.SortOrder
   title?: Prisma.SortOrder
   subtitle?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
@@ -237,6 +248,7 @@ export type ReviewSectionScalarWhereWithAggregatesInput = {
   NOT?: Prisma.ReviewSectionScalarWhereWithAggregatesInput | Prisma.ReviewSectionScalarWhereWithAggregatesInput[]
   id?: Prisma.UuidWithAggregatesFilter<"ReviewSection"> | string
   hotelId?: Prisma.UuidWithAggregatesFilter<"ReviewSection"> | string
+  badge?: Prisma.StringNullableWithAggregatesFilter<"ReviewSection"> | string | null
   title?: Prisma.StringWithAggregatesFilter<"ReviewSection"> | string
   subtitle?: Prisma.StringNullableWithAggregatesFilter<"ReviewSection"> | string | null
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"ReviewSection"> | Date | string
@@ -245,6 +257,7 @@ export type ReviewSectionScalarWhereWithAggregatesInput = {
 
 export type ReviewSectionCreateInput = {
   id?: string
+  badge?: string | null
   title: string
   subtitle?: string | null
   createdAt?: Date | string
@@ -256,6 +269,7 @@ export type ReviewSectionCreateInput = {
 export type ReviewSectionUncheckedCreateInput = {
   id?: string
   hotelId: string
+  badge?: string | null
   title: string
   subtitle?: string | null
   createdAt?: Date | string
@@ -265,6 +279,7 @@ export type ReviewSectionUncheckedCreateInput = {
 
 export type ReviewSectionUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  badge?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   title?: Prisma.StringFieldUpdateOperationsInput | string
   subtitle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -276,6 +291,7 @@ export type ReviewSectionUpdateInput = {
 export type ReviewSectionUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   hotelId?: Prisma.StringFieldUpdateOperationsInput | string
+  badge?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   title?: Prisma.StringFieldUpdateOperationsInput | string
   subtitle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -286,6 +302,7 @@ export type ReviewSectionUncheckedUpdateInput = {
 export type ReviewSectionCreateManyInput = {
   id?: string
   hotelId: string
+  badge?: string | null
   title: string
   subtitle?: string | null
   createdAt?: Date | string
@@ -294,6 +311,7 @@ export type ReviewSectionCreateManyInput = {
 
 export type ReviewSectionUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  badge?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   title?: Prisma.StringFieldUpdateOperationsInput | string
   subtitle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -303,6 +321,7 @@ export type ReviewSectionUpdateManyMutationInput = {
 export type ReviewSectionUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   hotelId?: Prisma.StringFieldUpdateOperationsInput | string
+  badge?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   title?: Prisma.StringFieldUpdateOperationsInput | string
   subtitle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -317,6 +336,7 @@ export type ReviewSectionNullableScalarRelationFilter = {
 export type ReviewSectionCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
   hotelId?: Prisma.SortOrder
+  badge?: Prisma.SortOrder
   title?: Prisma.SortOrder
   subtitle?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
@@ -326,6 +346,7 @@ export type ReviewSectionCountOrderByAggregateInput = {
 export type ReviewSectionMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
   hotelId?: Prisma.SortOrder
+  badge?: Prisma.SortOrder
   title?: Prisma.SortOrder
   subtitle?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
@@ -335,6 +356,7 @@ export type ReviewSectionMaxOrderByAggregateInput = {
 export type ReviewSectionMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
   hotelId?: Prisma.SortOrder
+  badge?: Prisma.SortOrder
   title?: Prisma.SortOrder
   subtitle?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
@@ -391,6 +413,7 @@ export type ReviewSectionUpdateOneWithoutReviewsNestedInput = {
 
 export type ReviewSectionCreateWithoutHotelInput = {
   id?: string
+  badge?: string | null
   title: string
   subtitle?: string | null
   createdAt?: Date | string
@@ -400,6 +423,7 @@ export type ReviewSectionCreateWithoutHotelInput = {
 
 export type ReviewSectionUncheckedCreateWithoutHotelInput = {
   id?: string
+  badge?: string | null
   title: string
   subtitle?: string | null
   createdAt?: Date | string
@@ -425,6 +449,7 @@ export type ReviewSectionUpdateToOneWithWhereWithoutHotelInput = {
 
 export type ReviewSectionUpdateWithoutHotelInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  badge?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   title?: Prisma.StringFieldUpdateOperationsInput | string
   subtitle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -434,6 +459,7 @@ export type ReviewSectionUpdateWithoutHotelInput = {
 
 export type ReviewSectionUncheckedUpdateWithoutHotelInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  badge?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   title?: Prisma.StringFieldUpdateOperationsInput | string
   subtitle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -443,6 +469,7 @@ export type ReviewSectionUncheckedUpdateWithoutHotelInput = {
 
 export type ReviewSectionCreateWithoutReviewsInput = {
   id?: string
+  badge?: string | null
   title: string
   subtitle?: string | null
   createdAt?: Date | string
@@ -453,6 +480,7 @@ export type ReviewSectionCreateWithoutReviewsInput = {
 export type ReviewSectionUncheckedCreateWithoutReviewsInput = {
   id?: string
   hotelId: string
+  badge?: string | null
   title: string
   subtitle?: string | null
   createdAt?: Date | string
@@ -477,6 +505,7 @@ export type ReviewSectionUpdateToOneWithWhereWithoutReviewsInput = {
 
 export type ReviewSectionUpdateWithoutReviewsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  badge?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   title?: Prisma.StringFieldUpdateOperationsInput | string
   subtitle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -487,6 +516,7 @@ export type ReviewSectionUpdateWithoutReviewsInput = {
 export type ReviewSectionUncheckedUpdateWithoutReviewsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   hotelId?: Prisma.StringFieldUpdateOperationsInput | string
+  badge?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   title?: Prisma.StringFieldUpdateOperationsInput | string
   subtitle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -527,6 +557,7 @@ export type ReviewSectionCountOutputTypeCountReviewsArgs<ExtArgs extends runtime
 export type ReviewSectionSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   hotelId?: boolean
+  badge?: boolean
   title?: boolean
   subtitle?: boolean
   createdAt?: boolean
@@ -539,6 +570,7 @@ export type ReviewSectionSelect<ExtArgs extends runtime.Types.Extensions.Interna
 export type ReviewSectionSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   hotelId?: boolean
+  badge?: boolean
   title?: boolean
   subtitle?: boolean
   createdAt?: boolean
@@ -549,6 +581,7 @@ export type ReviewSectionSelectCreateManyAndReturn<ExtArgs extends runtime.Types
 export type ReviewSectionSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   hotelId?: boolean
+  badge?: boolean
   title?: boolean
   subtitle?: boolean
   createdAt?: boolean
@@ -559,13 +592,14 @@ export type ReviewSectionSelectUpdateManyAndReturn<ExtArgs extends runtime.Types
 export type ReviewSectionSelectScalar = {
   id?: boolean
   hotelId?: boolean
+  badge?: boolean
   title?: boolean
   subtitle?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }
 
-export type ReviewSectionOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "hotelId" | "title" | "subtitle" | "createdAt" | "updatedAt", ExtArgs["result"]["reviewSection"]>
+export type ReviewSectionOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "hotelId" | "badge" | "title" | "subtitle" | "createdAt" | "updatedAt", ExtArgs["result"]["reviewSection"]>
 export type ReviewSectionInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   hotel?: boolean | Prisma.HotelInfoDefaultArgs<ExtArgs>
   reviews?: boolean | Prisma.ReviewSection$reviewsArgs<ExtArgs>
@@ -587,6 +621,7 @@ export type $ReviewSectionPayload<ExtArgs extends runtime.Types.Extensions.Inter
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
     hotelId: string
+    badge: string | null
     title: string
     subtitle: string | null
     createdAt: Date
@@ -1018,6 +1053,7 @@ export interface Prisma__ReviewSectionClient<T, Null = never, ExtArgs extends ru
 export interface ReviewSectionFieldRefs {
   readonly id: Prisma.FieldRef<"ReviewSection", 'String'>
   readonly hotelId: Prisma.FieldRef<"ReviewSection", 'String'>
+  readonly badge: Prisma.FieldRef<"ReviewSection", 'String'>
   readonly title: Prisma.FieldRef<"ReviewSection", 'String'>
   readonly subtitle: Prisma.FieldRef<"ReviewSection", 'String'>
   readonly createdAt: Prisma.FieldRef<"ReviewSection", 'DateTime'>

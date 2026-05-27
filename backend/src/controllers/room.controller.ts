@@ -32,8 +32,8 @@ export class RoomController {
   static update = asyncHandler(async (req: Request, res: Response) => {
     const { id } = req.params;
     
-    if (!id) {
-      throw new AppError('Room ID is required.', StatusCodes.BAD_REQUEST, true);
+    if (!id || typeof id !== 'string') {
+      throw new AppError('Room ID is required and must be a string.', StatusCodes.BAD_REQUEST, true);
     }
 
     const parseResult = updateRoomSchema.safeParse(req.body);
@@ -58,8 +58,8 @@ export class RoomController {
   static delete = asyncHandler(async (req: Request, res: Response) => {
     const { id } = req.params;
     
-    if (!id) {
-      throw new AppError('Room ID is required.', StatusCodes.BAD_REQUEST, true);
+    if (!id || typeof id !== 'string') {
+      throw new AppError('Room ID is required and must be a string.', StatusCodes.BAD_REQUEST, true);
     }
 
     await RoomService.deleteRoom(id);
@@ -76,8 +76,8 @@ export class RoomController {
   static getSingle = asyncHandler(async (req: Request, res: Response) => {
     const { id } = req.params;
     
-    if (!id) {
-      throw new AppError('Room ID is required.', StatusCodes.BAD_REQUEST, true);
+    if (!id || typeof id !== 'string') {
+      throw new AppError('Room ID is required and must be a string.', StatusCodes.BAD_REQUEST, true);
     }
 
     const room = await RoomService.getRoom(id);

@@ -17,8 +17,8 @@
 
 import * as runtime from "@prisma/client/runtime/index-browser"
 
-export type * from '../models'
-export type * from './prismaNamespace'
+export type * from '../models.js'
+export type * from './prismaNamespace.js'
 
 export const Decimal = runtime.Decimal
 
@@ -128,12 +128,15 @@ export type HotelInfoScalarFieldEnum = (typeof HotelInfoScalarFieldEnum)[keyof t
 export const HeroSectionScalarFieldEnum = {
   id: 'id',
   hotelId: 'hotelId',
-  title: 'title',
+  badgeText: 'badgeText',
   subtitle: 'subtitle',
-  description: 'description',
-  bgImageUrl: 'bgImageUrl',
-  ctaText: 'ctaText',
-  ctaLink: 'ctaLink',
+  titlePart1: 'titlePart1',
+  titlePart2: 'titlePart2',
+  tagline: 'tagline',
+  ctaBookText: 'ctaBookText',
+  ctaVideoText: 'ctaVideoText',
+  videoUrl: 'videoUrl',
+  backgroundImage: 'backgroundImage',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 } as const
@@ -228,11 +231,10 @@ export type WhyStayFeatureScalarFieldEnum = (typeof WhyStayFeatureScalarFieldEnu
 export const ServiceScalarFieldEnum = {
   id: 'id',
   hotelId: 'hotelId',
-  name: 'name',
+  title: 'title',
   description: 'description',
-  imageUrl: 'imageUrl',
   icon: 'icon',
-  isFeatured: 'isFeatured',
+  order: 'order',
   isAvailable: 'isAvailable',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
@@ -247,16 +249,16 @@ export const RoomScalarFieldEnum = {
   id: 'id',
   hotelId: 'hotelId',
   name: 'name',
-  type: 'type',
+  price: 'price',
+  currency: 'currency',
+  image: 'image',
   description: 'description',
-  pricePerNight: 'pricePerNight',
-  maxOccupants: 'maxOccupants',
-  bedType: 'bedType',
-  roomSize: 'roomSize',
-  view: 'view',
-  isAvailable: 'isAvailable',
+  size: 'size',
+  occupancy: 'occupancy',
+  bed: 'bed',
   features: 'features',
-  images: 'images',
+  featured: 'featured',
+  isAvailable: 'isAvailable',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
   isDeleted: 'isDeleted',
@@ -269,6 +271,7 @@ export type RoomScalarFieldEnum = (typeof RoomScalarFieldEnum)[keyof typeof Room
 export const ReviewSectionScalarFieldEnum = {
   id: 'id',
   hotelId: 'hotelId',
+  badge: 'badge',
   title: 'title',
   subtitle: 'subtitle',
   createdAt: 'createdAt',
@@ -282,11 +285,10 @@ export const ReviewScalarFieldEnum = {
   id: 'id',
   hotelId: 'hotelId',
   reviewSectionId: 'reviewSectionId',
-  reviewerName: 'reviewerName',
-  reviewerAvatarUrl: 'reviewerAvatarUrl',
+  name: 'name',
+  platform: 'platform',
+  text: 'text',
   rating: 'rating',
-  comment: 'comment',
-  stayDate: 'stayDate',
   isApproved: 'isApproved',
   isFeatured: 'isFeatured',
   createdAt: 'createdAt',
