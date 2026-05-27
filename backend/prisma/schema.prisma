@@ -1,8 +1,310 @@
 generator client {
-  provider = "prisma-client"
-  output   = "../generated/prisma"
+  provider     = "prisma-client"
+  output       = "../src/generated/prisma"
+  moduleFormat = "cjs"
 }
 
 datasource db {
   provider = "postgresql"
+}
+
+enum AdminRole {
+  SUPERADMIN
+  EDITOR
+  VIEWER
+}
+
+enum RoomType {
+  STANDARD
+  DELUXE
+  SUITE
+  PRESIDENTIAL
+}
+
+model Admin {
+  id        String    @id @default(uuid()) @db.Uuid
+  email     String    @unique
+  password  String
+  firstName String?
+  lastName  String?
+  role      AdminRole @default(EDITOR)
+  isActive  Boolean   @default(true)
+  
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  isDeleted Boolean   @default(false)
+  deletedAt DateTime?
+
+  @@index([email])
+  @@index([isDeleted])
+}
+
+model HotelInfo {
+  id             String    @id @default(uuid()) @db.Uuid
+  name           String
+  logoUrl        String?
+  address        String
+  email          String
+  phone          String
+  whatsappNumber String?
+  mapEmbedUrl    String?
+  facebookUrl    String?
+  instagramUrl   String?
+  twitterUrl     String?
+  tripAdvisorUrl String?
+
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  isDeleted Boolean   @default(false)
+  deletedAt DateTime?
+
+  // 1-to-1 Page configurations for modular CMS control
+  heroSection     HeroSection?
+  heritageSection HeritageSection?
+  aboutPage       AboutPage?
+  whyStaySection  WhyStaySection?
+  reviewSection   ReviewSection?
+  contactPage     ContactPage?
+
+  // 1-to-many operational relationships
+  services Service[]
+  rooms    Room[]
+  reviews  Review[]
+
+  @@index([isDeleted])
+}
+
+model HeroSection {
+  id          String   @id @default(uuid()) @db.Uuid
+  hotelId     String   @unique @db.Uuid
+  title       String
+  subtitle    String?
+  bgImageUrl  String
+  ctaText     String?
+  ctaLink     String?
+  
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  hotel       HotelInfo @relation(fields: [hotelId], references: [id], onDelete: Cascade)
+
+  @@index([hotelId])
+}
+
+model HeritageSection {
+  id              String   @id @default(uuid()) @db.Uuid
+  hotelId         String   @unique @db.Uuid
+  title           String
+  slogan          String?
+  description     String
+  badgeUrl        String?
+  bgImageUrl      String?
+  establishedYear Int?
+  
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  hotel           HotelInfo @relation(fields: [hotelId], references: [id], onDelete: Cascade)
+
+  @@index([hotelId])
+}
+
+model AboutPage {
+  id           String   @id @default(uuid()) @db.Uuid
+  hotelId      String   @unique @db.Uuid
+  title        String
+  subtitle     String?
+  mainImageUrl String?
+  
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  hotel        HotelInfo @relation(fields: [hotelId], references: [id], onDelete: Cascade)
+  
+  // 1-to-many modular components of the about page
+  stories      StorySection[]
+  events       TimelineEvent[]
+
+  @@index([hotelId])
+}
+
+model StorySection {
+  id           String   @id @default(uuid()) @db.Uuid
+  aboutPageId  String   @db.Uuid
+  title        String
+  description  String
+  imageUrl     String?
+  order        Int      @default(0)
+  alignRight   Boolean  @default(false)
+  
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  aboutPage    AboutPage @relation(fields: [aboutPageId], references: [id], onDelete: Cascade)
+
+  @@index([aboutPageId])
+  @@index([order])
+}
+
+model TimelineEvent {
+  id          String   @id @default(uuid()) @db.Uuid
+  aboutPageId String   @db.Uuid
+  year        String
+  title       String
+  description String
+  order       Int      @default(0)
+  
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  aboutPage   AboutPage @relation(fields: [aboutPageId], references: [id], onDelete: Cascade)
+
+  @@index([aboutPageId])
+  @@index([order])
+}
+
+model WhyStaySection {
+  id        String   @id @default(uuid()) @db.Uuid
+  hotelId   String   @unique @db.Uuid
+  title     String
+  subtitle  String?
+  
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  hotel     HotelInfo @relation(fields: [hotelId], references: [id], onDelete: Cascade)
+  features  WhyStayFeature[]
+
+  @@index([hotelId])
+}
+
+model WhyStayFeature {
+  id               String   @id @default(uuid()) @db.Uuid
+  whyStaySectionId String   @db.Uuid
+  icon             String
+  title            String
+  description      String
+  order            Int      @default(0)
+  
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+
+  whyStaySection   WhyStaySection @relation(fields: [whyStaySectionId], references: [id], onDelete: Cascade)
+
+  @@index([whyStaySectionId])
+  @@index([order])
+}
+
+model Service {
+  id          String    @id @default(uuid()) @db.Uuid
+  hotelId     String    @db.Uuid
+  name        String
+  description String
+  imageUrl    String?
+  icon        String?
+  isFeatured  Boolean   @default(false)
+  isAvailable Boolean   @default(true)
+  
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  isDeleted   Boolean   @default(false)
+  deletedAt   DateTime?
+
+  hotel       HotelInfo @relation(fields: [hotelId], references: [id], onDelete: Cascade)
+
+  @@index([hotelId])
+  @@index([isFeatured])
+  @@index([isAvailable])
+  @@index([isDeleted])
+}
+
+model Room {
+  id            String    @id @default(uuid()) @db.Uuid
+  hotelId       String    @db.Uuid
+  name          String
+  type          RoomType  @default(STANDARD)
+  description   String
+  pricePerNight Decimal   @db.Decimal(10, 2)
+  maxOccupants  Int       @default(2)
+  bedType       String
+  roomSize      String?
+  view          String?
+  isAvailable   Boolean   @default(true)
+  features      Json      @default("[]")
+  images        String[]
+  
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+  isDeleted     Boolean   @default(false)
+  deletedAt     DateTime?
+
+  hotel         HotelInfo @relation(fields: [hotelId], references: [id], onDelete: Cascade)
+
+  @@index([hotelId])
+  @@index([type])
+  @@index([isAvailable])
+  @@index([isDeleted])
+}
+
+model ReviewSection {
+  id        String   @id @default(uuid()) @db.Uuid
+  hotelId   String   @unique @db.Uuid
+  title     String
+  subtitle  String?
+  
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  hotel     HotelInfo @relation(fields: [hotelId], references: [id], onDelete: Cascade)
+  reviews   Review[]
+
+  @@index([hotelId])
+}
+
+model Review {
+  id              String    @id @default(uuid()) @db.Uuid
+  hotelId         String    @db.Uuid
+  reviewSectionId String?   @db.Uuid
+  reviewerName    String
+  reviewerAvatarUrl String?
+  rating          Int       @default(5)
+  comment         String
+  stayDate        DateTime?
+  isApproved      Boolean   @default(false)
+  isFeatured      Boolean   @default(false)
+  
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @updatedAt
+  isDeleted       Boolean   @default(false)
+  deletedAt       DateTime?
+
+  hotel           HotelInfo @relation(fields: [hotelId], references: [id], onDelete: Cascade)
+  reviewSection   ReviewSection? @relation(fields: [reviewSectionId], references: [id], onDelete: SetNull)
+
+  @@index([hotelId])
+  @@index([reviewSectionId])
+  @@index([rating])
+  @@index([isApproved])
+  @@index([isFeatured])
+  @@index([isDeleted])
+}
+
+model ContactPage {
+  id           String   @id @default(uuid()) @db.Uuid
+  hotelId      String   @unique @db.Uuid
+  title        String
+  subtitle     String?
+  description  String?
+  phone        String?
+  email        String?
+  whatsappLink String?
+  latitude     Float?
+  longitude    Float?
+  
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  hotel        HotelInfo @relation(fields: [hotelId], references: [id], onDelete: Cascade)
+
+  @@index([hotelId])
 }
