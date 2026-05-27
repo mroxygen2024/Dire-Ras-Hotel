@@ -41,8 +41,8 @@ export class ReviewController {
    */
   static adminGetReview = asyncHandler(async (req: Request, res: Response) => {
     const { id } = req.params;
-    if (!id) {
-      throw new AppError('Review ID is required.', StatusCodes.BAD_REQUEST, true);
+    if (!id || typeof id !== 'string') {
+      throw new AppError('Review ID is required and must be a string.', StatusCodes.BAD_REQUEST, true);
     }
 
     const result = await ReviewService.getReview(id);
@@ -92,8 +92,8 @@ export class ReviewController {
    */
   static adminUpdateReview = asyncHandler(async (req: Request, res: Response) => {
     const { id } = req.params;
-    if (!id) {
-      throw new AppError('Review ID is required.', StatusCodes.BAD_REQUEST, true);
+    if (!id || typeof id !== 'string') {
+      throw new AppError('Review ID is required and must be a string.', StatusCodes.BAD_REQUEST, true);
     }
 
     const parseResult = updateReviewSchema.safeParse(req.body);
@@ -117,8 +117,8 @@ export class ReviewController {
    */
   static adminDeleteReview = asyncHandler(async (req: Request, res: Response) => {
     const { id } = req.params;
-    if (!id) {
-      throw new AppError('Review ID is required.', StatusCodes.BAD_REQUEST, true);
+    if (!id || typeof id !== 'string') {
+      throw new AppError('Review ID is required and must be a string.', StatusCodes.BAD_REQUEST, true);
     }
 
     await ReviewService.deleteReview(id);

@@ -10,6 +10,8 @@ import hotelInfoRoutes from './routes/hotel-info.routes';
 import heroSectionRoutes from './routes/hero-section.routes';
 import roomRoutes from './routes/room.routes';
 import serviceRoutes from './routes/service.routes';
+import reviewRoutes from './routes/review.routes';
+import contactPageRoutes from './routes/contact-page.routes';
 
 const app: Application = express();
 
@@ -64,6 +66,12 @@ apiRouter.use('/', roomRoutes);
 
 // Register service routes
 apiRouter.use('/', serviceRoutes);
+
+// Register review routes
+apiRouter.use('/', reviewRoutes);
+
+// Register contact page routes
+apiRouter.use('/', contactPageRoutes);
 
 // Register all API routes with /api prefix
 app.use('/api', apiRouter);

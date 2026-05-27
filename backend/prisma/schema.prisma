@@ -1,7 +1,8 @@
 generator client {
-  provider     = "prisma-client"
-  output       = "../src/generated/prisma"
-  moduleFormat = "cjs"
+  provider            = "prisma-client"
+  output              = "../src/generated/prisma"
+  moduleFormat        = "cjs"
+  importFileExtension = "ts"
 }
 
 datasource db {
@@ -300,6 +301,13 @@ model ContactPage {
   hotelId      String   @unique @db.Uuid
   title        String
   subtitle     String?
+  introText    String?
+  formTitle    String?
+  nameLabel    String?
+  emailLabel   String?
+  phoneLabel   String?
+  msgLabel     String?
+  submitBtn    String?
   description  String?
   phone        String?
   email        String?
