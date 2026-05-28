@@ -1,7 +1,6 @@
-import React from 'react';
 import RoomCard from './RoomCard';
 
-export default function RoomsSection({ rooms, loading }) {
+export default function RoomsSection({ rooms, loading, whatsappNumber }) {
   if (!loading && (!rooms || rooms.length === 0)) return null;
 
   const displayRooms = loading 
@@ -40,7 +39,7 @@ export default function RoomsSection({ rooms, loading }) {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 sm:gap-6 lg:gap-8">
           {displayRooms.map((room) => (
             <div key={room.id} className="h-full">
-              <RoomCard room={room} loading={loading} />
+              <RoomCard room={room} loading={loading} whatsappNumber={whatsappNumber} />
             </div>
           ))}
         </div>

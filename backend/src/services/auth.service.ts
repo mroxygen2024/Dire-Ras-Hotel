@@ -60,7 +60,7 @@ export class AuthService {
     
     if (adminCount === 0) {
       const defaultEmail = 'admin@rashotel.com';
-      const defaultPassword = 'SuperRasHotel2026!';
+      const defaultPassword = 'admin123';
       const hashedPassword = await PasswordUtil.hash(defaultPassword);
 
       await prisma.admin.create({

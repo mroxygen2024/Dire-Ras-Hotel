@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default function RoomCard({ room, loading }) {
+export default function RoomCard({ room, loading, whatsappNumber }) {
   if (loading) {
     return (
       <div 
@@ -23,8 +23,10 @@ export default function RoomCard({ room, loading }) {
 
   const handleBookRoom = (e) => {
     e.stopPropagation();
+    const digits = (whatsappNumber || '').replace(/\D+/g, '');
+    if (!digits) return;
     const message = `Hello Dire Dawa Ras Hotel, I am interested in reserving the "${name}". Please let me know room availability.`;
-    const url = `https://wa.me/251968094406?text=${encodeURIComponent(message)}`;
+    const url = `https://wa.me/${digits}?text=${encodeURIComponent(message)}`;
     window.open(url, '_blank', 'noopener,noreferrer');
   };
 

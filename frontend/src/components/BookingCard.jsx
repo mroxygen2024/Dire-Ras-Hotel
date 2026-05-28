@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { Calendar, User, ChevronDown, Plus, Minus } from 'lucide-react';
 
-export default function BookingCard({ loading }) {
+export default function BookingCard({ loading, whatsappNumber }) {
   const getTodayString = () => {
     const today = new Date();
     const yyyy = today.getFullYear();
@@ -75,6 +75,8 @@ export default function BookingCard({ loading }) {
 
   const handleCheckAvailability = (e) => {
     e.preventDefault();
+    const digits = (whatsappNumber || '').replace(/\D+/g, '');
+    if (!digits) return;
     let message = "Hello Dire Dawa Ras Hotel, I would like to reserve a room.";
     const details = [];
     if (checkIn) details.push(`Check-in: ${formatDate(checkIn)}`);
@@ -85,7 +87,7 @@ export default function BookingCard({ loading }) {
       message += ` (${details.join(', ')})`;
     }
     
-    const url = `https://wa.me/251968094406?text=${encodeURIComponent(message)}`;
+    const url = `https://wa.me/${digits}?text=${encodeURIComponent(message)}`;
     window.open(url, '_blank', 'noopener,noreferrer');
   };
 

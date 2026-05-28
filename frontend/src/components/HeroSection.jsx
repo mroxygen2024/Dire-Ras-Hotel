@@ -1,7 +1,7 @@
 import React from 'react';
 import { Play } from 'lucide-react';
 
-export default function HeroSection({ heroData, loading }) {
+export default function HeroSection({ heroData, loading, whatsappNumber }) {
   if (loading) {
     return (
       <section
@@ -37,6 +37,10 @@ export default function HeroSection({ heroData, loading }) {
   if (!heroData) return null;
 
   const { badgeText, subtitle, titlePart1, titlePart2, tagline, ctaBookText, ctaVideoText, videoUrl, backgroundImage } = heroData;
+  const whatsappDigits = (whatsappNumber || '').replace(/\D+/g, '');
+  const bookingUrl = whatsappDigits
+    ? `https://wa.me/${whatsappDigits}?text=Hello%20Dire%20Dawa%20Ras%20Hotel%2C%20I%20would%20like%20to%20reserve%20a%20room.`
+    : null;
 
   return (
     <section
@@ -88,8 +92,9 @@ export default function HeroSection({ heroData, loading }) {
 
         {/* 5. CTA Buttons (Touch-friendly large padding & scaling sizes) */}
         <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 w-full sm:w-auto">
+          {bookingUrl ? (
           <a
-            href="https://wa.me/251968094406?text=Hello%20Dire%20Dawa%20Ras%20Hotel%2C%20I%20would%20like%20to%20reserve%20a%20room."
+            href={bookingUrl}
             target="_blank"
             rel="noopener noreferrer"
             className="text-center bg-gold hover:bg-white text-primary border border-gold hover:border-white font-sans text-xs font-bold tracking-widest px-6 py-4 rounded-xl shadow-lg hover:text-primary transition-all duration-300 uppercase whitespace-nowrap"
@@ -97,6 +102,7 @@ export default function HeroSection({ heroData, loading }) {
           >
             {ctaBookText}
           </a>
+          ) : null}
           <a
             href={videoUrl}
             target="_blank"

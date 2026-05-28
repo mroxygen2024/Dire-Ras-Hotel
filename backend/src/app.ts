@@ -14,6 +14,7 @@ import roomRoutes from './routes/room.routes';
 import serviceRoutes from './routes/service.routes';
 import reviewRoutes from './routes/review.routes';
 import contactPageRoutes from './routes/contact-page.routes';
+import contentRoutes from './routes/content.routes';
 
 const app: Application = express();
 
@@ -113,6 +114,9 @@ apiRouter.use('/', reviewRoutes);
 
 // Register contact page routes
 apiRouter.use('/', contactPageRoutes);
+
+// Register content management routes (about/heritage/why-stay)
+apiRouter.use('/', contentRoutes);
 
 // Register all API routes with /api prefix
 app.use('/api', apiRouter);

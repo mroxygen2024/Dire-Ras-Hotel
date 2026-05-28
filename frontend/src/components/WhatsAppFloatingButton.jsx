@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-export default function WhatsAppFloatingButton() {
+export default function WhatsAppFloatingButton({ whatsappNumber }) {
   const [showTooltip, setShowTooltip] = useState(false);
 
   useEffect(() => {
@@ -10,7 +10,10 @@ export default function WhatsAppFloatingButton() {
     return () => clearTimeout(timer);
   }, []);
 
-  const whatsappUrl = "https://wa.me/251968094406?text=Hello%20Dire%20Dawa%20Ras%20Hotel%2C%20I%20would%20like%20to%20reserve%20a%20room.";
+  const digits = (whatsappNumber || '').replace(/\D+/g, '');
+  const whatsappUrl = digits
+    ? `https://wa.me/${digits}?text=Hello%20Dire%20Dawa%20Ras%20Hotel%2C%20I%20would%20like%20to%20reserve%20a%20room.`
+    : null;
 
   return (
     <div className="fixed bottom-6 right-6 sm:bottom-8 sm:right-8 z-50 flex items-center justify-end pointer-events-none">
@@ -45,6 +48,7 @@ export default function WhatsAppFloatingButton() {
       </div>
 
       {/* Floating Button */}
+      {whatsappUrl ? (
       <a
         href={whatsappUrl}
         target="_blank"
@@ -94,6 +98,7 @@ export default function WhatsAppFloatingButton() {
           />
         </svg>
       </a>
+      ) : null}
     </div>
   );
 }

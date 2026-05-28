@@ -14,8 +14,33 @@ export default function ContactSection({ contactData, hotelInfo, loading }) {
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
+  const whatsappDigits = (hotelInfo?.whatsappNumber || '').replace(/\D+/g, '');
+  const defaultWhatsappUrl = whatsappDigits ? `https://wa.me/${whatsappDigits}` : '';
+
+  const pageData = {
+    title: contactData?.title || 'Connect With Us',
+    subtitle: contactData?.subtitle || 'Plan Your Visit to Our Historic Oasis',
+    introText:
+      contactData?.introText ||
+      'Whether you wish to book a room, plan an unforgettable traditional wedding, or host a corporate event in Dire Dawa, our experienced hospitality team is here to assist. Fill out the contact form below or reach out via WhatsApp or call us directly.',
+    form: {
+      title: contactData?.formTitle || 'Send a Message',
+      nameLabel: contactData?.nameLabel || 'Full Name',
+      emailLabel: contactData?.emailLabel || 'Email Address',
+      phoneLabel: contactData?.phoneLabel || 'Phone Number',
+      msgLabel: contactData?.msgLabel || 'Message / Booking Inquiry',
+      submitBtn: contactData?.submitBtn || 'Submit via WhatsApp Chat',
+    },
+  };
+
+  const whatsappUrlBase = contactData?.whatsappLink || defaultWhatsappUrl;
+  const mapEmbedSrc =
+    hotelInfo?.mapEmbedUrl ||
+    'https://maps.google.com/maps?q=Dire%20Dawa%20Ras%20Hotel,%20Dire%20Dawa,%20Ethiopia&t=&z=15&ie=UTF8&iwloc=&output=embed';
+
   const handleSubmit = (e) => {
     e.preventDefault();
+    if (!whatsappUrlBase) return;
     
     // Construct rich text message for WhatsApp submission
     let messageText = `Hello Dire Dawa Ras Hotel,\n\nI have a new inquiry:\n`;
@@ -25,7 +50,8 @@ export default function ContactSection({ contactData, hotelInfo, loading }) {
     messageText += `\nMessage:\n"${formData.message}"`;
 
     const encodedText = encodeURIComponent(messageText);
-    const whatsappUrl = `https://wa.me/251968094406?text=${encodedText}`;
+    const separator = whatsappUrlBase.includes('?') ? '&' : '?';
+    const whatsappUrl = `${whatsappUrlBase}${separator}text=${encodedText}`;
     
     // Open in new tab
     window.open(whatsappUrl, '_blank', 'noopener,noreferrer');
@@ -79,20 +105,6 @@ export default function ContactSection({ contactData, hotelInfo, loading }) {
       actionUrl: `mailto:${hotelInfo?.email || 'ddrashotel1@gmail.com'}`,
     },
   ];
-
-  const pageData = contactData || {
-    title: "Connect With Us",
-    subtitle: "Plan Your Visit to Our Historic Oasis",
-    introText: "Whether you wish to book a room, plan an unforgettable traditional wedding, or host a corporate event in Dire Dawa, our experienced hospitality team is here to assist. Fill out the contact form below or reach out via WhatsApp or call us directly.",
-    form: {
-      title: "Send a Message",
-      nameLabel: "Full Name",
-      emailLabel: "Email Address",
-      phoneLabel: "Phone Number",
-      msgLabel: "Message / Booking Inquiry",
-      submitBtn: "Submit via WhatsApp Chat"
-    }
-  };
 
   return (
     <section className="py-16 sm:py-24 bg-[#F8F6F2] border-t border-gold/10" id="contact">
@@ -271,7 +283,7 @@ export default function ContactSection({ contactData, hotelInfo, loading }) {
               {/* Map Iframe */}
               <iframe
                 title="Google Maps Location of Dire Dawa Ras Hotel"
-                src="https://maps.google.com/maps?q=Dire%20Dawa%20Ras%20Hotel,%20Dire%20Dawa,%20Ethiopia&t=&z=15&ie=UTF8&iwloc=&output=embed"
+                src={mapEmbedSrc}
                 width="100%"
                 height="100%"
                 style={{ border: 0 }}

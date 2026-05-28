@@ -12,6 +12,12 @@ export const updateHotelInfoSchema = z.object({
   heroDescription: z.string().optional().nullable(),
   establishedText: z.string().optional().nullable(),
   logo: z.string().optional().nullable(), // Represents logoUrl in DB
+  mapEmbedUrl: z.string().optional().nullable(),
+  whatsappNumber: z.string().optional().nullable(),
+  facebookUrl: z.string().optional().nullable(),
+  instagramUrl: z.string().optional().nullable(),
+  twitterUrl: z.string().optional().nullable(),
+  tripAdvisorUrl: z.string().optional().nullable(),
 });
 
 export type UpdateHotelInfoInput = z.infer<typeof updateHotelInfoSchema>;

@@ -4,6 +4,11 @@ import { Menu, X, Phone, MessageSquare } from 'lucide-react';
 export default function Navbar({ hotelInfo, navLinks, activePage, setActivePage, loading }) {
   const [isOpen, setIsOpen] = useState(false);
 
+  const whatsappDigits = (hotelInfo?.whatsappNumber || '').replace(/\D+/g, '');
+  const bookingWhatsappUrl = whatsappDigits
+    ? `https://wa.me/${whatsappDigits}?text=Hello%20Dire%20Dawa%20Ras%20Hotel%2C%20I%20would%20like%20to%20reserve%20a%20room.`
+    : null;
+
   const toggleMenu = () => setIsOpen(!isOpen);
 
   const handleNavClick = (e, item) => {
@@ -122,15 +127,17 @@ export default function Navbar({ hotelInfo, navLinks, activePage, setActivePage,
               <span className="font-bold tracking-wide text-white/90">{hotelInfo.phone}</span>
             </a>
             
-            <a
-              href="https://wa.me/251968094406?text=Hello%20Dire%20Dawa%20Ras%20Hotel%2C%20I%20would%20like%20to%20reserve%20a%20room."
-              target="_blank"
-              rel="noopener noreferrer"
-              className="bg-gold hover:bg-white text-primary hover:text-primary border border-gold hover:border-white font-sans text-xs font-bold tracking-widest px-5 py-2.5 rounded-lg transition-all duration-300 uppercase shadow-md"
-              id="book-btn-desktop"
-            >
-              Book Now
-            </a>
+            {bookingWhatsappUrl ? (
+              <a
+                href={bookingWhatsappUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="bg-gold hover:bg-white text-primary hover:text-primary border border-gold hover:border-white font-sans text-xs font-bold tracking-widest px-5 py-2.5 rounded-lg transition-all duration-300 uppercase shadow-md"
+                id="book-btn-desktop"
+              >
+                Book Now
+              </a>
+            ) : null}
           </div>
 
           {/* Mobile Right: Phone + Hamburger Button */}
@@ -207,16 +214,18 @@ export default function Navbar({ hotelInfo, navLinks, activePage, setActivePage,
               <span className="text-white/95 font-bold">{hotelInfo.phone}</span>
             </a>
             
-            <a
-              href="https://wa.me/251968094406?text=Hello%20Dire%20Dawa%20Ras%20Hotel%2C%20I%20would%20like%20to%20reserve%20a%20room."
-              target="_blank"
-              rel="noopener noreferrer"
-              onClick={toggleMenu}
-              className="w-full text-center bg-gold hover:bg-white text-primary hover:text-primary font-sans text-xs font-bold tracking-widest py-3.5 rounded-lg transition-all duration-300 uppercase shadow-md"
-              id="book-btn-drawer"
-            >
-              Book Now
-            </a>
+            {bookingWhatsappUrl ? (
+              <a
+                href={bookingWhatsappUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={toggleMenu}
+                className="w-full text-center bg-gold hover:bg-white text-primary hover:text-primary font-sans text-xs font-bold tracking-widest py-3.5 rounded-lg transition-all duration-300 uppercase shadow-md"
+                id="book-btn-drawer"
+              >
+                Book Now
+              </a>
+            ) : null}
           </div>
 
         </div>

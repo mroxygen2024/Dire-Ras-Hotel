@@ -41,21 +41,25 @@ model Admin {
 }
 
 model HotelInfo {
-  id              String    @id @default(uuid()) @db.Uuid
-  name            String
-  logoUrl         String?
-  tagline         String?
-  address         String
-  email           String
-  phone           String
-  phone2          String?
-  whatsappNumber  String?
-  establishedText String?
-  mapEmbedUrl     String?
-  facebookUrl     String?
-  instagramUrl    String?
-  twitterUrl      String?
-  tripAdvisorUrl  String?
+  id                    String    @id @default(uuid()) @db.Uuid
+  name                  String
+  logoUrl               String?
+  tagline               String?
+  address               String
+  email                 String
+  phone                 String
+  phone2                String?
+  whatsappNumber        String?
+  establishedText       String?
+  mapEmbedUrl           String?
+  facebookUrl           String?
+  instagramUrl          String?
+  twitterUrl            String?
+  tripAdvisorUrl        String?
+  
+  // Footer configuration fields
+  footerTagline         String?   @default("Serving eastern Ethiopia with legacy hospitality")
+  footerDescription     String?   @default("Dire Dawa Ras Hotel is a legendary monument of hospitality and landmark luxury.")
 
   createdAt DateTime  @default(now())
   updatedAt DateTime  @updatedAt
@@ -71,9 +75,11 @@ model HotelInfo {
   contactPage     ContactPage?
 
   // 1-to-many operational relationships
-  services Service[]
-  rooms    Room[]
-  reviews  Review[]
+  services       Service[]
+  rooms          Room[]
+  reviews        Review[]
+  navigationMenu NavigationMenu?
+  sectionConfigs SectionConfig[]
 
   @@index([isDeleted])
 }
@@ -321,4 +327,55 @@ model ContactPage {
   hotel        HotelInfo @relation(fields: [hotelId], references: [id], onDelete: Cascade)
 
   @@index([hotelId])
+}
+
+model NavigationMenu {
+  id        String   @id @default(uuid()) @db.Uuid
+  hotelId   String   @unique @db.Uuid
+  isActive  Boolean  @default(true)
+  
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  hotel     HotelInfo @relation(fields: [hotelId], references: [id], onDelete: Cascade)
+  items     NavigationItem[]
+
+  @@index([hotelId])
+}
+
+model NavigationItem {
+  id              String   @id @default(uuid()) @db.Uuid
+  navigationMenuId String @db.Uuid
+  label           String
+  page            String   // 'home', 'about', 'rooms', 'contact'
+  section         String?  // Optional section for same-page navigation
+  order           Int      @default(0)
+  isVisible       Boolean  @default(true)
+  
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  navigationMenu  NavigationMenu @relation(fields: [navigationMenuId], references: [id], onDelete: Cascade)
+
+  @@index([navigationMenuId])
+  @@index([order])
+}
+
+model SectionConfig {
+  id        String   @id @default(uuid()) @db.Uuid
+  hotelId   String   @db.Uuid
+  sectionKey String  // 'rooms', 'why-stay', 'reviews', 'services', 'about' etc.
+  badge     String?
+  title     String?
+  subtitle  String?
+  description String?
+  
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  hotel     HotelInfo @relation(fields: [hotelId], references: [id], onDelete: Cascade)
+
+  @@unique([hotelId, sectionKey])
+  @@index([hotelId])
+  @@index([sectionKey])
 }

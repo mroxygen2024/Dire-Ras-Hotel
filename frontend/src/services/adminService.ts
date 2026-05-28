@@ -18,7 +18,38 @@ export interface HotelInfoData {
   heroTitle: string;
   heroSubtitle?: string;
   heroDescription?: string;
+  mapEmbedUrl?: string;
+  whatsappNumber?: string;
+  facebookUrl?: string;
+  instagramUrl?: string;
+  twitterUrl?: string;
+  tripAdvisorUrl?: string;
   updatedAt?: string;
+}
+
+export interface HeritageSectionData {
+  id?: string;
+  title: string;
+  slogan?: string;
+  description: string;
+  badgeUrl?: string;
+  bgImageUrl?: string;
+  establishedYear?: number | null;
+}
+
+export interface WhyStayFeatureData {
+  id?: string;
+  icon: string;
+  title: string;
+  description: string;
+  order: number;
+}
+
+export interface WhyStaySectionData {
+  id?: string;
+  title: string;
+  subtitle?: string;
+  features: WhyStayFeatureData[];
 }
 
 export interface HeroSectionData {
@@ -118,72 +149,7 @@ export interface ContactPageData {
 }
 
 // ==========================================
-// 2. Mock Database Fallback for About & Heritage
-// ==========================================
-const MOCK_ABOUT_KEY = 'cms_mock_about_heritage';
-
-const getMockAboutData = (): AboutPageData => {
-  const data = localStorage.getItem(MOCK_ABOUT_KEY);
-  if (data) return JSON.parse(data);
-
-  // Set default seeder data for About & Heritage
-  const defaultData: AboutPageData = {
-    title: 'A Legacy of Imperial Elegance in Dire Dawa',
-    subtitle: 'Dire Dawa Ras Hotel stands as a glorious testament to Ethiopian history, hospitality, and timeless heritage.',
-    mainImageUrl: 'https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&w=1200&q=80',
-    stories: [
-      {
-        id: 'story-1',
-        title: 'Founded by Royal Decree',
-        description: 'Established in the mid-20th century, the Dire Dawa Ras Hotel was built to cater to travelers on the historic Franco-Ethiopian railway, representing the luxury gateway of its era.',
-        imageUrl: 'https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=800&q=80',
-        order: 0,
-        alignRight: false,
-      },
-      {
-        id: 'story-2',
-        title: 'Where History Meets Comfort',
-        description: 'Over the decades, we have hosted nobility, diplomats, and international travelers, providing authentic Ethiopian hospitality wrapped in majestic imperial architecture.',
-        imageUrl: 'https://images.unsplash.com/photo-1582719508461-905c673771fd?auto=format&fit=crop&w=800&q=80',
-        order: 1,
-        alignRight: true,
-      }
-    ],
-    events: [
-      {
-        id: 'event-1',
-        year: '1945',
-        title: 'The Blueprint and Foundation',
-        description: 'Planned during the peak railroad era to serve international merchants.',
-        order: 0,
-      },
-      {
-        id: 'event-2',
-        year: '1958',
-        title: 'Grand Royal Opening',
-        description: 'Inaugurated with historic grandeur, welcoming distinguished guests.',
-        order: 1,
-      },
-      {
-        id: 'event-3',
-        year: '2026',
-        title: 'Premium Modernization',
-        description: 'Updated with luxury amenities while preserving the royal design essence.',
-        order: 2,
-      }
-    ]
-  };
-
-  localStorage.setItem(MOCK_ABOUT_KEY, JSON.stringify(defaultData));
-  return defaultData;
-};
-
-const saveMockAboutData = (data: AboutPageData) => {
-  localStorage.setItem(MOCK_ABOUT_KEY, JSON.stringify(data));
-};
-
-// ==========================================
-// 3. API Services Definitions
+// 2. API Services Definitions
 // ==========================================
 export const adminService = {
   // --- Auth Services ---
@@ -300,24 +266,34 @@ export const adminService = {
     return res.data.data;
   },
 
-  // --- About & Heritage Services (Mock layer with API support ready) ---
+  // --- About & Heritage Services ---
   getAboutHeritage: async (): Promise<AboutPageData> => {
-    try {
-      const res = await api.get('/public/about-page');
-      return res.data.data;
-    } catch {
-      // Fallback seamlessly to local mock storage
-      return getMockAboutData();
-    }
+    const res = await api.get('/public/about-page');
+    return res.data.data;
   },
 
   updateAboutHeritage: async (data: AboutPageData): Promise<AboutPageData> => {
-    try {
-      const res = await api.put('/admin/about-page', data);
-      return res.data.data;
-    } catch {
-      saveMockAboutData(data);
-      return data;
-    }
-  }
+    const res = await api.put('/admin/about-page', data);
+    return res.data.data;
+  },
+
+  getHeritageSection: async (): Promise<HeritageSectionData> => {
+    const res = await api.get('/public/heritage-section');
+    return res.data.data;
+  },
+
+  updateHeritageSection: async (data: HeritageSectionData): Promise<HeritageSectionData> => {
+    const res = await api.put('/admin/heritage-section', data);
+    return res.data.data;
+  },
+
+  getWhyStaySection: async (): Promise<WhyStaySectionData> => {
+    const res = await api.get('/public/why-stay-section');
+    return res.data.data;
+  },
+
+  updateWhyStaySection: async (data: WhyStaySectionData): Promise<WhyStaySectionData> => {
+    const res = await api.put('/admin/why-stay-section', data);
+    return res.data.data;
+  },
 };

@@ -1,7 +1,11 @@
 import React from 'react';
-import { Phone, Mail, MapPin, Facebook, Youtube } from 'lucide-react';
+import { Phone, Mail, MapPin, Facebook, Globe } from 'lucide-react';
 
 export default function Footer({ hotelInfo, navLinks, activePage, setActivePage, loading }) {
+  const whatsappDigits = (hotelInfo?.whatsappNumber || '').replace(/\D+/g, '');
+  const whatsappLink = whatsappDigits ? `https://wa.me/${whatsappDigits}` : null;
+  const currentYear = new Date().getFullYear();
+
   const handleNavClick = (e, item) => {
     e.preventDefault();
     if (setActivePage && item.page) {
@@ -111,33 +115,35 @@ export default function Footer({ hotelInfo, navLinks, activePage, setActivePage,
             {/* Social Badges */}
             <div className="flex space-x-3.5">
               <a 
-                href="https://www.tiktok.com/@ras_dire" 
+                href={hotelInfo?.instagramUrl || '#'} 
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-9 h-9 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-white hover:bg-gold hover:text-primary hover:border-gold transition-all duration-300 transform hover:scale-105"
-                aria-label="TikTok"
+                aria-label="Instagram"
               >
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="w-4 h-4">
-                  <path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5" />
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-4 h-4">
+                  <rect x="3" y="3" width="18" height="18" rx="4" ry="4" />
+                  <circle cx="12" cy="12" r="4" />
+                  <circle cx="17.5" cy="6.5" r="0.5" fill="currentColor" stroke="none" />
                 </svg>
               </a>
               <a 
-                href="https://www.youtube.com/@rashoteldiredawa" 
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-9 h-9 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-white hover:bg-gold hover:text-primary hover:border-gold transition-all duration-300 transform hover:scale-105"
-                aria-label="YouTube"
-              >
-                <Youtube className="w-4 h-4" />
-              </a>
-              <a 
-                href="https://www.facebook.com/profile.php?id=61570400957998" 
+                href={hotelInfo?.facebookUrl || '#'} 
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-9 h-9 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-white hover:bg-gold hover:text-primary hover:border-gold transition-all duration-300 transform hover:scale-105"
                 aria-label="Facebook"
               >
                 <Facebook className="w-4 h-4" />
+              </a>
+              <a 
+                href={hotelInfo?.tripAdvisorUrl || '#'} 
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-9 h-9 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-white hover:bg-gold hover:text-primary hover:border-gold transition-all duration-300 transform hover:scale-105"
+                aria-label="TripAdvisor"
+              >
+                <Globe className="w-4 h-4" />
               </a>
             </div>
 
@@ -147,13 +153,15 @@ export default function Footer({ hotelInfo, navLinks, activePage, setActivePage,
                 <Phone className="w-4 h-4 text-gold flex-shrink-0" />
                 <span>{hotelInfo.phone}</span>
               </a>
-              <a href="https://wa.me/251968094406" target="_blank" rel="noopener noreferrer" className="flex items-center space-x-3 text-xs text-white/85 hover:text-gold transition-colors font-medium">
+              {whatsappLink ? (
+              <a href={whatsappLink} target="_blank" rel="noopener noreferrer" className="flex items-center space-x-3 text-xs text-white/85 hover:text-gold transition-colors font-medium">
                 <svg viewBox="0 0 100 100" className="w-4 h-4 text-gold flex-shrink-0" fill="none" stroke="currentColor" strokeWidth="6" strokeLinecap="round" strokeLinejoin="round">
                   <circle cx="50" cy="50" r="43" strokeWidth="4" strokeDasharray="3 3" />
                   <path d="M50 42 C38.4 42 29 50.4 29 60.8 C29 64.6 30.3 68.2 32.6 71 L30 79 L38.5 76.5 C41.8 78.4 45.8 79.5 50 79.5 C61.6 79.5 71 71.1 71 60.8 C71 50.4 61.6 42 50 42 Z" strokeWidth="5" />
                 </svg>
-                <span>WhatsApp Desk (+251 968 094 406)</span>
+                <span>WhatsApp Desk ({hotelInfo.whatsappNumber})</span>
               </a>
+              ) : null}
               <a href={`mailto:${hotelInfo.email}`} className="flex items-center space-x-3 text-xs text-white/85 hover:text-gold transition-colors font-medium break-all">
                 <Mail className="w-4 h-4 text-gold flex-shrink-0" />
                 <span>{hotelInfo.email}</span>
@@ -169,7 +177,7 @@ export default function Footer({ hotelInfo, navLinks, activePage, setActivePage,
 
         {/* Bottom copyright details */}
         <div className="border-t border-white/10 pt-6 pb-2 flex flex-col sm:flex-row items-center justify-between text-[10px] text-white/75 tracking-wider">
-          <p>© 2026 Dire Dawa Ras Hotel. All rights reserved.</p>
+          <p>© {currentYear} Dire Dawa Ras Hotel. All rights reserved.</p>
           <p className="mt-2.5 sm:mt-0 font-serif italic text-gold text-[11px] capitalize tracking-normal">
             Designed with historic landmark heritage.
           </p>

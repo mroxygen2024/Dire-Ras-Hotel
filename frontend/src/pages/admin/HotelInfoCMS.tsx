@@ -24,9 +24,13 @@ const hotelInfoSchema = z.object({
   heroDescription: z.string().default(''),
   establishedText: z.string().default(''),
   logo: z.string().default(''),
+  mapEmbedUrl: z.string().default(''),
+  whatsappNumber: z.string().default(''),
+  facebookUrl: z.string().default(''),
+  instagramUrl: z.string().default(''),
+  twitterUrl: z.string().default(''),
+  tripAdvisorUrl: z.string().default(''),
 });
-
-type HotelInfoFormValues = z.infer<typeof hotelInfoSchema>;
 
 export const HotelInfoCMS: React.FC = () => {
   const toast = useToast();
@@ -39,7 +43,7 @@ export const HotelInfoCMS: React.FC = () => {
     queryFn: adminService.getHotelInfo,
   });
 
-  const { register, handleSubmit, reset, watch, setValue, formState: { errors } } = useForm<HotelInfoFormValues>({
+  const { register, handleSubmit, reset, watch, setValue, formState: { errors } } = useForm({
     resolver: zodResolver(hotelInfoSchema),
   });
 
@@ -60,6 +64,12 @@ export const HotelInfoCMS: React.FC = () => {
         heroDescription: hotelInfo.heroDescription || '',
         establishedText: hotelInfo.establishedText || '',
         logo: hotelInfo.logo || '',
+        mapEmbedUrl: hotelInfo.mapEmbedUrl || '',
+        whatsappNumber: hotelInfo.whatsappNumber || '',
+        facebookUrl: hotelInfo.facebookUrl || '',
+        instagramUrl: hotelInfo.instagramUrl || '',
+        twitterUrl: hotelInfo.twitterUrl || '',
+        tripAdvisorUrl: hotelInfo.tripAdvisorUrl || '',
       });
     }
   }, [hotelInfo, reset]);
@@ -76,7 +86,7 @@ export const HotelInfoCMS: React.FC = () => {
     },
   });
 
-  const onSubmit = (data: HotelInfoFormValues) => {
+  const onSubmit = (data: any) => {
     updateMutation.mutate(data);
   };
 
@@ -231,11 +241,51 @@ export const HotelInfoCMS: React.FC = () => {
                   {...register('phone2')}
                 />
 
+                <Input
+                  label="WhatsApp Number (international format)"
+                  placeholder="251968094406"
+                  error={errors.whatsappNumber?.message}
+                  {...register('whatsappNumber')}
+                />
+
                 <Textarea
                   label="Physical Landmark Address"
                   error={errors.address?.message}
                   {...register('address')}
                 />
+
+                <Textarea
+                  label="Google Maps Embed URL"
+                  placeholder="https://maps.google.com/maps?...&output=embed"
+                  error={errors.mapEmbedUrl?.message}
+                  {...register('mapEmbedUrl')}
+                />
+
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+                  <Input
+                    label="Facebook URL"
+                    error={errors.facebookUrl?.message}
+                    {...register('facebookUrl')}
+                  />
+                  <Input
+                    label="Instagram URL"
+                    error={errors.instagramUrl?.message}
+                    {...register('instagramUrl')}
+                  />
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+                  <Input
+                    label="Twitter/X URL"
+                    error={errors.twitterUrl?.message}
+                    {...register('twitterUrl')}
+                  />
+                  <Input
+                    label="TripAdvisor URL"
+                    error={errors.tripAdvisorUrl?.message}
+                    {...register('tripAdvisorUrl')}
+                  />
+                </div>
               </CardContent>
             </Card>
           </div>
