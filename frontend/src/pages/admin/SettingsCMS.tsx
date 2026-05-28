@@ -27,7 +27,7 @@ export const SettingsCMS: React.FC = () => {
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         <Card className="lg:col-span-2">
           <CardHeader>
-            <CardTitle className="flex items-center gap-2"><ShieldCheck className="text-[#8B0000]" size={18} /> Active Admin Profile</CardTitle>
+            <CardTitle className="flex items-center gap-2"><ShieldCheck className="text-primary" size={18} /> Active Admin Profile</CardTitle>
             <CardDescription>Profile data loaded from the JWT session.</CardDescription>
           </CardHeader>
           <CardContent className="grid gap-4 sm:grid-cols-2">
@@ -53,7 +53,7 @@ export const SettingsCMS: React.FC = () => {
         <div className="space-y-6">
           <Card>
             <CardHeader>
-              <CardTitle className="flex items-center gap-2"><Database className="text-[#8B0000]" size={18} /> Backend Connection</CardTitle>
+              <CardTitle className="flex items-center gap-2"><Database className="text-primary" size={18} /> Backend Connection</CardTitle>
               <CardDescription>Axios is configured for the Express CMS API.</CardDescription>
             </CardHeader>
             <CardContent className="space-y-3 text-sm text-stone-600">

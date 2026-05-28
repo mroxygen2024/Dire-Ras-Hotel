@@ -35,7 +35,7 @@ const ProtectedRoute: React.FC<{ children: React.ReactNode }> = ({ children }) =
 
   if (isAdminLoading) {
     return (
-      <div className="min-h-screen bg-[#F8F6F2] flex flex-col items-center justify-center">
+      <div className="min-h-screen bg-bg-light flex flex-col items-center justify-center">
         {/* Premium visual spinner */}
         <div className="w-11 h-11 rounded-full border-3 border-stone-200 border-t-primary animate-spin" />
         <span className="text-xs uppercase tracking-widest text-gold-dark font-bold mt-4 animate-pulse">

@@ -10,20 +10,20 @@ import { Input } from '../../components/ui/Input';
 import { Textarea } from '../../components/ui/Textarea';
 import { Button } from '../../components/ui/Button';
 import { Skeleton } from '../../components/ui/Skeleton';
-import { Building, Phone, Mail, MapPin, Award, Image as ImageIcon } from 'lucide-react';
+import { Building, MapPin, Award, Image as ImageIcon } from 'lucide-react';
 
 const hotelInfoSchema = z.object({
   name: z.string().min(1, 'Hotel name is required').trim(),
-  tagline: z.string().optional().nullable().default(''),
+  tagline: z.string().default(''),
   phone: z.string().min(5, 'Primary phone is required').trim(),
-  phone2: z.string().optional().nullable().default(''),
+  phone2: z.string().default(''),
   email: z.string().email('Must be a valid contact email').trim(),
   address: z.string().min(1, 'Physical address is required').trim(),
   heroTitle: z.string().min(1, 'Hero header title is required').trim(),
-  heroSubtitle: z.string().optional().nullable().default(''),
-  heroDescription: z.string().optional().nullable().default(''),
-  establishedText: z.string().optional().nullable().default(''),
-  logo: z.string().optional().nullable().default(''),
+  heroSubtitle: z.string().default(''),
+  heroDescription: z.string().default(''),
+  establishedText: z.string().default(''),
+  logo: z.string().default(''),
 });
 
 type HotelInfoFormValues = z.infer<typeof hotelInfoSchema>;
@@ -31,6 +31,7 @@ type HotelInfoFormValues = z.infer<typeof hotelInfoSchema>;
 export const HotelInfoCMS: React.FC = () => {
   const toast = useToast();
   const queryClient = useQueryClient();
+  const [logoUploading, setLogoUploading] = React.useState(false);
 
   // Fetch current hotel info from backend API
   const { data: hotelInfo, isLoading } = useQuery({
@@ -38,9 +39,11 @@ export const HotelInfoCMS: React.FC = () => {
     queryFn: adminService.getHotelInfo,
   });
 
-  const { register, handleSubmit, reset, formState: { errors } } = useForm<HotelInfoFormValues>({
+  const { register, handleSubmit, reset, watch, setValue, formState: { errors } } = useForm<HotelInfoFormValues>({
     resolver: zodResolver(hotelInfoSchema),
   });
+
+  const logoValue = watch('logo');
 
   // Reset form when info loaded
   React.useEffect(() => {
@@ -75,6 +78,34 @@ export const HotelInfoCMS: React.FC = () => {
 
   const onSubmit = (data: HotelInfoFormValues) => {
     updateMutation.mutate(data);
+  };
+
+  const handleLogoUpload = async (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+    if (!file) return;
+
+    if (!file.type.startsWith('image/')) {
+      toast.error('Please upload an image file for the logo.');
+      return;
+    }
+
+    setLogoUploading(true);
+    try {
+      const preview = await new Promise<string>((resolve, reject) => {
+        const reader = new FileReader();
+        reader.onload = () => resolve(String(reader.result));
+        reader.onerror = () => reject(new Error('Unable to read the selected image.'));
+        reader.readAsDataURL(file);
+      });
+
+      setValue('logo', preview, { shouldDirty: true, shouldValidate: true });
+      toast.success('Logo uploaded successfully. Save changes to publish it.');
+    } catch {
+      toast.error('Failed to process the selected logo image.');
+    } finally {
+      setLogoUploading(false);
+      event.target.value = '';
+    }
   };
 
   if (isLoading) {
@@ -155,13 +186,19 @@ export const HotelInfoCMS: React.FC = () => {
                     error={errors.logo?.message}
                     {...register('logo')}
                   />
-                  {hotelInfo?.logo && (
-                    <div className="h-10.5 flex items-center gap-3 px-4 py-2 bg-stone-50 border border-stone-200 rounded-lg overflow-hidden max-w-xs">
-                      <ImageIcon size={16} className="text-stone-400 shrink-0" />
-                      <span className="text-xs font-semibold text-muted-gray truncate shrink-0">Logo active:</span>
-                      <img src={hotelInfo.logo} alt="Branding logo preview" className="h-6 object-contain" />
+                    <div className="flex flex-wrap items-center gap-3">
+                      <label className="inline-flex items-center gap-2 px-4 py-2 rounded-lg border border-stone-200 bg-white text-sm font-medium text-text-dark hover:bg-stone-50 cursor-pointer transition-colors">
+                        <ImageIcon size={16} className="text-primary" />
+                        <span>{logoUploading ? 'Uploading...' : 'Upload Logo'}</span>
+                        <input type="file" accept="image/*" onChange={handleLogoUpload} className="hidden" />
+                      </label>
+                      {(logoValue || hotelInfo?.logo) && (
+                        <div className="h-12 flex items-center gap-3 px-4 py-2 bg-stone-50 border border-stone-200 rounded-xl overflow-hidden max-w-sm">
+                          <span className="text-[10px] uppercase tracking-[0.24em] font-bold text-stone-400 shrink-0">Preview</span>
+                          <img src={logoValue || hotelInfo?.logo} alt="Branding logo preview" className="h-8 object-contain" />
+                        </div>
+                      )}
                     </div>
-                  )}
                 </div>
               </CardContent>
             </Card>
@@ -188,19 +225,11 @@ export const HotelInfoCMS: React.FC = () => {
                   />
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-                  <Input
-                    label="Secondary Telephone Number (Optional)"
-                    error={errors.phone2?.message}
-                    {...register('phone2')}
-                  />
-                  <Input
-                    label="Official WhatsApp Link Number"
-                    placeholder="+251..."
-                    error={errors.whatsappNumber?.message}
-                    {...register('whatsappNumber')}
-                  />
-                </div>
+                <Input
+                  label="Secondary Telephone Number (Optional)"
+                  error={errors.phone2?.message}
+                  {...register('phone2')}
+                />
 
                 <Textarea
                   label="Physical Landmark Address"
@@ -213,7 +242,7 @@ export const HotelInfoCMS: React.FC = () => {
 
           {/* Hero Context panel */}
           <div className="space-y-6">
-            <Card className="border-stone-200/70 bg-gradient-to-br from-white to-stone-50/20">
+            <Card className="border-stone-200/70 bg-linear-to-br from-white to-stone-50/20">
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
                   <Award className="text-primary" size={18} />

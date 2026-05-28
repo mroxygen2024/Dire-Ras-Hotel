@@ -327,12 +327,14 @@ export const ReviewsCMS: React.FC = () => {
                   <div className="flex items-center gap-2">
                     <button
                       onClick={() => handleOpenEdit(r)}
+                      aria-label={`Edit review by ${r.name}`}
                       className="p-2 text-stone-500 hover:bg-stone-100 hover:text-text-dark rounded transition-colors cursor-pointer"
                     >
                       <Edit3 size={15} />
                     </button>
                     <button
                       onClick={() => handleOpenDelete(r)}
+                      aria-label={`Delete review by ${r.name}`}
                       className="p-2 text-red-650 hover:bg-red-50 hover:text-red-750 rounded transition-colors cursor-pointer"
                     >
                       <Trash2 size={15} />
@@ -404,6 +406,7 @@ export const ReviewsCMS: React.FC = () => {
                   key={star}
                   type="button"
                   onClick={() => setFormRating(star)}
+                  aria-label={`Set rating ${star} star${star > 1 ? 's' : ''}`}
                   className="p-1 hover:scale-110 transition-transform cursor-pointer"
                 >
                   <Star

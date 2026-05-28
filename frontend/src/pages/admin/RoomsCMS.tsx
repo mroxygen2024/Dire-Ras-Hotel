@@ -364,12 +364,14 @@ export const RoomsCMS: React.FC = () => {
                 <div className="flex items-center gap-2">
                   <button
                     onClick={() => handleOpenEdit(room)}
+                    aria-label={`Edit room ${room.name}`}
                     className="p-2 text-stone-500 hover:bg-stone-100 hover:text-text-dark rounded transition-colors cursor-pointer"
                   >
                     <Edit3 size={15} />
                   </button>
                   <button
                     onClick={() => handleOpenDelete(room)}
+                    aria-label={`Delete room ${room.name}`}
                     className="p-2 text-red-650 hover:bg-red-50 hover:text-red-750 rounded transition-colors cursor-pointer"
                   >
                     <Trash2 size={15} />
@@ -470,7 +472,7 @@ export const RoomsCMS: React.FC = () => {
               {addFeatures.map((f, i) => (
                 <span key={i} className="inline-flex items-center gap-1 text-xs text-primary bg-red-50 font-semibold px-2.5 py-1 rounded-md border border-primary/10">
                   {f}
-                  <button type="button" onClick={() => handleRemoveFeature(i, 'add')} className="text-stone-400 hover:text-primary cursor-pointer"><X size={12} /></button>
+                  <button type="button" onClick={() => handleRemoveFeature(i, 'add')} aria-label={`Remove feature ${f}`} className="text-stone-400 hover:text-primary cursor-pointer"><X size={12} /></button>
                 </span>
               ))}
               {addFeatures.length === 0 && <span className="text-xs italic text-stone-400">No custom amenities added.</span>}
@@ -546,7 +548,7 @@ export const RoomsCMS: React.FC = () => {
               {editFeatures.map((f, i) => (
                 <span key={i} className="inline-flex items-center gap-1 text-xs text-primary bg-red-50 font-semibold px-2.5 py-1 rounded-md border border-primary/10">
                   {f}
-                  <button type="button" onClick={() => handleRemoveFeature(i, 'edit')} className="text-stone-400 hover:text-primary cursor-pointer"><X size={12} /></button>
+                  <button type="button" onClick={() => handleRemoveFeature(i, 'edit')} aria-label={`Remove feature ${f}`} className="text-stone-400 hover:text-primary cursor-pointer"><X size={12} /></button>
                 </span>
               ))}
               {editFeatures.length === 0 && <span className="text-xs italic text-stone-400">No custom amenities added.</span>}

@@ -59,7 +59,7 @@ export const AdminLayout: React.FC<{ children: React.ReactNode }> = ({ children 
   };
 
   const renderNavLinks = (onClick?: () => void) => (
-    <nav className="flex-grow py-5 flex flex-col gap-1.5 px-4">
+    <nav className="grow py-5 flex flex-col gap-1.5 px-4">
       <div className="px-3 mb-2 flex items-center gap-2 text-[10px] font-bold uppercase tracking-[0.26em] text-stone-400">
         <Sparkles size={12} className="text-primary" />
         CMS Core Controls
@@ -73,12 +73,12 @@ export const AdminLayout: React.FC<{ children: React.ReactNode }> = ({ children 
             onClick={onClick}
             className={`group flex items-center justify-between gap-3 px-4 py-3 rounded-xl text-sm font-medium transition-all duration-200 cursor-pointer ${
               isActive
-                ? 'bg-[#8B0000] text-white shadow-lg shadow-red-950/15'
+                ? 'bg-primary text-white shadow-lg shadow-red-950/15'
                 : 'text-stone-600 hover:bg-stone-100 hover:text-text-dark'
             }`}
           >
             <span className="flex items-center gap-3 min-w-0">
-              <item.icon size={18} className={isActive ? 'text-white' : 'text-stone-400 group-hover:text-[#8B0000]'} />
+              <item.icon size={18} className={isActive ? 'text-white' : 'text-stone-400 group-hover:text-primary'} />
               <span className="truncate">{item.name}</span>
             </span>
             <ChevronRight size={14} className={isActive ? 'text-white/70' : 'text-stone-300 group-hover:text-stone-400'} />
@@ -102,33 +102,33 @@ export const AdminLayout: React.FC<{ children: React.ReactNode }> = ({ children 
   );
 
   return (
-    <div className="min-h-screen bg-[radial-gradient(circle_at_top_left,_rgba(139,0,0,0.08),_transparent_30%),linear-gradient(180deg,_#fbf7f1_0%,_#f8f3eb_100%)] flex text-[#1B1B1B]">
+    <div className="min-h-screen bg-[radial-gradient(circle_at_top_left,rgba(139,0,0,0.08),transparent_30%),linear-gradient(180deg,#fbf7f1_0%,#f8f3eb_100%)] flex text-text-dark">
       <aside className="hidden lg:flex flex-col w-72 shrink-0 border-r border-stone-200/80 bg-white/90 backdrop-blur-xl shadow-[0_0_0_1px_rgba(255,255,255,0.65)]">
         <div className="px-6 py-5 border-b border-stone-200/80">
           <div className="flex items-center gap-3">
-            <div className="w-11 h-11 rounded-2xl bg-[#8B0000] flex items-center justify-center text-white font-serif font-bold text-xl shadow-lg shadow-red-950/15">
+            <div className="w-11 h-11 rounded-2xl bg-primary flex items-center justify-center text-white font-serif font-bold text-xl shadow-lg shadow-red-950/15">
             R
             </div>
             <div>
               <h1 className="font-serif font-bold text-[15px] leading-tight text-text-dark flex items-center gap-2">
                 Dire Dawa Ras Hotel
-                <Crown size={14} className="text-[#8B0000]" />
+                <Crown size={14} className="text-primary" />
               </h1>
               <p className="text-[10px] tracking-[0.32em] text-stone-500 uppercase font-semibold mt-1">
                 Heritage CMS
               </p>
             </div>
           </div>
-          <div className="mt-4 rounded-2xl border border-red-100 bg-gradient-to-br from-red-50 to-amber-50 p-4">
+          <div className="mt-4 rounded-2xl border border-red-100 bg-linear-to-br from-red-50 to-amber-50 p-4">
             <p className="text-[10px] uppercase tracking-[0.28em] font-bold text-stone-500">Signed in as</p>
             <div className="mt-2 flex items-center gap-3">
-              <div className="w-10 h-10 rounded-full bg-white border border-stone-200 flex items-center justify-center text-[#8B0000]">
+              <div className="w-10 h-10 rounded-full bg-white border border-stone-200 flex items-center justify-center text-primary">
                 <User size={16} />
               </div>
               <div className="min-w-0">
                 <div className="text-sm font-semibold text-text-dark truncate flex items-center gap-1.5">
                   {admin?.firstName || 'Hotel Admin'}
-                  <ShieldCheck size={12} className="text-[#8B0000]" />
+                  <ShieldCheck size={12} className="text-primary" />
                 </div>
                 <div className="text-[11px] text-stone-500 truncate">{admin?.email}</div>
               </div>
@@ -152,7 +152,7 @@ export const AdminLayout: React.FC<{ children: React.ReactNode }> = ({ children 
         >
           <div className="px-5 py-4 border-b border-stone-200 flex items-center justify-between">
             <div className="flex items-center gap-2">
-              <div className="w-9 h-9 rounded-2xl bg-[#8B0000] flex items-center justify-center text-white font-serif font-bold text-sm shadow-lg shadow-red-950/10">
+              <div className="w-9 h-9 rounded-2xl bg-primary flex items-center justify-center text-white font-serif font-bold text-sm shadow-lg shadow-red-950/10">
                 R
               </div>
               <div>
@@ -162,6 +162,7 @@ export const AdminLayout: React.FC<{ children: React.ReactNode }> = ({ children 
             </div>
             <button
               onClick={() => setMobileOpen(false)}
+              aria-label="Close navigation"
               className="p-1.5 hover:bg-stone-100 text-stone-500 rounded-lg"
             >
               <X size={18} />
@@ -169,13 +170,13 @@ export const AdminLayout: React.FC<{ children: React.ReactNode }> = ({ children 
           </div>
           <div className="p-4 border-b border-stone-200 bg-stone-50/60">
             <div className="flex items-center gap-3">
-              <div className="w-9 h-9 rounded-full bg-white border border-stone-200 flex items-center justify-center text-[#8B0000]">
+              <div className="w-9 h-9 rounded-full bg-white border border-stone-200 flex items-center justify-center text-primary">
                 <User size={14} />
               </div>
               <div className="min-w-0">
                 <div className="text-xs font-bold text-text-dark truncate flex items-center gap-1.5">
                   {admin?.firstName || 'Admin'}
-                  <ShieldCheck size={12} className="text-[#8B0000]" />
+                  <ShieldCheck size={12} className="text-primary" />
                 </div>
                 <div className="text-[10px] text-muted-gray truncate">{admin?.email}</div>
               </div>
@@ -191,6 +192,7 @@ export const AdminLayout: React.FC<{ children: React.ReactNode }> = ({ children 
           <div className="flex items-center gap-3">
             <button
               onClick={() => setMobileOpen(true)}
+              aria-label="Open navigation menu"
               className="lg:hidden p-2 text-stone-600 hover:bg-stone-100 rounded-xl cursor-pointer"
             >
               <Menu size={20} />
@@ -201,7 +203,7 @@ export const AdminLayout: React.FC<{ children: React.ReactNode }> = ({ children 
             </div>
           </div>
 
-          <div className="flex items-center gap-3 sm:gap-4">
+            <div className="flex items-center gap-3 sm:gap-4">
             <a
               href="/"
               target="_blank"
@@ -218,7 +220,7 @@ export const AdminLayout: React.FC<{ children: React.ReactNode }> = ({ children 
           </div>
         </header>
 
-        <main className="flex-grow p-4 sm:p-6 lg:p-8 overflow-y-auto">
+          <main className="grow p-4 sm:p-6 lg:p-8 overflow-y-auto">
           <div className="max-w-7xl w-full mx-auto space-y-6 animate-fade-in">{children}</div>
         </main>
       </div>

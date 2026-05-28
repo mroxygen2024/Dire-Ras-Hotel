@@ -337,6 +337,7 @@ export const AboutHeritageCMS: React.FC = () => {
                     <div className="shrink-0">
                       <button
                         onClick={() => handleDeleteStory(story.id)}
+                        aria-label={`Delete story ${story.title}`}
                         className="p-2 text-stone-400 hover:text-red-650 hover:bg-red-50 rounded-full transition-colors cursor-pointer"
                       >
                         <Trash2 size={16} />
@@ -437,6 +438,7 @@ export const AboutHeritageCMS: React.FC = () => {
                         type="button"
                         onClick={() => handleReorderEvent(index, 'up')}
                         disabled={index === 0}
+                        aria-label="Move event up"
                         className="p-1 hover:bg-stone-100 text-stone-400 hover:text-primary disabled:opacity-30 rounded cursor-pointer"
                       >
                         <ArrowUp size={12} />
@@ -445,6 +447,7 @@ export const AboutHeritageCMS: React.FC = () => {
                         type="button"
                         onClick={() => handleReorderEvent(index, 'down')}
                         disabled={index === sortedEvents.length - 1}
+                        aria-label="Move event down"
                         className="p-1 hover:bg-stone-100 text-stone-400 hover:text-primary disabled:opacity-30 rounded cursor-pointer"
                       >
                         <ArrowDown size={12} />
@@ -456,7 +459,7 @@ export const AboutHeritageCMS: React.FC = () => {
                       {event.year}
                     </div>
 
-                    <div className="flex-grow min-w-0 space-y-1">
+                    <div className="grow min-w-0 space-y-1">
                       <h4 className="font-bold text-text-dark text-sm truncate">{event.title}</h4>
                       <p className="text-xs text-muted-gray leading-relaxed font-medium line-clamp-2">
                         {event.description}
@@ -466,6 +469,7 @@ export const AboutHeritageCMS: React.FC = () => {
                     <div className="shrink-0">
                       <button
                         onClick={() => handleDeleteEvent(event.id)}
+                        aria-label={`Delete event ${event.title}`}
                         className="p-1.5 text-stone-400 hover:text-red-650 hover:bg-red-50 rounded-full transition-colors cursor-pointer"
                       >
                         <Trash2 size={15} />

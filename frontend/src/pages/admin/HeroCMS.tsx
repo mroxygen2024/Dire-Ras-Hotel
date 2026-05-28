@@ -233,7 +233,7 @@ export const HeroCMS: React.FC = () => {
             </div>
 
             {/* Simulated Public Hero Window */}
-            <div className="w-full border border-stone-300 rounded-xl overflow-hidden shadow-2xl relative bg-stone-900 min-h-[460px] flex flex-col justify-between">
+            <div className="w-full border border-stone-300 rounded-xl overflow-hidden shadow-2xl relative bg-stone-900 min-h-115 flex flex-col justify-between">
               {/* background image rendering */}
               <div 
                 className="absolute inset-0 bg-cover bg-center transition-all duration-500"
@@ -259,7 +259,7 @@ export const HeroCMS: React.FC = () => {
               </div>
 
               {/* Hero Contents */}
-              <div className="relative z-10 p-8 md:p-12 flex flex-col justify-center items-center text-center flex-grow">
+              <div className="relative z-10 p-8 md:p-12 flex flex-col justify-center items-center text-center grow">
                 {/* Badge accent */}
                 {watchBadge && (
                   <span className="text-[10px] tracking-widest font-bold uppercase text-white bg-primary px-3 py-1 rounded-full mb-4 shadow-sm border border-primary/20">

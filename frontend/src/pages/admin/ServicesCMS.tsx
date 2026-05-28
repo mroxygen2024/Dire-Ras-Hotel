@@ -246,6 +246,7 @@ export const ServicesCMS: React.FC = () => {
                               type="button"
                               onClick={() => reorderMutation.mutate({ index, direction: 'up' })}
                               disabled={index === 0}
+                              aria-label="Move service up"
                               className="p-1 hover:bg-stone-100 text-stone-400 hover:text-primary disabled:opacity-30 rounded cursor-pointer"
                             >
                               <ArrowUp size={14} />
@@ -257,6 +258,7 @@ export const ServicesCMS: React.FC = () => {
                               type="button"
                               onClick={() => reorderMutation.mutate({ index, direction: 'down' })}
                               disabled={index === services.length - 1}
+                              aria-label="Move service down"
                               className="p-1 hover:bg-stone-100 text-stone-400 hover:text-primary disabled:opacity-30 rounded cursor-pointer"
                             >
                               <ArrowDown size={14} />
@@ -284,12 +286,14 @@ export const ServicesCMS: React.FC = () => {
                           <div className="flex items-center justify-center gap-1">
                             <button
                               onClick={() => handleOpenEdit(service)}
+                              aria-label={`Edit service ${service.title}`}
                               className="p-2 text-stone-500 hover:bg-stone-100 hover:text-text-dark rounded transition-colors cursor-pointer"
                             >
                               <Edit3 size={15} />
                             </button>
                             <button
                               onClick={() => handleOpenDelete(service)}
+                              aria-label={`Delete service ${service.title}`}
                               className="p-2 text-red-650 hover:bg-red-50 hover:text-red-750 rounded transition-colors cursor-pointer"
                             >
                               <Trash2 size={15} />

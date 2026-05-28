@@ -237,7 +237,7 @@ export const Dashboard: React.FC = () => {
 
         {/* Quick Operations Guide / Overview */}
         <div className="space-y-6">
-          <Card className="border-stone-200/70 bg-gradient-to-br from-white to-stone-50/20">
+          <Card className="border-stone-200/70 bg-linear-to-br from-white to-stone-50/20">
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
                 <TrendingUp className="text-primary" size={18} />

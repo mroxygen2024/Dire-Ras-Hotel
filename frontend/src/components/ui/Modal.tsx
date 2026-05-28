@@ -57,7 +57,9 @@ export const Modal: React.FC<ModalProps> = ({
         <div className="flex items-center justify-between px-6 py-4.5 border-b border-stone-200/80 bg-white">
           <h3 className="text-xl font-serif font-bold text-text-dark">{title}</h3>
           <button 
+            type="button"
             onClick={onClose} 
+            aria-label="Close modal"
             className="p-1 text-muted-gray hover:bg-stone-100 hover:text-text-dark rounded-full transition-colors cursor-pointer"
           >
             <X size={18} />

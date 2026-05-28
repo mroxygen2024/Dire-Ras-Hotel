@@ -56,10 +56,10 @@ export const sanitizeMiddleware = (req: Request, res: Response, next: NextFuncti
     req.body = sanitizeData(req.body);
   }
   if (req.query) {
-    req.query = sanitizeData(req.query);
+    Object.assign(req.query as Record<string, unknown>, sanitizeData(req.query));
   }
   if (req.params) {
-    req.params = sanitizeData(req.params);
+    Object.assign(req.params as Record<string, unknown>, sanitizeData(req.params));
   }
   next();
 };

@@ -56,10 +56,11 @@ export const ToastProvider: React.FC<{ children: React.ReactNode }> = ({ childre
             {t.type === 'error' && <AlertCircle size={18} className="text-red-650 shrink-0 mt-0.5" />}
             {t.type === 'info' && <Info size={18} className="text-blue-600 shrink-0 mt-0.5" />}
             
-            <div className="flex-grow">{t.text}</div>
+            <div className="flex-1">{t.text}</div>
             
             <button
               onClick={() => removeToast(t.id)}
+              aria-label="Dismiss notification"
               className="text-stone-400 hover:text-stone-600 transition-colors shrink-0 cursor-pointer"
             >
               <X size={14} />

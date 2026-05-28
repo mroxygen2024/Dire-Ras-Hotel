@@ -58,7 +58,7 @@ export const Login: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-[#F8F6F2] flex flex-col justify-center items-center p-4 relative overflow-hidden">
+    <div className="min-h-screen bg-bg-light flex flex-col justify-center items-center p-4 relative overflow-hidden">
       {/* Decorative luxury architectural background lines */}
       <div className="absolute inset-0 opacity-[0.03] pointer-events-none">
         <svg width="100%" height="100%">

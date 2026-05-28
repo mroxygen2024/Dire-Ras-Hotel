@@ -89,8 +89,8 @@ export const ContactCMS: React.FC = () => {
           <Skeleton className="h-5 w-96" />
         </div>
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-          <Card className="h-[450px]" />
-          <Card className="h-[450px]" />
+          <Card className="h-112.5" />
+          <Card className="h-112.5" />
         </div>
       </div>
     );
@@ -172,7 +172,7 @@ export const ContactCMS: React.FC = () => {
 
           {/* Inquiry form customization (Right 5 Cols) */}
           <div className="lg:col-span-5 space-y-6 lg:sticky lg:top-6">
-            <Card className="border-stone-200/70 bg-gradient-to-br from-white to-stone-50/20">
+            <Card className="border-stone-200/70 bg-linear-to-br from-white to-stone-50/20">
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
                   <MessageSquarePlus className="text-primary" size={18} />
