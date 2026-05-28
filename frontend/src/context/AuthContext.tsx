@@ -18,21 +18,46 @@ interface AuthContextType {
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
+const AUTH_TOKEN_KEY = 'admin_token';
+const AUTH_PROFILE_KEY = 'admin_profile';
+
+const readStoredAdmin = (): AdminProfile | null => {
+  if (typeof window === 'undefined') return null;
+
+  const raw = window.localStorage.getItem(AUTH_PROFILE_KEY);
+  if (!raw) return null;
+
+  try {
+    return JSON.parse(raw) as AdminProfile;
+  } catch {
+    return null;
+  }
+};
+
+const clearStoredAdmin = () => {
+  if (typeof window === 'undefined') return;
+
+  window.localStorage.removeItem(AUTH_TOKEN_KEY);
+  window.localStorage.removeItem('admin_access_token');
+  window.localStorage.removeItem(AUTH_PROFILE_KEY);
+};
 
 export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
   const [isAdminLoading, setIsAdminLoading] = useState<boolean>(true);
-  const [admin, setAdmin] = useState<AdminProfile | null>(null);
+  const [admin, setAdmin] = useState<AdminProfile | null>(() => readStoredAdmin());
 
   const logout = useCallback(() => {
-    localStorage.removeItem('admin_token');
-    localStorage.removeItem('admin_profile');
+    clearStoredAdmin();
     setIsAuthenticated(false);
     setAdmin(null);
   }, []);
 
   const verifySession = useCallback(async () => {
-    const token = localStorage.getItem('admin_token');
+    const token = typeof window !== 'undefined'
+      ? window.localStorage.getItem(AUTH_TOKEN_KEY) || window.localStorage.getItem('admin_access_token')
+      : null;
+
     if (!token) {
       setIsAdminLoading(false);
       return;
@@ -42,6 +67,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
       const profile = await adminService.getProfile();
       setAdmin(profile);
       setIsAuthenticated(true);
+      window.localStorage.setItem(AUTH_PROFILE_KEY, JSON.stringify(profile));
     } catch (err) {
       console.error('Session verification failed, logging out:', err);
       logout();
@@ -51,6 +77,12 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   }, [logout]);
 
   useEffect(() => {
+    const storedAdmin = readStoredAdmin();
+    if (storedAdmin) {
+      setAdmin(storedAdmin);
+      setIsAuthenticated(true);
+    }
+
     verifySession();
   }, [verifySession]);
 
@@ -58,10 +90,16 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     setIsAdminLoading(true);
     try {
       const response = await adminService.login(credentials);
-      const { token, admin: adminData } = response.data;
+      const { token, accessToken, admin: adminData } = response.data;
+      const resolvedToken = token || accessToken;
+
+      if (!resolvedToken) {
+        throw new Error('Authentication token missing from response.');
+      }
       
-      localStorage.setItem('admin_token', token);
-      localStorage.setItem('admin_profile', JSON.stringify(adminData));
+      window.localStorage.setItem(AUTH_TOKEN_KEY, resolvedToken);
+      window.localStorage.setItem('admin_access_token', resolvedToken);
+      window.localStorage.setItem(AUTH_PROFILE_KEY, JSON.stringify(adminData));
       
       setAdmin(adminData);
       setIsAuthenticated(true);

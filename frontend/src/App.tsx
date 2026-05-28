@@ -15,6 +15,7 @@ import { ServicesCMS } from './pages/admin/ServicesCMS';
 import { AboutHeritageCMS } from './pages/admin/AboutHeritageCMS';
 import { ReviewsCMS } from './pages/admin/ReviewsCMS';
 import { ContactCMS } from './pages/admin/ContactCMS';
+import { SettingsCMS } from './pages/admin/SettingsCMS';
 import { AdminLayout } from './components/AdminLayout';
 
 // Create TanStack Query client
@@ -126,6 +127,14 @@ function App() {
                 element={
                   <ProtectedRoute>
                     <ContactCMS />
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path="/admin/settings"
+                element={
+                  <ProtectedRoute>
+                    <SettingsCMS />
                   </ProtectedRoute>
                 }
               />

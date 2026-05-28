@@ -1,7 +1,25 @@
 import axios from 'axios';
 
-// Express backend CMS URL (port 5000)
-const API_BASE_URL = 'http://localhost:5000/api';
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:5000/api';
+const AUTH_TOKEN_KEYS = ['admin_token', 'admin_access_token'];
+
+const getStoredToken = () => {
+  if (typeof window === 'undefined') return null;
+
+  for (const key of AUTH_TOKEN_KEYS) {
+    const token = window.localStorage.getItem(key);
+    if (token) return token;
+  }
+
+  return null;
+};
+
+const clearStoredAuth = () => {
+  if (typeof window === 'undefined') return;
+
+  AUTH_TOKEN_KEYS.forEach((key) => window.localStorage.removeItem(key));
+  window.localStorage.removeItem('admin_profile');
+};
 
 export const api = axios.create({
   baseURL: API_BASE_URL,
@@ -14,7 +32,7 @@ export const api = axios.create({
 // Request interceptor to automatically insert authorization token
 api.interceptors.request.use(
   (config) => {
-    const token = localStorage.getItem('admin_token');
+    const token = getStoredToken();
     if (token && config.headers) {
       config.headers.Authorization = `Bearer ${token}`;
     }
@@ -31,11 +49,10 @@ api.interceptors.response.use(
   (error) => {
     // If the server rejects credentials as expired or unauthorized, automatically log out
     if (error.response?.status === 401) {
-      localStorage.removeItem('admin_token');
-      localStorage.removeItem('admin_profile');
+      clearStoredAuth();
       
       // Prevent infinite redirect loops if already on login page
-      if (!window.location.pathname.includes('/admin/login')) {
+      if (typeof window !== 'undefined' && !window.location.pathname.includes('/admin/login')) {
         window.location.href = '/admin/login?error=session_expired';
       }
     }
