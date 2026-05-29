@@ -53,29 +53,15 @@ app.use(
 );
 
 // 2. Secure CORS configuration using verified origin whitelist
-const allowedOrigins = env.ALLOWED_ORIGINS.split(',').map((origin) => origin.trim()).filter(Boolean);
-const fallbackOriginPatterns = ['https://*.vercel.app'];
-
+// Allow all origins (development / broad access). This echoes the request origin
+// in the response which also allows cookies when `credentials: true`.
 app.use(
   cors({
-    origin: (origin, callback) => {
-      // Allow requests with no origin (like mobile apps, curl, or same-origin)
-      if (!origin) return callback(null, true);
-
-      const isAllowed = [...allowedOrigins, ...fallbackOriginPatterns].some((pattern) =>
-        matchesOriginPattern(origin, pattern)
-      );
-
-      if (isAllowed) {
-        return callback(null, true);
-      }
-      
-      return callback(new Error('CORS Policy violation: Origin not allowed.'));
-    },
+    origin: true,
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
     allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With', 'Accept'],
     credentials: true,
-    maxAge: 86400, // Cache preflight requests for 24 hours to reduce server load
+    maxAge: 86400,
   })
 );
 
