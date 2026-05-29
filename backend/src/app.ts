@@ -17,6 +17,15 @@ import contentRoutes from './routes/content.routes';
 
 const app: Application = express();
 
+const escapeRegex = (value: string) => value.replace(/[.+?^${}()|[\]\\]/g, '\\$&');
+
+const matchesOriginPattern = (origin: string, pattern: string) => {
+  if (pattern === '*') return true;
+
+  const regex = new RegExp(`^${escapeRegex(pattern).replace(/\\\*/g, '.*')}$`);
+  return regex.test(origin);
+};
+
 // ==========================================
 // 1. Global Middlewares
 // ==========================================
@@ -44,15 +53,20 @@ app.use(
 );
 
 // 2. Secure CORS configuration using verified origin whitelist
-const allowedOrigins = env.ALLOWED_ORIGINS.split(',').map((origin) => origin.trim());
+const allowedOrigins = env.ALLOWED_ORIGINS.split(',').map((origin) => origin.trim()).filter(Boolean);
+const fallbackOriginPatterns = ['https://*.vercel.app'];
 
 app.use(
   cors({
     origin: (origin, callback) => {
       // Allow requests with no origin (like mobile apps, curl, or same-origin)
       if (!origin) return callback(null, true);
-      
-      if (allowedOrigins.includes('*') || allowedOrigins.includes(origin)) {
+
+      const isAllowed = [...allowedOrigins, ...fallbackOriginPatterns].some((pattern) =>
+        matchesOriginPattern(origin, pattern)
+      );
+
+      if (isAllowed) {
         return callback(null, true);
       }
       
