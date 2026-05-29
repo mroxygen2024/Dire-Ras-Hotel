@@ -5,7 +5,6 @@ import morgan from 'morgan';
 import { env } from './config/env';
 import { notFoundMiddleware } from './middlewares/not-found.middleware';
 import { errorMiddleware } from './middlewares/error.middleware';
-import { apiLimiter } from './middlewares/rate-limit.middleware';
 import { sanitizeMiddleware } from './middlewares/sanitize.middleware';
 import authRoutes from './routes/auth.routes';
 import hotelInfoRoutes from './routes/hotel-info.routes';
@@ -69,9 +68,6 @@ app.use(
 // 3. Morgan for logging HTTP requests
 const morganFormat = env.NODE_ENV === 'development' ? 'dev' : 'combined';
 app.use(morgan(morganFormat));
-
-// 4. Global API Rate Limiter
-app.use('/api', apiLimiter);
 
 // 5. Payload size restrictions to prevent Buffer Overflow & DoS
 app.use(express.json({ limit: '50kb' }));

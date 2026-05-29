@@ -8,6 +8,7 @@ import { ShieldCheck, Database, LogOut, Monitor, Palette, Cookie } from 'lucide-
 export const SettingsCMS: React.FC = () => {
   const { admin, logout } = useAuth();
   const navigate = useNavigate();
+  const apiBaseUrl = import.meta.env.VITE_API_BASE_URL || 'Not configured';
 
   const handleLogout = () => {
     logout();
@@ -57,7 +58,7 @@ export const SettingsCMS: React.FC = () => {
               <CardDescription>Axios is configured for the Express CMS API.</CardDescription>
             </CardHeader>
             <CardContent className="space-y-3 text-sm text-stone-600">
-              <div className="flex items-center gap-2"><Monitor size={15} /> http://localhost:5000/api</div>
+              <div className="flex items-center gap-2"><Monitor size={15} /> {apiBaseUrl}</div>
               <div className="flex items-center gap-2"><Cookie size={15} /> Token stored in local storage</div>
               <div className="flex items-center gap-2"><Palette size={15} /> Heritage maroon + cream theme</div>
             </CardContent>

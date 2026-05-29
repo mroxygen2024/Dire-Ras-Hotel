@@ -206,7 +206,7 @@ export const reviewsData = {
     {
       name: "Sammy Zeray",
       platform: "Google Review",
-      text: "Nice clean rooms with best customer service."
+      text: "x"
     },
     {
       name: "Patrick Mumo",

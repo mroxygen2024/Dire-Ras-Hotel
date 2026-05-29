@@ -4,6 +4,9 @@ import { asyncHandler } from '../utils/async-handler';
 import { AppError } from '../utils/custom-error';
 import { ContentService } from '../services/content.service';
 import {
+  UpdateAboutPageInput,
+  UpdateHeritageSectionInput,
+  UpdateWhyStaySectionInput,
   updateAboutPageSchema,
   updateHeritageSectionSchema,
   updateWhyStaySectionSchema,
@@ -28,7 +31,7 @@ export class ContentController {
   });
 
   static updateHeritage = asyncHandler(async (req: Request, res: Response) => {
-    const payload = parseOrThrow(updateHeritageSectionSchema.safeParse(req.body));
+    const payload = parseOrThrow<UpdateHeritageSectionInput>(updateHeritageSectionSchema.safeParse(req.body));
     const data = await ContentService.updateHeritageSection(payload);
     res.status(StatusCodes.OK).json({
       success: true,
@@ -47,7 +50,7 @@ export class ContentController {
   });
 
   static updateAboutPage = asyncHandler(async (req: Request, res: Response) => {
-    const payload = parseOrThrow(updateAboutPageSchema.safeParse(req.body));
+    const payload = parseOrThrow<UpdateAboutPageInput>(updateAboutPageSchema.safeParse(req.body));
     const data = await ContentService.updateAboutPage(payload);
     res.status(StatusCodes.OK).json({
       success: true,
@@ -66,7 +69,7 @@ export class ContentController {
   });
 
   static updateWhyStay = asyncHandler(async (req: Request, res: Response) => {
-    const payload = parseOrThrow(updateWhyStaySectionSchema.safeParse(req.body));
+    const payload = parseOrThrow<UpdateWhyStaySectionInput>(updateWhyStaySectionSchema.safeParse(req.body));
     const data = await ContentService.updateWhyStaySection(payload);
     res.status(StatusCodes.OK).json({
       success: true,
