@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Navigate, Link } from 'react-router-dom';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { AuthProvider, useAuth } from './context/AuthContext';
 import { ToastProvider } from './components/ui/Toast';
@@ -58,6 +58,14 @@ function App() {
       <ToastProvider>
         <AuthProvider>
           <BrowserRouter>
+            {/* Discreet Admin quick-link: low-opacity, fixed in corner to avoid exposing to customers */}
+            <Link
+              to="/admin/login"
+              aria-label="Admin portal"
+              className="fixed left-4 bottom-4 z-50 rounded-md bg-white/80 dark:bg-black/70 px-2 py-1 text-[11px] font-medium text-stone-700 dark:text-stone-200 opacity-20 hover:opacity-90 transition-opacity duration-200 pointer-events-auto"
+            >
+              Admin
+            </Link>
             <Routes>
               {/* 1. Public Facing Hotel site */}
               <Route path="/" element={<Home />} />
